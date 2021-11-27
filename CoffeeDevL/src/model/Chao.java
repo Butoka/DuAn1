@@ -26,10 +26,12 @@ public class Chao extends javax.swing.JFrame {
         initComponents();
         chay();
         prgLoad.setUI(new BasicProgressBarUI());
-        setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 30, 30));
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        //setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 30, 30));
     }
     
     public void chay() {
+        Chao ch = this;
         thoiGian = new Timer(50, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -40,6 +42,8 @@ public class Chao extends javax.swing.JFrame {
                 
                 if (prgLoad.getValue() == 100) {
                     thoiGian.stop();
+//                    ch.dispose();
+//                    new DangNhapMain().setVisible(true);
                     
                 }
             }
@@ -82,8 +86,8 @@ public class Chao extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        prgLoad.setBackground(new java.awt.Color(213, 157, 83));
-        prgLoad.setForeground(new java.awt.Color(255, 204, 0));
+        prgLoad.setBackground(new java.awt.Color(219, 106, 50));
+        prgLoad.setForeground(new java.awt.Color(255, 153, 90));
         jPanel1.add(prgLoad, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 1010, 10));
 
         lblLoading.setBackground(new java.awt.Color(213, 157, 83));
@@ -100,7 +104,7 @@ public class Chao extends javax.swing.JFrame {
         lblHienThi.setText("100%");
         jPanel1.add(lblHienThi, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 440, 72, -1));
 
-        jLabel7.setBackground(new java.awt.Color(225, 165, 95));
+        jLabel7.setBackground(new java.awt.Color(219, 106, 50));
         jLabel7.setFont(new java.awt.Font("VNI-Butlong", 1, 72)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -134,7 +138,7 @@ public class Chao extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1010, -1));
 
-        jPanel2.setBackground(new java.awt.Color(213, 157, 83));
+        jPanel2.setBackground(new java.awt.Color(219, 106, 50));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         lblExit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
