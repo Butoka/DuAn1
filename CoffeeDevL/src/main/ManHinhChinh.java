@@ -22,6 +22,7 @@ import model.ModelMenu;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
+import model.*;
 
 /**
  *
@@ -57,9 +58,10 @@ public class ManHinhChinh extends javax.swing.JFrame {
                         main.showForm(new MainForm());
                     }
                     if (subMenuIndex == 1) {
-                        MsgBox.alert(ManHinhChinh.this, ":)))");
                     }
 
+                } else if(menuIndex==2){
+                    new Ban().setVisible(true);
                 }
             }
         });
@@ -126,7 +128,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
         bg = new javax.swing.JLayeredPane();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImages(null);
 
         bg.setBackground(new java.awt.Color(255, 255, 255));

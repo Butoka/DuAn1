@@ -9,6 +9,8 @@ package form;
 import java.awt.BorderLayout;
 import javax.swing.border.EmptyBorder;
 import java.awt.Component ;
+import javax.swing.JOptionPane;
+import model.Ban;
 
 /**
  *
@@ -111,6 +113,11 @@ public class MainForm extends javax.swing.JPanel {
         buttonRadius4.setColorClick(new java.awt.Color(255, 180, 122));
         buttonRadius4.setColorOver(new java.awt.Color(251, 124, 25));
         buttonRadius4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        buttonRadius4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRadius4ActionPerformed(evt);
+            }
+        });
 
         buttonRadius5.setBackground(new java.awt.Color(255, 127, 26));
         buttonRadius5.setBorder(null);
@@ -231,6 +238,12 @@ public class MainForm extends javax.swing.JPanel {
     private void buttonRadius1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRadius1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonRadius1ActionPerformed
+
+    private void buttonRadius4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRadius4ActionPerformed
+        // TODO add your handling code here:
+        new Ban().setVisible(true);
+        JOptionPane.showConfirmDialog(jPanel1, evt, TOOL_TIP_TEXT_KEY, WIDTH);
+    }//GEN-LAST:event_buttonRadius4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
