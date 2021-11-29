@@ -164,7 +164,7 @@
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       <Component id="buttonRadius3" min="-2" pref="174" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="buttonRadius4" min="-2" pref="174" max="-2" attributes="0"/>
+                      <Component id="btnBan" min="-2" pref="174" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       <Component id="buttonRadius5" min="-2" pref="174" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -176,7 +176,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="buttonRadius3" alignment="0" max="32767" attributes="0"/>
-                  <Component id="buttonRadius4" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnBan" alignment="0" max="32767" attributes="0"/>
                   <Component id="buttonRadius5" alignment="0" max="32767" attributes="0"/>
                   <Component id="buttonRadius6" alignment="0" max="32767" attributes="0"/>
               </Group>
@@ -215,7 +215,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="newpackage.ButtonRadius" name="buttonRadius4">
+            <Component class="newpackage.ButtonRadius" name="btnBan">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="1a" green="7f" red="ff" type="rgb"/>
@@ -247,7 +247,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRadius4ActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnBanMouseClicked"/>
               </Events>
             </Component>
             <Component class="newpackage.ButtonRadius" name="buttonRadius5">

@@ -10,5 +10,32 @@ package entity;
  * @author admin
  */
 public class Ban {
-    
+
+    private int MaBan;
+    private String tenBan;
+
+    public Ban() {
+    }
+
+    public Ban(int MaBan, String tenBan) {
+        this.MaBan = MaBan;
+        this.tenBan = tenBan;
+    }
+
+    public int getMaBan() {
+        return MaBan;
+    }
+
+    public void setMaBan(int MaBan) {
+        this.MaBan = MaBan;
+    }
+
+    public String getTenBan() {
+        return tenBan;
+    }
+
+    public void setTenBan(String tenBan) {
+        this.tenBan = tenBan;
+    }
+
 }

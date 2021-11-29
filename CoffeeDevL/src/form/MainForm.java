@@ -10,7 +10,7 @@ import java.awt.BorderLayout;
 import javax.swing.border.EmptyBorder;
 import java.awt.Component ;
 import javax.swing.JOptionPane;
-import model.Ban;
+import model.BanJFrame;
 
 /**
  *
@@ -48,7 +48,7 @@ public class MainForm extends javax.swing.JPanel {
         buttonRadius2 = new newpackage.ButtonRadius();
         jPanel3 = new javax.swing.JPanel();
         buttonRadius3 = new newpackage.ButtonRadius();
-        buttonRadius4 = new newpackage.ButtonRadius();
+        btnBan = new newpackage.ButtonRadius();
         buttonRadius5 = new newpackage.ButtonRadius();
         buttonRadius6 = new newpackage.ButtonRadius();
         jLabel2 = new javax.swing.JLabel();
@@ -103,19 +103,19 @@ public class MainForm extends javax.swing.JPanel {
         buttonRadius3.setColorOver(new java.awt.Color(251, 124, 25));
         buttonRadius3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        buttonRadius4.setBackground(new java.awt.Color(255, 127, 26));
-        buttonRadius4.setBorder(null);
-        buttonRadius4.setForeground(new java.awt.Color(255, 255, 255));
-        buttonRadius4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_table_45px.png"))); // NOI18N
-        buttonRadius4.setText("Bàn");
-        buttonRadius4.setBorderColor(new java.awt.Color(255, 127, 26));
-        buttonRadius4.setColor(new java.awt.Color(255, 127, 26));
-        buttonRadius4.setColorClick(new java.awt.Color(255, 180, 122));
-        buttonRadius4.setColorOver(new java.awt.Color(251, 124, 25));
-        buttonRadius4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        buttonRadius4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonRadius4ActionPerformed(evt);
+        btnBan.setBackground(new java.awt.Color(255, 127, 26));
+        btnBan.setBorder(null);
+        btnBan.setForeground(new java.awt.Color(255, 255, 255));
+        btnBan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_table_45px.png"))); // NOI18N
+        btnBan.setText("Bàn");
+        btnBan.setBorderColor(new java.awt.Color(255, 127, 26));
+        btnBan.setColor(new java.awt.Color(255, 127, 26));
+        btnBan.setColorClick(new java.awt.Color(255, 180, 122));
+        btnBan.setColorOver(new java.awt.Color(251, 124, 25));
+        btnBan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnBan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBanMouseClicked(evt);
             }
         });
 
@@ -149,7 +149,7 @@ public class MainForm extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(buttonRadius3, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(buttonRadius4, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBan, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(buttonRadius5, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -159,7 +159,7 @@ public class MainForm extends javax.swing.JPanel {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(buttonRadius3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(buttonRadius4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnBan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(buttonRadius5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(buttonRadius6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -239,18 +239,16 @@ public class MainForm extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonRadius1ActionPerformed
 
-    private void buttonRadius4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRadius4ActionPerformed
-        // TODO add your handling code here:
-        new Ban().setVisible(true);
-        JOptionPane.showConfirmDialog(jPanel1, evt, TOOL_TIP_TEXT_KEY, WIDTH);
-    }//GEN-LAST:event_buttonRadius4ActionPerformed
+    private void btnBanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBanMouseClicked
+      new BanJFrame().setVisible(true);
+    }//GEN-LAST:event_btnBanMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private newpackage.ButtonRadius btnBan;
     private newpackage.ButtonRadius buttonRadius1;
     private newpackage.ButtonRadius buttonRadius2;
     private newpackage.ButtonRadius buttonRadius3;
-    private newpackage.ButtonRadius buttonRadius4;
     private newpackage.ButtonRadius buttonRadius5;
     private newpackage.ButtonRadius buttonRadius6;
     private javax.swing.JLabel jLabel2;

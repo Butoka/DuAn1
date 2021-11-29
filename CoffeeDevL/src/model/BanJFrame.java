@@ -5,24 +5,75 @@
  */
 package model;
 
+import dao.BanDAO;
+import entity.Ban;
+import helper.MsgBox;
 import java.awt.Color;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author admin
  */
-public class Ban extends javax.swing.JFrame {
+public class BanJFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form QuanLyBanJFrame
      */
-    public Ban() {
+    public BanJFrame() {
         initComponents();
-        
+        fillTable();
+    }
+    BanDAO banDao = new BanDAO();
+    List<Ban> list = banDao.selectAll();
+
+    public void fillTable() {
+        DefaultTableModel model = (DefaultTableModel) tblBan.getModel();
+        model.setRowCount(0);
+        List<Ban> list = banDao.selectAll();
+        for (int i = 0; i < list.size(); i++) {
+            Object[] rows = new Object[]{list.get(i).getMaBan(), list.get(i).getTenBan()
+
+            };
+            model.addRow(rows);
+        }
+
+    }
+
+    Ban readForm() {
+        Ban ban = new Ban();
+        ban.setMaBan(Integer.parseInt(txtMaBan.getText()));
+        ban.setTenBan(txtTenBan.getText());
+        return ban;
+
+    }
+
+    public void insert() {
+        Ban ban = this.readForm();
+        banDao.insert(ban);
+        MsgBox.alert(this, "Thêm thành công");
+        fillTable();
+    }
+    int viTri;
+
+    public void remove() {
+        viTri = tblBan.getSelectedRow();
+        boolean chon = MsgBox.confirm(this, "Bạn có chắc chắn xóa khóa học này");
+        DefaultTableModel model = (DefaultTableModel) tblBan.getModel();
+        if (chon) {
+            String maBan = tblBan.getValueAt(viTri, 0).toString();
+            banDao.delete(maBan);
+            MsgBox.alert(this, "Đã xóa thành công");
+            fillTable();
+
+        } else {
+            MsgBox.alert(this, "Chưa được xóa");
+        }
     }
 
     /**
@@ -105,7 +156,7 @@ public class Ban extends javax.swing.JFrame {
             .addComponent(lblMini, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel1.setBackground(new java.awt.Color(255, 127, 26));
+        jPanel1.setBackground(new java.awt.Color(255, 139, 47));
 
         lblMaBan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblMaBan.setForeground(new java.awt.Color(255, 255, 255));
@@ -138,7 +189,7 @@ public class Ban extends javax.swing.JFrame {
 
         txtTenBan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        btnThem.setBackground(new java.awt.Color(153, 153, 255));
+        btnThem.setBackground(new java.awt.Color(253, 90, 9));
         btnThem.setForeground(new java.awt.Color(255, 255, 255));
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +198,7 @@ public class Ban extends javax.swing.JFrame {
             }
         });
 
-        btnXoa.setBackground(new java.awt.Color(153, 153, 255));
+        btnXoa.setBackground(new java.awt.Color(253, 90, 9));
         btnXoa.setForeground(new java.awt.Color(255, 255, 255));
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
@@ -180,21 +231,19 @@ public class Ban extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblTenBan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtTenBan, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtTenBan, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(285, 285, 285)
                         .addComponent(jCheckBox1)))
-                .addContainerGap())
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,6 +291,7 @@ public class Ban extends javax.swing.JFrame {
 
     private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+
     }//GEN-LAST:event_lblExitMouseClicked
 
     private void lblExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseEntered
@@ -272,15 +322,16 @@ public class Ban extends javax.swing.JFrame {
 
     private void tblBanMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBanMousePressed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_tblBanMousePressed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        // TODO add your handling code here:
+        remove();
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // TODO add your handling code here:
+        insert();
+
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
@@ -318,12 +369,12 @@ public class Ban extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ban().setVisible(true);
+                new BanJFrame().setVisible(true);
             }
         });
     }
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private newpackage.Button btnThem;
     private newpackage.Button btnXoa;

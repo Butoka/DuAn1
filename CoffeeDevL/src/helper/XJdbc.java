@@ -1,4 +1,3 @@
-
 package helper;
 
 import java.sql.Connection;
@@ -12,7 +11,7 @@ public class XJdbc {
 
     static Connection connection;
     static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    static String url = "jdbc:sqlserver://localhost; database = ";//sai dấu 2 chấm thành 1 chấm :))
+    static String url = "jdbc:sqlserver://localhost; database = Coffe";//sai dấu 2 chấm thành 1 chấm :))
     public static String useSql = "sa";
     public static String passSql = "123";
 
@@ -23,7 +22,7 @@ public class XJdbc {
         }
     }
 
-    public static PreparedStatement getStmt(String sql, Object... args) throws SQLException{
+    public static PreparedStatement getStmt(String sql, Object... args) throws SQLException {
         connection = DriverManager.getConnection(url, useSql, passSql);
         PreparedStatement statement;
         if (sql.trim().startsWith("{")) {
@@ -37,7 +36,7 @@ public class XJdbc {
         return statement;
     }
 
-    public static int update(String sql, Object... args) throws SQLException{
+    public static int update(String sql, Object... args) throws SQLException {
         PreparedStatement statement = XJdbc.getStmt(sql, args);
         try {
             return statement.executeUpdate();
@@ -46,13 +45,13 @@ public class XJdbc {
         }
     }
 
-    public static ResultSet query(String sql, Object... args) throws SQLException{
+    public static ResultSet query(String sql, Object... args) throws SQLException {
         PreparedStatement statement = XJdbc.getStmt(sql, args);
         return statement.executeQuery();
     }
 
     @SuppressWarnings("UseOfIndexZeroInJDBCResultSet")
-    public static Object values(String sql, Object... args) throws SQLException{
+    public static Object values(String sql, Object... args) throws SQLException {
         ResultSet resultSet = XJdbc.query(sql, args);
         if (resultSet.next()) {
             return resultSet.getObject(0);

@@ -39,6 +39,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
     public ManHinhChinh() {
         initComponents();
         init();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     public void init() {
@@ -60,8 +61,8 @@ public class ManHinhChinh extends javax.swing.JFrame {
                     if (subMenuIndex == 1) {
                     }
 
-                } else if(menuIndex==2){
-                    new Ban().setVisible(true);
+                } else if (menuIndex == 2) {
+                    new BanJFrame().setVisible(true);
                 }
             }
         });
