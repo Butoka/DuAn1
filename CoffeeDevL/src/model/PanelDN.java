@@ -5,6 +5,7 @@
  */
 package model;
 
+import helper.MsgBox;
 import java.awt.event.ActionListener;
 
 /**
@@ -191,7 +192,7 @@ public class PanelDN extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
