@@ -38,11 +38,12 @@ public class NhanVien extends javax.swing.JFrame {
         lblMini = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        pnlTitleBar.setBackground(new java.awt.Color(219, 106, 50));
+        pnlTitleBar.setBackground(new java.awt.Color(81, 145, 255));
         pnlTitleBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 pnlTitleBarMouseDragged(evt);
@@ -54,7 +55,7 @@ public class NhanVien extends javax.swing.JFrame {
             }
         });
 
-        lblExit.setBackground(new java.awt.Color(219, 106, 50));
+        lblExit.setBackground(new java.awt.Color(81, 145, 255));
         lblExit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblExit.setForeground(new java.awt.Color(255, 255, 255));
         lblExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -72,7 +73,7 @@ public class NhanVien extends javax.swing.JFrame {
             }
         });
 
-        lblMaxi.setBackground(new java.awt.Color(219, 106, 50));
+        lblMaxi.setBackground(new java.awt.Color(81, 145, 255));
         lblMaxi.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblMaxi.setForeground(new java.awt.Color(255, 255, 255));
         lblMaxi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -90,7 +91,7 @@ public class NhanVien extends javax.swing.JFrame {
             }
         });
 
-        lblMini.setBackground(new java.awt.Color(219, 106, 50));
+        lblMini.setBackground(new java.awt.Color(81, 145, 255));
         lblMini.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblMini.setForeground(new java.awt.Color(255, 255, 255));
         lblMini.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -138,15 +139,22 @@ public class NhanVien extends javax.swing.JFrame {
             .addGap(0, 113, Short.MAX_VALUE)
         );
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Hello :))");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 245, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(106, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -278,6 +286,7 @@ public class NhanVien extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblExit;

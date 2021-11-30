@@ -104,7 +104,7 @@ public class BanJFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        pnlTitleBarr.setBackground(new java.awt.Color(219, 106, 50));
+        pnlTitleBarr.setBackground(new java.awt.Color(81, 145, 255));
         pnlTitleBarr.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 pnlTitleBarrMouseDragged(evt);
@@ -116,7 +116,7 @@ public class BanJFrame extends javax.swing.JFrame {
             }
         });
 
-        lblExit.setBackground(new java.awt.Color(219, 106, 50));
+        lblExit.setBackground(new java.awt.Color(81, 145, 255));
         lblExit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblExit.setForeground(new java.awt.Color(255, 255, 255));
         lblExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -134,7 +134,7 @@ public class BanJFrame extends javax.swing.JFrame {
             }
         });
 
-        lblMini.setBackground(new java.awt.Color(219, 106, 50));
+        lblMini.setBackground(new java.awt.Color(81, 145, 255));
         lblMini.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblMini.setForeground(new java.awt.Color(255, 255, 255));
         lblMini.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -168,7 +168,7 @@ public class BanJFrame extends javax.swing.JFrame {
             .addComponent(lblMini, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel1.setBackground(new java.awt.Color(255, 139, 47));
+        jPanel1.setBackground(new java.awt.Color(131, 176, 255));
 
         lblMaBan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblMaBan.setForeground(new java.awt.Color(255, 255, 255));
@@ -201,7 +201,7 @@ public class BanJFrame extends javax.swing.JFrame {
 
         txtTenBan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        btnThem.setBackground(new java.awt.Color(253, 90, 9));
+        btnThem.setBackground(new java.awt.Color(81, 145, 255));
         btnThem.setForeground(new java.awt.Color(255, 255, 255));
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
@@ -210,7 +210,7 @@ public class BanJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnXoa.setBackground(new java.awt.Color(253, 90, 9));
+        btnXoa.setBackground(new java.awt.Color(81, 145, 255));
         btnXoa.setForeground(new java.awt.Color(255, 255, 255));
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {

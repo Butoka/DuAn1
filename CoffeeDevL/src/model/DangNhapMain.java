@@ -137,7 +137,7 @@ public class DangNhapMain extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlTitleBar.setBackground(new java.awt.Color(219, 106, 50));
+        pnlTitleBar.setBackground(new java.awt.Color(81, 145, 255));
         pnlTitleBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 pnlTitleBarMouseDragged(evt);
@@ -149,7 +149,7 @@ public class DangNhapMain extends javax.swing.JFrame {
             }
         });
 
-        lblExit.setBackground(new java.awt.Color(219, 106, 50));
+        lblExit.setBackground(new java.awt.Color(81, 145, 255));
         lblExit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblExit.setForeground(new java.awt.Color(255, 255, 255));
         lblExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -167,7 +167,7 @@ public class DangNhapMain extends javax.swing.JFrame {
             }
         });
 
-        lblMini.setBackground(new java.awt.Color(219, 106, 50));
+        lblMini.setBackground(new java.awt.Color(81, 145, 255));
         lblMini.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblMini.setForeground(new java.awt.Color(255, 255, 255));
         lblMini.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -204,7 +204,7 @@ public class DangNhapMain extends javax.swing.JFrame {
         getContentPane().add(pnlTitleBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(50, 10, 10, 10, new java.awt.Color(219, 106, 50)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(50, 10, 10, 10, new java.awt.Color(81, 145, 255)));
 
         bgPanel.setBackground(new java.awt.Color(255, 255, 255));
 

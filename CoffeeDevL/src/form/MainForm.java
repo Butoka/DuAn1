@@ -58,18 +58,18 @@ public class MainForm extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setBackground(new java.awt.Color(255, 127, 26));
-        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 0, 3, 0, new java.awt.Color(255, 127, 26)));
+        jPanel1.setBackground(new java.awt.Color(81, 145, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 0, 3, 0, new java.awt.Color(81, 145, 255)));
 
-        buttonRadius1.setBackground(new java.awt.Color(255, 127, 26));
+        buttonRadius1.setBackground(new java.awt.Color(81, 145, 255));
         buttonRadius1.setBorder(null);
         buttonRadius1.setForeground(new java.awt.Color(255, 255, 255));
         buttonRadius1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_shutdown_45px.png"))); // NOI18N
         buttonRadius1.setText("Thoát");
-        buttonRadius1.setBorderColor(new java.awt.Color(255, 127, 26));
-        buttonRadius1.setColor(new java.awt.Color(255, 127, 26));
-        buttonRadius1.setColorClick(new java.awt.Color(255, 180, 122));
-        buttonRadius1.setColorOver(new java.awt.Color(251, 124, 25));
+        buttonRadius1.setBorderColor(new java.awt.Color(81, 145, 255));
+        buttonRadius1.setColor(new java.awt.Color(81, 145, 255));
+        buttonRadius1.setColorClick(new java.awt.Color(121, 214, 255));
+        buttonRadius1.setColorOver(new java.awt.Color(66, 117, 246));
         buttonRadius1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         buttonRadius1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,41 +77,41 @@ public class MainForm extends javax.swing.JPanel {
             }
         });
 
-        buttonRadius2.setBackground(new java.awt.Color(255, 127, 26));
+        buttonRadius2.setBackground(new java.awt.Color(81, 145, 255));
         buttonRadius2.setBorder(null);
         buttonRadius2.setForeground(new java.awt.Color(255, 255, 255));
         buttonRadius2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_Logout_45px.png"))); // NOI18N
         buttonRadius2.setText("Đăng xuất");
-        buttonRadius2.setBorderColor(new java.awt.Color(255, 127, 26));
-        buttonRadius2.setColor(new java.awt.Color(255, 127, 26));
-        buttonRadius2.setColorClick(new java.awt.Color(255, 180, 122));
-        buttonRadius2.setColorOver(new java.awt.Color(251, 124, 25));
+        buttonRadius2.setBorderColor(new java.awt.Color(81, 145, 255));
+        buttonRadius2.setColor(new java.awt.Color(81, 145, 255));
+        buttonRadius2.setColorClick(new java.awt.Color(121, 214, 255));
+        buttonRadius2.setColorOver(new java.awt.Color(66, 117, 246));
         buttonRadius2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(255, 127, 26));
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 5, 0, 0, new java.awt.Color(255, 255, 255)));
         jPanel3.setOpaque(false);
 
-        buttonRadius3.setBackground(new java.awt.Color(255, 127, 26));
+        buttonRadius3.setBackground(new java.awt.Color(81, 145, 255));
         buttonRadius3.setBorder(null);
         buttonRadius3.setForeground(new java.awt.Color(255, 255, 255));
         buttonRadius3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_box_45px.png"))); // NOI18N
         buttonRadius3.setText("Sản phẩm");
-        buttonRadius3.setBorderColor(new java.awt.Color(255, 127, 26));
-        buttonRadius3.setColor(new java.awt.Color(255, 127, 26));
-        buttonRadius3.setColorClick(new java.awt.Color(255, 180, 122));
-        buttonRadius3.setColorOver(new java.awt.Color(251, 124, 25));
+        buttonRadius3.setBorderColor(new java.awt.Color(81, 145, 255));
+        buttonRadius3.setColor(new java.awt.Color(81, 145, 255));
+        buttonRadius3.setColorClick(new java.awt.Color(121, 214, 255));
+        buttonRadius3.setColorOver(new java.awt.Color(66, 117, 246));
         buttonRadius3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        btnBan.setBackground(new java.awt.Color(255, 127, 26));
+        btnBan.setBackground(new java.awt.Color(81, 145, 255));
         btnBan.setBorder(null);
         btnBan.setForeground(new java.awt.Color(255, 255, 255));
         btnBan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_table_45px.png"))); // NOI18N
         btnBan.setText("Bàn");
-        btnBan.setBorderColor(new java.awt.Color(255, 127, 26));
-        btnBan.setColor(new java.awt.Color(255, 127, 26));
-        btnBan.setColorClick(new java.awt.Color(255, 180, 122));
-        btnBan.setColorOver(new java.awt.Color(251, 124, 25));
+        btnBan.setBorderColor(new java.awt.Color(81, 145, 255));
+        btnBan.setColor(new java.awt.Color(81, 145, 255));
+        btnBan.setColorClick(new java.awt.Color(121, 214, 255));
+        btnBan.setColorOver(new java.awt.Color(66, 117, 246));
         btnBan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnBan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -119,26 +119,26 @@ public class MainForm extends javax.swing.JPanel {
             }
         });
 
-        buttonRadius5.setBackground(new java.awt.Color(255, 127, 26));
+        buttonRadius5.setBackground(new java.awt.Color(81, 145, 255));
         buttonRadius5.setBorder(null);
         buttonRadius5.setForeground(new java.awt.Color(255, 255, 255));
         buttonRadius5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_shopping_cart_45px.png"))); // NOI18N
         buttonRadius5.setText("Bán hàng");
-        buttonRadius5.setBorderColor(new java.awt.Color(255, 127, 26));
-        buttonRadius5.setColor(new java.awt.Color(255, 127, 26));
-        buttonRadius5.setColorClick(new java.awt.Color(255, 180, 122));
-        buttonRadius5.setColorOver(new java.awt.Color(251, 124, 25));
+        buttonRadius5.setBorderColor(new java.awt.Color(81, 145, 255));
+        buttonRadius5.setColor(new java.awt.Color(81, 145, 255));
+        buttonRadius5.setColorClick(new java.awt.Color(121, 214, 255));
+        buttonRadius5.setColorOver(new java.awt.Color(66, 117, 246));
         buttonRadius5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        buttonRadius6.setBackground(new java.awt.Color(255, 127, 26));
+        buttonRadius6.setBackground(new java.awt.Color(81, 145, 255));
         buttonRadius6.setBorder(null);
         buttonRadius6.setForeground(new java.awt.Color(255, 255, 255));
         buttonRadius6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_test_passed_45px.png"))); // NOI18N
         buttonRadius6.setText("Hóa đơn");
-        buttonRadius6.setBorderColor(new java.awt.Color(255, 127, 26));
-        buttonRadius6.setColor(new java.awt.Color(255, 127, 26));
-        buttonRadius6.setColorClick(new java.awt.Color(255, 180, 122));
-        buttonRadius6.setColorOver(new java.awt.Color(251, 124, 25));
+        buttonRadius6.setBorderColor(new java.awt.Color(81, 145, 255));
+        buttonRadius6.setColor(new java.awt.Color(81, 145, 255));
+        buttonRadius6.setColorClick(new java.awt.Color(121, 214, 255));
+        buttonRadius6.setColorOver(new java.awt.Color(66, 117, 246));
         buttonRadius6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -184,9 +184,9 @@ public class MainForm extends javax.swing.JPanel {
         );
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Logo3.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Logo2.png"))); // NOI18N
 
-        jPanel2.setBackground(new java.awt.Color(255, 127, 26));
+        jPanel2.setBackground(new java.awt.Color(81, 145, 255));
 
         lblDongHo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblDongHo.setForeground(new java.awt.Color(255, 255, 255));

@@ -42,12 +42,12 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="1a" green="7f" red="ff" type="rgb"/>
+          <Color blue="ff" green="91" red="51" type="rgb"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
             <MatteColorBorder bottom="3" left="0" right="0" top="3">
-              <Color PropertyName="color" blue="1a" green="7f" red="ff" type="rgb"/>
+              <Color PropertyName="color" blue="ff" green="91" red="51" type="rgb"/>
             </MatteColorBorder>
           </Border>
         </Property>
@@ -78,7 +78,7 @@
         <Component class="newpackage.ButtonRadius" name="buttonRadius1">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="1a" green="7f" red="ff" type="rgb"/>
+              <Color blue="ff" green="91" red="51" type="rgb"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -91,16 +91,16 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
             <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="1a" green="7f" red="ff" type="rgb"/>
+              <Color blue="ff" green="91" red="51" type="rgb"/>
             </Property>
             <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="1a" green="7f" red="ff" type="rgb"/>
+              <Color blue="ff" green="91" red="51" type="rgb"/>
             </Property>
             <Property name="colorClick" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="7a" green="b4" red="ff" type="rgb"/>
+              <Color blue="ff" green="d6" red="79" type="rgb"/>
             </Property>
             <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="19" green="7c" red="fb" type="rgb"/>
+              <Color blue="f6" green="75" red="42" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -113,7 +113,7 @@
         <Component class="newpackage.ButtonRadius" name="buttonRadius2">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="1a" green="7f" red="ff" type="rgb"/>
+              <Color blue="ff" green="91" red="51" type="rgb"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -126,16 +126,16 @@
             </Property>
             <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng xu&#x1ea5;t"/>
             <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="1a" green="7f" red="ff" type="rgb"/>
+              <Color blue="ff" green="91" red="51" type="rgb"/>
             </Property>
             <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="1a" green="7f" red="ff" type="rgb"/>
+              <Color blue="ff" green="91" red="51" type="rgb"/>
             </Property>
             <Property name="colorClick" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="7a" green="b4" red="ff" type="rgb"/>
+              <Color blue="ff" green="d6" red="79" type="rgb"/>
             </Property>
             <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="19" green="7c" red="fb" type="rgb"/>
+              <Color blue="f6" green="75" red="42" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -186,7 +186,7 @@
             <Component class="newpackage.ButtonRadius" name="buttonRadius3">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1a" green="7f" red="ff" type="rgb"/>
+                  <Color blue="ff" green="91" red="51" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
@@ -199,16 +199,16 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="S&#x1ea3;n ph&#x1ea9;m"/>
                 <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1a" green="7f" red="ff" type="rgb"/>
+                  <Color blue="ff" green="91" red="51" type="rgb"/>
                 </Property>
                 <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1a" green="7f" red="ff" type="rgb"/>
+                  <Color blue="ff" green="91" red="51" type="rgb"/>
                 </Property>
                 <Property name="colorClick" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="7a" green="b4" red="ff" type="rgb"/>
+                  <Color blue="ff" green="d6" red="79" type="rgb"/>
                 </Property>
                 <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="19" green="7c" red="fb" type="rgb"/>
+                  <Color blue="f6" green="75" red="42" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
@@ -218,7 +218,7 @@
             <Component class="newpackage.ButtonRadius" name="btnBan">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1a" green="7f" red="ff" type="rgb"/>
+                  <Color blue="ff" green="91" red="51" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
@@ -231,16 +231,16 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="B&#xe0;n"/>
                 <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1a" green="7f" red="ff" type="rgb"/>
+                  <Color blue="ff" green="91" red="51" type="rgb"/>
                 </Property>
                 <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1a" green="7f" red="ff" type="rgb"/>
+                  <Color blue="ff" green="91" red="51" type="rgb"/>
                 </Property>
                 <Property name="colorClick" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="7a" green="b4" red="ff" type="rgb"/>
+                  <Color blue="ff" green="d6" red="79" type="rgb"/>
                 </Property>
                 <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="19" green="7c" red="fb" type="rgb"/>
+                  <Color blue="f6" green="75" red="42" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
@@ -253,7 +253,7 @@
             <Component class="newpackage.ButtonRadius" name="buttonRadius5">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1a" green="7f" red="ff" type="rgb"/>
+                  <Color blue="ff" green="91" red="51" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
@@ -266,16 +266,16 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="B&#xe1;n h&#xe0;ng"/>
                 <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1a" green="7f" red="ff" type="rgb"/>
+                  <Color blue="ff" green="91" red="51" type="rgb"/>
                 </Property>
                 <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1a" green="7f" red="ff" type="rgb"/>
+                  <Color blue="ff" green="91" red="51" type="rgb"/>
                 </Property>
                 <Property name="colorClick" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="7a" green="b4" red="ff" type="rgb"/>
+                  <Color blue="ff" green="d6" red="79" type="rgb"/>
                 </Property>
                 <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="19" green="7c" red="fb" type="rgb"/>
+                  <Color blue="f6" green="75" red="42" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
@@ -285,7 +285,7 @@
             <Component class="newpackage.ButtonRadius" name="buttonRadius6">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1a" green="7f" red="ff" type="rgb"/>
+                  <Color blue="ff" green="91" red="51" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
@@ -298,16 +298,16 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="H&#xf3;a &#x111;&#x1a1;n"/>
                 <Property name="borderColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1a" green="7f" red="ff" type="rgb"/>
+                  <Color blue="ff" green="91" red="51" type="rgb"/>
                 </Property>
                 <Property name="color" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1a" green="7f" red="ff" type="rgb"/>
+                  <Color blue="ff" green="91" red="51" type="rgb"/>
                 </Property>
                 <Property name="colorClick" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="7a" green="b4" red="ff" type="rgb"/>
+                  <Color blue="ff" green="d6" red="79" type="rgb"/>
                 </Property>
                 <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="19" green="7c" red="fb" type="rgb"/>
+                  <Color blue="f6" green="75" red="42" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="18" style="0"/>
@@ -322,14 +322,14 @@
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icon/Logo3.png"/>
+          <Image iconType="3" name="/icon/Logo2.png"/>
         </Property>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="1a" green="7f" red="ff" type="rgb"/>
+          <Color blue="ff" green="91" red="51" type="rgb"/>
         </Property>
       </Properties>
 

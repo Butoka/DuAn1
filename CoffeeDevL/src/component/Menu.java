@@ -69,7 +69,7 @@ public class Menu extends javax.swing.JPanel {
 
     public Menu() {
         initComponents();
-        setOpaque(false);
+        //setOpaque(false);
         sp.getViewport().setOpaque(false);
         sp.setVerticalScrollBar(new ScrollBarCustom());
         sp.setViewportBorder(null);
@@ -132,17 +132,17 @@ public class Menu extends javax.swing.JPanel {
         }
     }
 
-    @Override
-    public void paintComponent(Graphics g) {
-
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        GradientPaint gra = new GradientPaint(0, 0, new Color(255, 102, 0), getWidth(), 0, new Color(255, 171, 44));
-        g2.setPaint(gra);
-        g2.fillRect(0, 0, getWidth(), getHeight());
-
-        super.paintComponent(g);
-    }
+//    @Override
+//    public void paintComponent(Graphics g) {
+//
+//        Graphics2D g2 = (Graphics2D) g;
+//        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+//        GradientPaint gra = new GradientPaint(0, 0, new Color(255, 102, 0), getWidth(), 0, new Color(255, 171, 44));
+//        g2.setPaint(gra);
+//        g2.fillRect(0, 0, getWidth(), getHeight());
+//
+//        super.paintComponent(g);
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -157,7 +157,7 @@ public class Menu extends javax.swing.JPanel {
         panel = new javax.swing.JPanel();
         profile1 = new component.Profile();
 
-        setBackground(new java.awt.Color(255, 171, 44));
+        setBackground(new java.awt.Color(81, 145, 255));
 
         sp.setBorder(null);
         sp.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);

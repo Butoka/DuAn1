@@ -62,7 +62,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
                     }
 
                 } else if (menuIndex == 2) {
-                    new BanJFrame().setVisible(true);
+//                    new BanJFrame().setVisible(true);
                 }
             }
         });
