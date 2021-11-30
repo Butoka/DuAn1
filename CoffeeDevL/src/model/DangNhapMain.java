@@ -251,7 +251,7 @@ public class DangNhapMain extends javax.swing.JFrame {
 
     private void lblExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseExited
         // TODO add your handling code here:
-        lblExit.setBackground(new Color(219, 106, 50));
+        lblExit.setBackground(new Color(81, 145, 255));
     }//GEN-LAST:event_lblExitMouseExited
 
     private void lblMiniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMiniMouseClicked
@@ -266,7 +266,7 @@ public class DangNhapMain extends javax.swing.JFrame {
 
     private void lblMiniMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMiniMouseExited
         // TODO add your handling code here:
-        lblMini.setBackground(new Color(219, 106, 50));
+        lblMini.setBackground(new Color(81, 145, 255));
     }//GEN-LAST:event_lblMiniMouseExited
 
     private void pnlTitleBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTitleBarMouseDragged

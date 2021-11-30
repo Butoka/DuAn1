@@ -83,7 +83,7 @@ public class Menu extends javax.swing.JPanel {
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/sanpham.png")), "Sản phẩm", "Sản phẩm", "Loại sản phẩm"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/ban.png")), "Bàn"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/banhang.png")), "Bán hàng"));
-        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/hoadon.png")), "Hóa đơn", "Xuất hóa đơn"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/hoadon.png")), "Hóa đơn", "Hóa đơn","Hóa đơn CT"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/nhanvien.png")), "Nhân viên","Nhân viên", "Ca làm việc", "Chấm công", "Bảng lương"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/nguoidung.png")), "Người dùng"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/doimatkhau2.png")), "Đổi mật khẩu"));
@@ -157,7 +157,7 @@ public class Menu extends javax.swing.JPanel {
         panel = new javax.swing.JPanel();
         profile1 = new component.Profile();
 
-        setBackground(new java.awt.Color(81, 145, 255));
+        setBackground(new java.awt.Color(52, 127, 255));
 
         sp.setBorder(null);
         sp.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);

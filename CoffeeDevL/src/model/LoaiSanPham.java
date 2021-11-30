@@ -5,6 +5,12 @@
  */
 package model;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.event.WindowEvent;
+import javax.swing.table.JTableHeader;
+
 /**
  *
  * @author admin
@@ -16,7 +22,17 @@ public class LoaiSanPham extends javax.swing.JFrame {
      */
     public LoaiSanPham() {
         initComponents();
+        nameCollumn();
     }
+
+    public void nameCollumn() {
+        JTableHeader tableHeader = tblLoai.getTableHeader();
+        Font HeaderFont = new Font("Tahoma", Font.PLAIN, 16);
+        tableHeader.setFont(HeaderFont);
+
+    }
+    int mpX;
+    int mpY;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,40 +58,55 @@ public class LoaiSanPham extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDanhSach = new javax.swing.JTable();
+        tblLoai = new javax.swing.JTable();
+        pnlTitleBarr = new javax.swing.JPanel();
+        lblExit = new javax.swing.JLabel();
+        lblMini = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 2, 2, new java.awt.Color(81, 145, 255)));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tabLoai.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Mã Loại sản phẩm :");
 
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
+        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextField2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Tên loại sản phẩm:");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Mô tả :");
 
-        button1.setBackground(new java.awt.Color(255, 51, 51));
+        button1.setBackground(new java.awt.Color(81, 145, 255));
         button1.setForeground(new java.awt.Color(255, 255, 255));
         button1.setText("Thêm ");
         button1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
-        button2.setBackground(new java.awt.Color(255, 51, 51));
+        button2.setBackground(new java.awt.Color(81, 145, 255));
         button2.setForeground(new java.awt.Color(255, 255, 255));
         button2.setText("Xóa");
         button2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
-        button3.setBackground(new java.awt.Color(255, 51, 51));
+        button3.setBackground(new java.awt.Color(81, 145, 255));
         button3.setForeground(new java.awt.Color(255, 255, 255));
         button3.setText("Sửa");
         button3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
 
@@ -88,20 +119,19 @@ public class LoaiSanPham extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
                     .addComponent(jTextField1)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 175, Short.MAX_VALUE)
-                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField2)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTextField2))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 151, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -119,19 +149,19 @@ public class LoaiSanPham extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(46, 46, 46)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabLoai.addTab("CẬP NHẬT", jPanel3);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        tblDanhSach.setModel(new javax.swing.table.DefaultTableModel(
+        tblLoai.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -142,35 +172,96 @@ public class LoaiSanPham extends javax.swing.JFrame {
                 "Mã Loại", "Tên Loại", "Mô tả"
             }
         ));
-        jScrollPane1.setViewportView(tblDanhSach);
+        jScrollPane1.setViewportView(tblLoai);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE))
         );
 
         tabLoai.addTab("DANH SÁCH", jPanel2);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabLoai)
+        jPanel1.add(tabLoai, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 91, 690, 500));
+
+        pnlTitleBarr.setBackground(new java.awt.Color(81, 145, 255));
+        pnlTitleBarr.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                pnlTitleBarrMouseDragged(evt);
+            }
+        });
+        pnlTitleBarr.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                pnlTitleBarrMousePressed(evt);
+            }
+        });
+
+        lblExit.setBackground(new java.awt.Color(81, 145, 255));
+        lblExit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblExit.setForeground(new java.awt.Color(255, 255, 255));
+        lblExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/x_icon.png"))); // NOI18N
+        lblExit.setOpaque(true);
+        lblExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblExitMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblExitMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblExitMouseExited(evt);
+            }
+        });
+
+        lblMini.setBackground(new java.awt.Color(81, 145, 255));
+        lblMini.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblMini.setForeground(new java.awt.Color(255, 255, 255));
+        lblMini.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMini.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/minus_icon.png"))); // NOI18N
+        lblMini.setOpaque(true);
+        lblMini.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMiniMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblMiniMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblMiniMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlTitleBarrLayout = new javax.swing.GroupLayout(pnlTitleBarr);
+        pnlTitleBarr.setLayout(pnlTitleBarrLayout);
+        pnlTitleBarrLayout.setHorizontalGroup(
+            pnlTitleBarrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTitleBarrLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblMini)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblExit))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 66, Short.MAX_VALUE)
-                .addComponent(tabLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE))
+        pnlTitleBarrLayout.setVerticalGroup(
+            pnlTitleBarrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblMini, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        jPanel1.add(pnlTitleBarr, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 0, 710, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Loại sản phẩm");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 50, 710, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,12 +273,55 @@ public class LoaiSanPham extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+    }//GEN-LAST:event_lblExitMouseClicked
+
+    private void lblExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseEntered
+        // TODO add your handling code here:
+        lblExit.setBackground(Color.red);
+    }//GEN-LAST:event_lblExitMouseEntered
+
+    private void lblExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseExited
+        // TODO add your handling code here:
+        lblExit.setBackground(new Color(81, 145, 255));
+    }//GEN-LAST:event_lblExitMouseExited
+
+    private void lblMiniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMiniMouseClicked
+        // TODO add your handling code here:
+        this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_lblMiniMouseClicked
+
+    private void lblMiniMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMiniMouseEntered
+        // TODO add your handling code here:
+        lblMini.setBackground(Color.lightGray);
+    }//GEN-LAST:event_lblMiniMouseEntered
+
+    private void lblMiniMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMiniMouseExited
+        // TODO add your handling code here:
+        lblMini.setBackground(new Color(81, 145, 255));
+    }//GEN-LAST:event_lblMiniMouseExited
+
+    private void pnlTitleBarrMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTitleBarrMouseDragged
+
+        // TODO add your handling code here:
+        this.setLocation(
+                getLocation().x + evt.getX() - mpX,
+                getLocation().y + evt.getY() - mpY);
+    }//GEN-LAST:event_pnlTitleBarrMouseDragged
+
+    private void pnlTitleBarrMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTitleBarrMousePressed
+        // TODO add your handling code here:
+        mpX = evt.getX();
+        mpY = evt.getY();
+    }//GEN-LAST:event_pnlTitleBarrMousePressed
 
     /**
      * @param args the command line arguments
@@ -231,6 +365,7 @@ public class LoaiSanPham extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -239,7 +374,10 @@ public class LoaiSanPham extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lblExit;
+    private javax.swing.JLabel lblMini;
+    private javax.swing.JPanel pnlTitleBarr;
     private javax.swing.JTabbedPane tabLoai;
-    private javax.swing.JTable tblDanhSach;
+    private javax.swing.JTable tblLoai;
     // End of variables declaration//GEN-END:variables
 }
