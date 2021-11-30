@@ -12,6 +12,7 @@ package model;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import javax.swing.*;
+
 public class NhanVien extends javax.swing.JFrame {
 
     /**
@@ -20,6 +21,7 @@ public class NhanVien extends javax.swing.JFrame {
     public NhanVien() {
         initComponents();
     }
+    int mpX, mpY;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,15 +32,27 @@ public class NhanVien extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        pnlTitleBar = new javax.swing.JPanel();
         lblExit = new javax.swing.JLabel();
         lblMaxi = new javax.swing.JLabel();
         lblMini = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel2.setBackground(new java.awt.Color(219, 106, 50));
+        pnlTitleBar.setBackground(new java.awt.Color(219, 106, 50));
+        pnlTitleBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                pnlTitleBarMouseDragged(evt);
+            }
+        });
+        pnlTitleBar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                pnlTitleBarMousePressed(evt);
+            }
+        });
 
         lblExit.setBackground(new java.awt.Color(219, 106, 50));
         lblExit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -94,36 +108,63 @@ public class NhanVien extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 395, Short.MAX_VALUE)
+        javax.swing.GroupLayout pnlTitleBarLayout = new javax.swing.GroupLayout(pnlTitleBar);
+        pnlTitleBar.setLayout(pnlTitleBarLayout);
+        pnlTitleBarLayout.setHorizontalGroup(
+            pnlTitleBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTitleBarLayout.createSequentialGroup()
+                .addGap(0, 766, Short.MAX_VALUE)
                 .addComponent(lblMini)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblMaxi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblExit))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlTitleBarLayout.setVerticalGroup(
+            pnlTitleBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(lblMaxi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(lblMini, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 113, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 245, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlTitleBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(268, 268, 268))
+                .addComponent(pnlTitleBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -149,14 +190,14 @@ public class NhanVien extends javax.swing.JFrame {
         Insets screenInsets = getToolkit().getScreenInsets(getGraphicsConfiguration());
         Rectangle screenSize = getGraphicsConfiguration().getBounds();
         Rectangle maxBounds = new Rectangle(screenInsets.left + screenSize.x,
-            screenInsets.top + screenSize.y,
-            screenSize.x + screenSize.width - screenInsets.right - screenInsets.left,
-            screenSize.y + screenSize.height - screenInsets.bottom - screenInsets.top);
+                screenInsets.top + screenSize.y,
+                screenSize.x + screenSize.width - screenInsets.right - screenInsets.left,
+                screenSize.y + screenSize.height - screenInsets.bottom - screenInsets.top);
         super.setMaximizedBounds(maxBounds);
-        if(this.getExtendedState() == JFrame.MAXIMIZED_BOTH){
+        if (this.getExtendedState() == JFrame.MAXIMIZED_BOTH) {
             lblMaxi.setIcon(new ImageIcon("src\\icon\\square_icon.png"));
             this.setExtendedState(JFrame.NORMAL);
-        }else{
+        } else {
             lblMaxi.setIcon(new ImageIcon("src\\icon\\restore_down_icon.png"));
             this.setExtendedState(MAXIMIZED_BOTH);
         }
@@ -186,6 +227,19 @@ public class NhanVien extends javax.swing.JFrame {
         // TODO add your handling code here:
         lblMini.setBackground(new Color(219, 106, 50));
     }//GEN-LAST:event_lblMiniMouseExited
+
+    private void pnlTitleBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTitleBarMousePressed
+        // TODO add your handling code hee:
+        mpX = evt.getX();
+        mpY = evt.getY();
+    }//GEN-LAST:event_pnlTitleBarMousePressed
+
+    private void pnlTitleBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTitleBarMouseDragged
+        // TODO add your handling code here:
+        this.setLocation(
+                getLocation().x + evt.getX() - mpX,
+                getLocation().y + evt.getY() - mpY);
+    }//GEN-LAST:event_pnlTitleBarMouseDragged
 
     /**
      * @param args the command line arguments
@@ -224,9 +278,11 @@ public class NhanVien extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblExit;
     private javax.swing.JLabel lblMaxi;
     private javax.swing.JLabel lblMini;
+    private javax.swing.JPanel pnlTitleBar;
     // End of variables declaration//GEN-END:variables
 }

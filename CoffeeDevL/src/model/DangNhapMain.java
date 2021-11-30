@@ -5,12 +5,14 @@
  */
 package model;
 
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.text.DecimalFormat;
 import javafx.animation.Animation;
+import javax.swing.*;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
@@ -34,11 +36,12 @@ public class DangNhapMain extends javax.swing.JFrame {
     double fractionCover;
     double fractionLogin;
     int x = 0, y = 0;
+    int mpX, mpY;
 
     public DangNhapMain() {
         initComponents();
         init();
-       // setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 30, 30));
+        // setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 30, 30));
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
@@ -124,8 +127,9 @@ public class DangNhapMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        pnlTitleBar = new javax.swing.JPanel();
         lblExit = new javax.swing.JLabel();
+        lblMini = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         bgPanel = new javax.swing.JPanel();
 
@@ -133,15 +137,15 @@ public class DangNhapMain extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(219, 106, 50));
-        jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        pnlTitleBar.setBackground(new java.awt.Color(219, 106, 50));
+        pnlTitleBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jPanel2MouseDragged(evt);
+                pnlTitleBarMouseDragged(evt);
             }
         });
-        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlTitleBar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanel2MousePressed(evt);
+                pnlTitleBarMousePressed(evt);
             }
         });
 
@@ -151,35 +155,53 @@ public class DangNhapMain extends javax.swing.JFrame {
         lblExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/x_icon.png"))); // NOI18N
         lblExit.setOpaque(true);
-        lblExit.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                lblExitMouseMoved(evt);
-            }
-        });
         lblExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblExitMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblExitMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 lblExitMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(948, Short.MAX_VALUE)
-                .addComponent(lblExit, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        lblMini.setBackground(new java.awt.Color(219, 106, 50));
+        lblMini.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblMini.setForeground(new java.awt.Color(255, 255, 255));
+        lblMini.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMini.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/minus_icon.png"))); // NOI18N
+        lblMini.setOpaque(true);
+        lblMini.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMiniMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblMiniMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblMiniMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlTitleBarLayout = new javax.swing.GroupLayout(pnlTitleBar);
+        pnlTitleBar.setLayout(pnlTitleBarLayout);
+        pnlTitleBarLayout.setHorizontalGroup(
+            pnlTitleBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTitleBarLayout.createSequentialGroup()
+                .addGap(0, 939, Short.MAX_VALUE)
+                .addComponent(lblMini)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblExit))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblExit, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+        pnlTitleBarLayout.setVerticalGroup(
+            pnlTitleBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblMini, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 50));
+        getContentPane().add(pnlTitleBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(50, 10, 10, 10, new java.awt.Color(219, 106, 50)));
@@ -219,26 +241,46 @@ public class DangNhapMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked
-
-        System.exit(0);
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_lblExitMouseClicked
 
-    private void lblExitMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseMoved
-        lblExit.setBackground(new Color(242, 212, 178));
-    }//GEN-LAST:event_lblExitMouseMoved
+    private void lblExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseEntered
+        // TODO add your handling code here:
+        lblExit.setBackground(Color.red);
+    }//GEN-LAST:event_lblExitMouseEntered
 
     private void lblExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseExited
-        lblExit.setBackground(new Color(225, 165, 95));
+        // TODO add your handling code here:
+        lblExit.setBackground(new Color(219, 106, 50));
     }//GEN-LAST:event_lblExitMouseExited
 
-    private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
-        x = evt.getX();
-        y = evt.getY();
-    }//GEN-LAST:event_jPanel2MousePressed
+    private void lblMiniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMiniMouseClicked
+        // TODO add your handling code here:
+        this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_lblMiniMouseClicked
 
-    private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
-        setLocation(evt.getXOnScreen() - x, evt.getYOnScreen() - y);
-    }//GEN-LAST:event_jPanel2MouseDragged
+    private void lblMiniMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMiniMouseEntered
+        // TODO add your handling code here:
+        lblMini.setBackground(Color.lightGray);
+    }//GEN-LAST:event_lblMiniMouseEntered
+
+    private void lblMiniMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMiniMouseExited
+        // TODO add your handling code here:
+        lblMini.setBackground(new Color(219, 106, 50));
+    }//GEN-LAST:event_lblMiniMouseExited
+
+    private void pnlTitleBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTitleBarMouseDragged
+        // TODO add your handling code here:
+        this.setLocation(
+                getLocation().x + evt.getX() - mpX,
+                getLocation().y + evt.getY() - mpY);
+    }//GEN-LAST:event_pnlTitleBarMouseDragged
+
+    private void pnlTitleBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTitleBarMousePressed
+        // TODO add your handling code hee:
+        mpX = evt.getX();
+        mpY = evt.getY();
+    }//GEN-LAST:event_pnlTitleBarMousePressed
 
     /**
      * @param args the command line arguments
@@ -281,7 +323,8 @@ public class DangNhapMain extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bgPanel;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblExit;
+    private javax.swing.JLabel lblMini;
+    private javax.swing.JPanel pnlTitleBar;
     // End of variables declaration//GEN-END:variables
 }
