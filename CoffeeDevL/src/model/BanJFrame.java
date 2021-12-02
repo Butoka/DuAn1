@@ -90,6 +90,7 @@ public class BanJFrame extends javax.swing.JFrame {
         pnlTitleBarr = new javax.swing.JPanel();
         lblExit = new javax.swing.JLabel();
         lblMini = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         tabNhanVien = new javax.swing.JTabbedPane();
         pnlCapNhat = new javax.swing.JPanel();
         lblMaBan = new javax.swing.JLabel();
@@ -172,44 +173,43 @@ public class BanJFrame extends javax.swing.JFrame {
             .addComponent(lblMini, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        tabNhanVien.setBackground(new java.awt.Color(131, 176, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 2, 2, new java.awt.Color(81, 145, 255)));
+
+        tabNhanVien.setBackground(new java.awt.Color(255, 255, 255));
         tabNhanVien.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         tabNhanVien.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tabNhanVien.setOpaque(true);
 
-        pnlCapNhat.setBackground(new java.awt.Color(131, 176, 255));
+        pnlCapNhat.setBackground(new java.awt.Color(255, 255, 255));
 
+        lblMaBan.setBackground(new java.awt.Color(255, 255, 255));
         lblMaBan.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblMaBan.setForeground(new java.awt.Color(255, 255, 255));
         lblMaBan.setText("MÃ BÀN :");
 
-        txtMaBan.setBackground(new java.awt.Color(131, 176, 255));
         txtMaBan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtMaBan.setForeground(new java.awt.Color(255, 255, 255));
-        txtMaBan.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        txtMaBan.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         txtMaBan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMaBanActionPerformed(evt);
             }
         });
 
-        txtTenBan.setBackground(new java.awt.Color(131, 176, 255));
         txtTenBan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtTenBan.setForeground(new java.awt.Color(255, 255, 255));
-        txtTenBan.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        txtTenBan.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         txtTenBan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTenBanActionPerformed(evt);
             }
         });
 
+        lblTenBan.setBackground(new java.awt.Color(255, 255, 255));
         lblTenBan.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblTenBan.setForeground(new java.awt.Color(255, 255, 255));
         lblTenBan.setText("TÊN BÀN :");
 
         btnXoa.setBackground(new java.awt.Color(255, 0, 0));
         btnXoa.setForeground(new java.awt.Color(255, 255, 255));
         btnXoa.setText("Xóa");
+        btnXoa.setFocusCycleRoot(true);
         btnXoa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,6 +220,8 @@ public class BanJFrame extends javax.swing.JFrame {
         btnSua.setBackground(new java.awt.Color(81, 145, 255));
         btnSua.setForeground(new java.awt.Color(255, 255, 255));
         btnSua.setText("Sửa");
+        btnSua.setEnabled(false);
+        btnSua.setFocusCycleRoot(true);
         btnSua.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -253,11 +255,11 @@ public class BanJFrame extends javax.swing.JFrame {
                                 .addComponent(lblMaBan)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(pnlCapNhatLayout.createSequentialGroup()
-                                .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                                .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)))
+                                .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)))
                         .addGap(20, 20, 20))))
         );
         pnlCapNhatLayout.setVerticalGroup(
@@ -281,7 +283,7 @@ public class BanJFrame extends javax.swing.JFrame {
 
         tabNhanVien.addTab("Cập Nhật", pnlCapNhat);
 
-        pnlDanhSach.setBackground(new java.awt.Color(131, 176, 255));
+        pnlDanhSach.setBackground(new java.awt.Color(255, 255, 255));
 
         tblBan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -310,7 +312,7 @@ public class BanJFrame extends javax.swing.JFrame {
             pnlDanhSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDanhSachLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlDanhSachLayout.setVerticalGroup(
@@ -323,13 +325,13 @@ public class BanJFrame extends javax.swing.JFrame {
 
         tabNhanVien.addTab("Danh Sách", pnlDanhSach);
 
-        pnlTablePane.setBackground(new java.awt.Color(81, 145, 255));
+        pnlTablePane.setBackground(new java.awt.Color(255, 255, 255));
         pnlTablePane.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(255, 255, 255)));
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Quản Lí Nhân Viên");
+        jLabel2.setText("Quản Lý Bàn");
 
         javax.swing.GroupLayout pnlTablePaneLayout = new javax.swing.GroupLayout(pnlTablePane);
         pnlTablePane.setLayout(pnlTablePaneLayout);
@@ -342,22 +344,40 @@ public class BanJFrame extends javax.swing.JFrame {
             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlTablePane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tabNhanVien))
+                .addGap(0, 0, 0))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(pnlTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(tabNhanVien)
+                .addGap(0, 0, 0))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlTitleBarr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnlTablePane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(tabNhanVien)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlTitleBarr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(pnlTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(tabNhanVien))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -482,6 +502,7 @@ public static void main(String args[]) {
     private newpackage.Button btnThem;
     private newpackage.Button btnXoa;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblExit;
     private javax.swing.JLabel lblMaBan;
