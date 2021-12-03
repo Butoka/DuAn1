@@ -5,6 +5,7 @@
  */
 package model;
 
+import helper.MsgBox;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -190,7 +191,7 @@ public class DangNhapMain extends javax.swing.JFrame {
         pnlTitleBarLayout.setHorizontalGroup(
             pnlTitleBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTitleBarLayout.createSequentialGroup()
-                .addGap(0, 939, Short.MAX_VALUE)
+                .addGap(0, 937, Short.MAX_VALUE)
                 .addComponent(lblMini)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblExit))
@@ -241,7 +242,8 @@ public class DangNhapMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked
-        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+//        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+      MsgBox.exit(this);
     }//GEN-LAST:event_lblExitMouseClicked
 
     private void lblExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseEntered

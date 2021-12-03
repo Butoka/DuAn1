@@ -11,6 +11,7 @@ import component.Menu;
 import event.EventMenuSelected;
 import event.EventShowPopupMenu;
 import form.*;
+import helper.MsgBox;
 import swing.MenuItem;
 import swing.PopupMenu;
 import java.awt.Component;
@@ -28,7 +29,7 @@ import org.jdesktop.animation.timing.TimingTargetAdapter;
  * @author admin
  */
 public class ManHinhChinh extends javax.swing.JFrame {
-    
+
     private MigLayout layout;
     private Menu menu;
     private Header header;
@@ -41,14 +42,14 @@ public class ManHinhChinh extends javax.swing.JFrame {
         init();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
-    
+
     public void init() {
         layout = new MigLayout("fill", "0[]0[100%, fill]0", "0[fill, top]0");
         bg.setLayout(layout);
         menu = new Menu();
         header = new Header();
         main = new MainForm();
-        
+
         menu.addEvent(new EventMenuSelected() {
             @Override
             public void menuSelected(int menuIndex, int subMenuIndex) {
@@ -60,13 +61,13 @@ public class ManHinhChinh extends javax.swing.JFrame {
                     }
                     if (subMenuIndex == 1) {
                     }
-                    
+
                 } else if (menuIndex == 2) {
 //                    new BanJFrame().setVisible(true);
                 }
             }
         });
-        
+
         menu.addEventShow(new EventShowPopupMenu() {
             @Override
             public void showPopup(Component com) {
@@ -79,11 +80,11 @@ public class ManHinhChinh extends javax.swing.JFrame {
             }
         });
         menu.initMenuItem();
-        
+
         bg.add(menu, "w 230!,spany 2");
         bg.add(header, "h 50!,wrap");
         bg.add(main, "w 100%, h 100%");
-        
+
         TimingTarget target = new TimingTargetAdapter() {
             @Override
             public void timingEvent(float fraction) {
@@ -96,13 +97,13 @@ public class ManHinhChinh extends javax.swing.JFrame {
                 layout.setComponentConstraints(menu, "w " + width + "!, spany 2");
                 menu.revalidate();
             }
-            
+
             @Override
             public void end() {
                 menu.setShowMenu(!menu.isShowMenu());
                 menu.setEnableMenu(true);
             }
-            
+
         };
         animator = new Animator(500, target);
         animator.setResolution(0);
@@ -122,7 +123,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
         });
         main.showForm(new MainForm());
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -138,20 +139,21 @@ public class ManHinhChinh extends javax.swing.JFrame {
         setUndecorated(true);
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
+        bg.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 5, new java.awt.Color(52, 127, 255)));
         bg.setOpaque(true);
 
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1380, Short.MAX_VALUE)
+            .addGap(0, 1375, Short.MAX_VALUE)
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 725, Short.MAX_VALUE)
+            .addGap(0, 768, Short.MAX_VALUE)
         );
 
-        pnlTitleBar.setBackground(new java.awt.Color(81, 145, 255));
+        pnlTitleBar.setBackground(new java.awt.Color(52, 127, 255));
         pnlTitleBar.setPreferredSize(new java.awt.Dimension(1380, 32));
         pnlTitleBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -164,7 +166,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
             }
         });
 
-        lblExit.setBackground(new java.awt.Color(81, 145, 255));
+        lblExit.setBackground(new java.awt.Color(52, 127, 255));
         lblExit.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblExit.setForeground(new java.awt.Color(255, 255, 255));
         lblExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -182,7 +184,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
             }
         });
 
-        lblMaxi.setBackground(new java.awt.Color(81, 145, 255));
+        lblMaxi.setBackground(new java.awt.Color(52, 127, 255));
         lblMaxi.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblMaxi.setForeground(new java.awt.Color(255, 255, 255));
         lblMaxi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -200,7 +202,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
             }
         });
 
-        lblMini.setBackground(new java.awt.Color(81, 145, 255));
+        lblMini.setBackground(new java.awt.Color(52, 127, 255));
         lblMini.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblMini.setForeground(new java.awt.Color(255, 255, 255));
         lblMini.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -257,7 +259,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked
-        System.exit(0);
+        MsgBox.exit(this);
     }//GEN-LAST:event_lblExitMouseClicked
 
     private void lblExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseEntered
@@ -295,7 +297,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
     private void lblMaxiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMaxiMouseExited
         // TODO add your handling code here:
-        lblMaxi.setBackground(new Color(81, 145, 255));
+        lblMaxi.setBackground(new Color(52, 127, 255));
     }//GEN-LAST:event_lblMaxiMouseExited
 
     private void lblMiniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMiniMouseClicked
@@ -310,14 +312,19 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
     private void lblMiniMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMiniMouseExited
         // TODO add your handling code here:
-        lblMini.setBackground(new Color(81, 145, 255));
+        lblMini.setBackground(new Color(52, 127, 255));
     }//GEN-LAST:event_lblMiniMouseExited
 
     private void pnlTitleBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTitleBarMouseDragged
         // TODO add your handling code here:
-        this.setLocation(
-                getLocation().x + evt.getX() - mpX,
-                getLocation().y + evt.getY() - mpY);
+
+        if (this.getExtendedState() == JFrame.MAXIMIZED_BOTH) {
+
+        } else {
+            this.setLocation(
+                    getLocation().x + evt.getX() - mpX,
+                    getLocation().y + evt.getY() - mpY);
+        }
     }//GEN-LAST:event_pnlTitleBarMouseDragged
 
     private void pnlTitleBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTitleBarMousePressed

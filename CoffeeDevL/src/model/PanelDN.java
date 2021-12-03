@@ -62,17 +62,18 @@ public class PanelDN extends javax.swing.JPanel {
         jLabel1.setText("ĐĂNG NHẬP");
 
         txtUserName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(204, 204, 204)));
+        txtUserName.setCaretColor(new java.awt.Color(255, 255, 255));
         txtUserName.setColor(new java.awt.Color(255, 255, 255));
         txtUserName.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         txtUserName.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         txtUserName.setHint("Tên đăng nhập");
-        txtUserName.setSelectionColor(new java.awt.Color(255, 147, 0));
+        txtUserName.setSelectionColor(new java.awt.Color(0, 51, 204));
 
         pswPass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(204, 204, 204)));
         pswPass.setColor(new java.awt.Color(255, 255, 255));
         pswPass.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         pswPass.setHint("Mật khẩu");
-        pswPass.setSelectionColor(new java.awt.Color(255, 147, 0));
+        pswPass.setSelectionColor(new java.awt.Color(0, 51, 204));
 
         btnThoat.setBackground(new java.awt.Color(51, 51, 255));
         btnThoat.setForeground(new java.awt.Color(255, 255, 255));
@@ -192,7 +193,8 @@ public class PanelDN extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-        System.exit(0);
+        
+        MsgBox.exit(new DangNhapMain());
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed

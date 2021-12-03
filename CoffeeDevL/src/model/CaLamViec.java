@@ -60,14 +60,10 @@ public class CaLamViec extends javax.swing.JFrame {
         btnThem = new newpackage.Button();
         btnXoa = new newpackage.Button();
         btnSua = new newpackage.Button();
-        cboGio = new javax.swing.JComboBox<>();
-        cboPhut = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
         cboAP = new javax.swing.JComboBox<>();
-        cboGioBD = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
-        cboPhutBD = new javax.swing.JComboBox<>();
         cboAPBD = new javax.swing.JComboBox<>();
+        txtGioKetThuc = new javax.swing.JTextField();
+        txtGioBatDau = new javax.swing.JTextField();
         panelDanhSach = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCaLamViec = new javax.swing.JTable();
@@ -137,24 +133,8 @@ public class CaLamViec extends javax.swing.JFrame {
         btnSua.setText("Sửa");
         btnSua.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
-        cboGio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cboGio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", " " }));
-
-        cboPhut.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cboPhut.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10", "20", "30", "40", "50" }));
-
-        jLabel6.setText(":");
-
         cboAP.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cboAP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AM", "PM" }));
-
-        cboGioBD.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cboGioBD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", " " }));
-
-        jLabel7.setText(":");
-
-        cboPhutBD.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cboPhutBD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10", "20", "30", "40", "50" }));
 
         cboAPBD.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cboAPBD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AM", "PM" }));
@@ -166,46 +146,43 @@ public class CaLamViec extends javax.swing.JFrame {
             .addGroup(panelCapNhatLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addGroup(panelCapNhatLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(panelCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(38, 38, 38)
-                        .addGroup(panelCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtMaCa, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTenCa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelCapNhatLayout.createSequentialGroup()
                         .addGroup(panelCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel4))
                         .addGap(28, 28, 28)
                         .addGroup(panelCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelCapNhatLayout.createSequentialGroup()
-                                .addComponent(cboGio, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cboPhut, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(cboAP, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelCapNhatLayout.createSequentialGroup()
-                                .addComponent(cboGioBD, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cboPhutBD, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(cboAPBD, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(1, 1, 1)
+                                .addGroup(panelCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelCapNhatLayout.createSequentialGroup()
+                                        .addComponent(txtGioKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cboAP, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panelCapNhatLayout.createSequentialGroup()
+                                        .addComponent(txtGioBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cboAPBD, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(panelCapNhatLayout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
                         .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelCapNhatLayout.createSequentialGroup()
+                        .addGroup(panelCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelCapNhatLayout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addGroup(panelCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)))
+                            .addComponent(jLabel3))
+                        .addGap(26, 26, 26)
+                        .addGroup(panelCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtMaCa, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTenCa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         panelCapNhatLayout.setVerticalGroup(
@@ -221,21 +198,15 @@ public class CaLamViec extends javax.swing.JFrame {
                     .addComponent(txtTenCa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(panelCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelCapNhatLayout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel3))
                     .addGroup(panelCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cboGioBD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cboPhutBD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7)
-                        .addComponent(cboAPBD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel3)
+                        .addComponent(txtGioBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboAPBD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(cboGio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboPhut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(cboAP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboAP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtGioKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addGroup(panelCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -470,61 +441,23 @@ public class CaLamViec extends javax.swing.JFrame {
     private newpackage.Button btnXoa;
     private javax.swing.JComboBox<String> cboAP;
     private javax.swing.JComboBox<String> cboAPBD;
-    private javax.swing.JComboBox<String> cboGio;
-    private javax.swing.JComboBox<String> cboGioBD;
-    private javax.swing.JComboBox<String> cboPhut;
-    private javax.swing.JComboBox<String> cboPhutBD;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblExit;
-    private javax.swing.JLabel lblExit1;
-    private javax.swing.JLabel lblExit10;
-    private javax.swing.JLabel lblExit11;
-    private javax.swing.JLabel lblExit12;
-    private javax.swing.JLabel lblExit13;
-    private javax.swing.JLabel lblExit14;
-    private javax.swing.JLabel lblExit15;
-    private javax.swing.JLabel lblExit16;
     private javax.swing.JLabel lblExit17;
-    private javax.swing.JLabel lblExit2;
-    private javax.swing.JLabel lblExit3;
-    private javax.swing.JLabel lblExit4;
-    private javax.swing.JLabel lblExit5;
-    private javax.swing.JLabel lblExit6;
-    private javax.swing.JLabel lblExit7;
-    private javax.swing.JLabel lblExit8;
-    private javax.swing.JLabel lblExit9;
     private javax.swing.JLabel lblMini;
     private javax.swing.JPanel panelCapNhat;
     private javax.swing.JPanel panelDanhSach;
-    private javax.swing.JPanel pnlTitleBarr;
-    private javax.swing.JPanel pnlTitleBarr1;
-    private javax.swing.JPanel pnlTitleBarr10;
-    private javax.swing.JPanel pnlTitleBarr11;
-    private javax.swing.JPanel pnlTitleBarr12;
-    private javax.swing.JPanel pnlTitleBarr13;
-    private javax.swing.JPanel pnlTitleBarr14;
-    private javax.swing.JPanel pnlTitleBarr15;
-    private javax.swing.JPanel pnlTitleBarr16;
     private javax.swing.JPanel pnlTitleBarr17;
-    private javax.swing.JPanel pnlTitleBarr2;
-    private javax.swing.JPanel pnlTitleBarr3;
-    private javax.swing.JPanel pnlTitleBarr4;
-    private javax.swing.JPanel pnlTitleBarr5;
-    private javax.swing.JPanel pnlTitleBarr6;
-    private javax.swing.JPanel pnlTitleBarr7;
-    private javax.swing.JPanel pnlTitleBarr8;
-    private javax.swing.JPanel pnlTitleBarr9;
     private javax.swing.JTabbedPane tabCaLamViec;
     private javax.swing.JTable tblCaLamViec;
+    private javax.swing.JTextField txtGioBatDau;
+    private javax.swing.JTextField txtGioKetThuc;
     private javax.swing.JTextField txtLuong;
     private javax.swing.JTextField txtMaCa;
     private javax.swing.JTextField txtTenCa;

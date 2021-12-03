@@ -23,7 +23,8 @@ public class MainForm extends javax.swing.JPanel {
      */
     public MainForm() {
         initComponents();
-        initComponents();
+//       btnBan.setVisible(false);
+//       btnSanPham.setVisible(false);
         
     }
 
@@ -44,13 +45,13 @@ public class MainForm extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        buttonRadius1 = new newpackage.ButtonRadius();
-        buttonRadius2 = new newpackage.ButtonRadius();
+        btnThoat = new newpackage.ButtonRadius();
+        btnDangXuat = new newpackage.ButtonRadius();
         jPanel3 = new javax.swing.JPanel();
-        buttonRadius3 = new newpackage.ButtonRadius();
+        btnSanPham = new newpackage.ButtonRadius();
         btnBan = new newpackage.ButtonRadius();
-        buttonRadius5 = new newpackage.ButtonRadius();
-        buttonRadius6 = new newpackage.ButtonRadius();
+        btnBanHang = new newpackage.ButtonRadius();
+        btnHoaDon = new newpackage.ButtonRadius();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lblDongHo = new javax.swing.JLabel();
@@ -61,47 +62,47 @@ public class MainForm extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(81, 145, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 0, 3, 0, new java.awt.Color(81, 145, 255)));
 
-        buttonRadius1.setBackground(new java.awt.Color(81, 145, 255));
-        buttonRadius1.setBorder(null);
-        buttonRadius1.setForeground(new java.awt.Color(255, 255, 255));
-        buttonRadius1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_shutdown_45px.png"))); // NOI18N
-        buttonRadius1.setText("Thoát");
-        buttonRadius1.setBorderColor(new java.awt.Color(81, 145, 255));
-        buttonRadius1.setColor(new java.awt.Color(81, 145, 255));
-        buttonRadius1.setColorClick(new java.awt.Color(121, 214, 255));
-        buttonRadius1.setColorOver(new java.awt.Color(66, 117, 246));
-        buttonRadius1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        buttonRadius1.addActionListener(new java.awt.event.ActionListener() {
+        btnThoat.setBackground(new java.awt.Color(81, 145, 255));
+        btnThoat.setBorder(null);
+        btnThoat.setForeground(new java.awt.Color(255, 255, 255));
+        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_shutdown_45px.png"))); // NOI18N
+        btnThoat.setText("Thoát");
+        btnThoat.setBorderColor(new java.awt.Color(81, 145, 255));
+        btnThoat.setColor(new java.awt.Color(81, 145, 255));
+        btnThoat.setColorClick(new java.awt.Color(121, 214, 255));
+        btnThoat.setColorOver(new java.awt.Color(66, 117, 246));
+        btnThoat.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonRadius1ActionPerformed(evt);
+                btnThoatActionPerformed(evt);
             }
         });
 
-        buttonRadius2.setBackground(new java.awt.Color(81, 145, 255));
-        buttonRadius2.setBorder(null);
-        buttonRadius2.setForeground(new java.awt.Color(255, 255, 255));
-        buttonRadius2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_Logout_45px.png"))); // NOI18N
-        buttonRadius2.setText("Đăng xuất");
-        buttonRadius2.setBorderColor(new java.awt.Color(81, 145, 255));
-        buttonRadius2.setColor(new java.awt.Color(81, 145, 255));
-        buttonRadius2.setColorClick(new java.awt.Color(121, 214, 255));
-        buttonRadius2.setColorOver(new java.awt.Color(66, 117, 246));
-        buttonRadius2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnDangXuat.setBackground(new java.awt.Color(81, 145, 255));
+        btnDangXuat.setBorder(null);
+        btnDangXuat.setForeground(new java.awt.Color(255, 255, 255));
+        btnDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_Logout_45px.png"))); // NOI18N
+        btnDangXuat.setText("Đăng xuất");
+        btnDangXuat.setBorderColor(new java.awt.Color(81, 145, 255));
+        btnDangXuat.setColor(new java.awt.Color(81, 145, 255));
+        btnDangXuat.setColorClick(new java.awt.Color(121, 214, 255));
+        btnDangXuat.setColorOver(new java.awt.Color(66, 117, 246));
+        btnDangXuat.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(255, 127, 26));
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 5, 0, 0, new java.awt.Color(255, 255, 255)));
         jPanel3.setOpaque(false);
 
-        buttonRadius3.setBackground(new java.awt.Color(81, 145, 255));
-        buttonRadius3.setBorder(null);
-        buttonRadius3.setForeground(new java.awt.Color(255, 255, 255));
-        buttonRadius3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_box_45px.png"))); // NOI18N
-        buttonRadius3.setText("Sản phẩm");
-        buttonRadius3.setBorderColor(new java.awt.Color(81, 145, 255));
-        buttonRadius3.setColor(new java.awt.Color(81, 145, 255));
-        buttonRadius3.setColorClick(new java.awt.Color(121, 214, 255));
-        buttonRadius3.setColorOver(new java.awt.Color(66, 117, 246));
-        buttonRadius3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnSanPham.setBackground(new java.awt.Color(81, 145, 255));
+        btnSanPham.setBorder(null);
+        btnSanPham.setForeground(new java.awt.Color(255, 255, 255));
+        btnSanPham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_box_45px.png"))); // NOI18N
+        btnSanPham.setText("Sản phẩm");
+        btnSanPham.setBorderColor(new java.awt.Color(81, 145, 255));
+        btnSanPham.setColor(new java.awt.Color(81, 145, 255));
+        btnSanPham.setColorClick(new java.awt.Color(121, 214, 255));
+        btnSanPham.setColorOver(new java.awt.Color(66, 117, 246));
+        btnSanPham.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         btnBan.setBackground(new java.awt.Color(81, 145, 255));
         btnBan.setBorder(null);
@@ -119,27 +120,27 @@ public class MainForm extends javax.swing.JPanel {
             }
         });
 
-        buttonRadius5.setBackground(new java.awt.Color(81, 145, 255));
-        buttonRadius5.setBorder(null);
-        buttonRadius5.setForeground(new java.awt.Color(255, 255, 255));
-        buttonRadius5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_shopping_cart_45px.png"))); // NOI18N
-        buttonRadius5.setText("Bán hàng");
-        buttonRadius5.setBorderColor(new java.awt.Color(81, 145, 255));
-        buttonRadius5.setColor(new java.awt.Color(81, 145, 255));
-        buttonRadius5.setColorClick(new java.awt.Color(121, 214, 255));
-        buttonRadius5.setColorOver(new java.awt.Color(66, 117, 246));
-        buttonRadius5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnBanHang.setBackground(new java.awt.Color(81, 145, 255));
+        btnBanHang.setBorder(null);
+        btnBanHang.setForeground(new java.awt.Color(255, 255, 255));
+        btnBanHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_shopping_cart_45px.png"))); // NOI18N
+        btnBanHang.setText("Bán hàng");
+        btnBanHang.setBorderColor(new java.awt.Color(81, 145, 255));
+        btnBanHang.setColor(new java.awt.Color(81, 145, 255));
+        btnBanHang.setColorClick(new java.awt.Color(121, 214, 255));
+        btnBanHang.setColorOver(new java.awt.Color(66, 117, 246));
+        btnBanHang.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        buttonRadius6.setBackground(new java.awt.Color(81, 145, 255));
-        buttonRadius6.setBorder(null);
-        buttonRadius6.setForeground(new java.awt.Color(255, 255, 255));
-        buttonRadius6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_test_passed_45px.png"))); // NOI18N
-        buttonRadius6.setText("Hóa đơn");
-        buttonRadius6.setBorderColor(new java.awt.Color(81, 145, 255));
-        buttonRadius6.setColor(new java.awt.Color(81, 145, 255));
-        buttonRadius6.setColorClick(new java.awt.Color(121, 214, 255));
-        buttonRadius6.setColorOver(new java.awt.Color(66, 117, 246));
-        buttonRadius6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnHoaDon.setBackground(new java.awt.Color(81, 145, 255));
+        btnHoaDon.setBorder(null);
+        btnHoaDon.setForeground(new java.awt.Color(255, 255, 255));
+        btnHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_test_passed_45px.png"))); // NOI18N
+        btnHoaDon.setText("Hóa đơn");
+        btnHoaDon.setBorderColor(new java.awt.Color(81, 145, 255));
+        btnHoaDon.setColor(new java.awt.Color(81, 145, 255));
+        btnHoaDon.setColorClick(new java.awt.Color(121, 214, 255));
+        btnHoaDon.setColorOver(new java.awt.Color(66, 117, 246));
+        btnHoaDon.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -147,21 +148,21 @@ public class MainForm extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(buttonRadius3, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnBan, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(buttonRadius5, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBanHang, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(buttonRadius6, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(buttonRadius3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnBan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(buttonRadius5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(buttonRadius6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnBanHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnHoaDon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -169,9 +170,9 @@ public class MainForm extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(buttonRadius1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(buttonRadius2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -179,8 +180,8 @@ public class MainForm extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(buttonRadius1, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-            .addComponent(buttonRadius2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnThoat, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+            .addComponent(btnDangXuat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -235,9 +236,9 @@ public class MainForm extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonRadius1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRadius1ActionPerformed
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buttonRadius1ActionPerformed
+    }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnBanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBanMouseClicked
       new BanJFrame().setVisible(true);
@@ -246,11 +247,11 @@ public class MainForm extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private newpackage.ButtonRadius btnBan;
-    private newpackage.ButtonRadius buttonRadius1;
-    private newpackage.ButtonRadius buttonRadius2;
-    private newpackage.ButtonRadius buttonRadius3;
-    private newpackage.ButtonRadius buttonRadius5;
-    private newpackage.ButtonRadius buttonRadius6;
+    private newpackage.ButtonRadius btnBanHang;
+    private newpackage.ButtonRadius btnDangXuat;
+    private newpackage.ButtonRadius btnHoaDon;
+    private newpackage.ButtonRadius btnSanPham;
+    private newpackage.ButtonRadius btnThoat;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
