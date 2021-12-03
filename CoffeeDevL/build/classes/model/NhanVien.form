@@ -2,7 +2,7 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="undecorated" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
@@ -264,18 +264,6 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtNgayNhap" alignment="1" max="32767" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="txtEmail" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtSDT" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="dcNgaySinh" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtMaNV" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtTenNV" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txDiaChi" alignment="1" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="lblChucVu" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -300,6 +288,18 @@
                                       <Component id="lblDiaChi" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="txtNgayNhap" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtEmail" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtSDT" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="dcNgaySinh" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtMaNV" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtTenNV" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txDiaChi" alignment="1" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -595,6 +595,9 @@
                       </Border>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="SimpleDateFormat sdf = new SimpleDateFormat(&quot;dd-MM-yyyy&quot;);&#xa;        Date now = new Date();&#xa;        txtNgayNhap.setText(sdf.format(now) + &quot;&quot;);"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="cboChucVu">
                   <Properties>

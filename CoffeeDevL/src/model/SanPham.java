@@ -86,7 +86,7 @@ public class SanPham extends javax.swing.JFrame {
         btnTimKiem = new newpackage.Button();
         txtTimKiem = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
         pnlTitleBar.setBackground(new java.awt.Color(81, 145, 255));

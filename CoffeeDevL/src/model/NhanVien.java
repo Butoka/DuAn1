@@ -32,14 +32,12 @@ public class NhanVien extends javax.swing.JFrame {
      */
     public NhanVien() {
         initComponents();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        txtNgayNhap.setText(sdf.format(now) + "");
+
         JTextFieldDateEditor editor = (JTextFieldDateEditor) dcNgaySinh.getDateEditor();
         editor.setEditable(false);
-        
+
     }
     int mpX, mpY;
-    Date now = new Date();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -88,7 +86,7 @@ public class NhanVien extends javax.swing.JFrame {
         btnTimKiem = new newpackage.Button();
         txtTimKiem = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
         pnlTitleBar.setBackground(new java.awt.Color(81, 145, 255));
@@ -320,16 +318,6 @@ public class NhanVien extends javax.swing.JFrame {
             .addGroup(pnlDiaChiLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(pnlDiaChiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNgayNhap, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDiaChiLayout.createSequentialGroup()
-                        .addGroup(pnlDiaChiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSDT, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dcNgaySinh, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtMaNV, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTenNV, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txDiaChi))
-                        .addGap(20, 20, 20))
                     .addGroup(pnlDiaChiLayout.createSequentialGroup()
                         .addGroup(pnlDiaChiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblChucVu)
@@ -349,7 +337,17 @@ public class NhanVien extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLocaleChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lblDiaChi))
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDiaChiLayout.createSequentialGroup()
+                        .addGroup(pnlDiaChiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtNgayNhap, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSDT, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dcNgaySinh, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtMaNV, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTenNV, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txDiaChi))
+                        .addGap(20, 20, 20))))
         );
         pnlDiaChiLayout.setVerticalGroup(
             pnlDiaChiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,6 +398,10 @@ public class NhanVien extends javax.swing.JFrame {
                     .addComponent(jLocaleChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
         );
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date now = new Date();
+        txtNgayNhap.setText(sdf.format(now) + "");
 
         tabNhanVien.addTab("Cập Nhật", pnlDiaChi);
 
@@ -592,7 +594,7 @@ public class NhanVien extends javax.swing.JFrame {
     private void pnlTitleBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTitleBarMouseDragged
         // TODO add your handling code here:
         if (this.getExtendedState() == JFrame.MAXIMIZED_BOTH) {
-            
+
         } else {
             this.setLocation(
                     getLocation().x + evt.getX() - mpX,
