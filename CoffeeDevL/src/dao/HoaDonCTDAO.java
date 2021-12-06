@@ -25,7 +25,6 @@ public class HoaDonCTDAO extends CoffeeDevLDAO<HoaDonCT, String> {
                     entity.getMaBan(),
                     entity.getSoLuong(),
                     entity.getGiamGia(),
-                    entity.isTrangThai(),
                     entity.getDonGia()
             );
         } catch (SQLException ex) {
@@ -42,7 +41,6 @@ public class HoaDonCTDAO extends CoffeeDevLDAO<HoaDonCT, String> {
                     entity.getMaBan(),
                     entity.getSoLuong(),
                     entity.getGiamGia(),
-                    entity.isTrangThai(),
                     entity.getDonGia(),
                     entity.getMaHDCT()
             );
@@ -80,8 +78,7 @@ public class HoaDonCTDAO extends CoffeeDevLDAO<HoaDonCT, String> {
                 hdct.setMaBan(resultSet.getString(4));
                 hdct.setSoLuong(resultSet.getInt(5));
                 hdct.setGiamGia(resultSet.getDouble(6));
-                hdct.setTrangThai(resultSet.getBoolean(7));
-                hdct.setDonGia(resultSet.getDouble(8));
+                hdct.setDonGia(resultSet.getDouble(7));
 
                 list.add(hdct);
             }

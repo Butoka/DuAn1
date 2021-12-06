@@ -8,20 +8,18 @@ public class HoaDonCT {
     private String maBan;
     private int soLuong;
     private double giamGia;
-    private boolean trangThai;
     private double donGia;
 
     public HoaDonCT() {
     }
 
-    public HoaDonCT(String maHDCT, String maHD, String maSP, String maBan, int soLuong, double giamGia, boolean trangThai, double donGia) {
+    public HoaDonCT(String maHDCT, String maHD, String maSP, String maBan, int soLuong, double giamGia, double donGia) {
         this.maHDCT = maHDCT;
         this.maHD = maHD;
         this.maSP = maSP;
         this.maBan = maBan;
         this.soLuong = soLuong;
         this.giamGia = giamGia;
-        this.trangThai = trangThai;
         this.donGia = donGia;
     }
 
@@ -71,14 +69,6 @@ public class HoaDonCT {
 
     public void setGiamGia(double giamGia) {
         this.giamGia = giamGia;
-    }
-
-    public boolean isTrangThai() {
-        return trangThai;
-    }
-
-    public void setTrangThai(boolean trangThai) {
-        this.trangThai = trangThai;
     }
 
     public double getDonGia() {

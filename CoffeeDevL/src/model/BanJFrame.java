@@ -14,7 +14,10 @@ import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -25,22 +28,56 @@ public class BanJFrame extends javax.swing.JFrame {
     /**
      * Creates new form QuanLyBanJFrame
      */
-    int mpX, mpY;
-
     public BanJFrame() {
         initComponents();
         fillTable();
+        viTri = -1;
+        buttonSh();
+        nameCollumn();
     }
     BanDAO banDao = new BanDAO();
     List<Ban> list = banDao.selectAll();
+    int mpX, mpY;
+    int viTri;
+
+    public void nameCollumn() {
+        JTableHeader tableHeader = tblBan.getTableHeader();
+        Font HeaderFont = new Font("Tahoma", Font.BOLD, 20);
+        tableHeader.setFont(HeaderFont);
+
+    }
+
+    public void buttonSh() {
+        if (viTri < 0) {
+            btnSua.setEffectColor(Color.lightGray);
+            btnXoa.setEffectColor(Color.lightGray);
+            buttonPaint(btnXoa, Color.LIGHT_GRAY);
+            buttonPaint(btnSua, Color.LIGHT_GRAY);
+            btnThem.setEffectColor(Color.WHITE);
+            buttonPaint(btnThem, new Color(81, 145, 255));
+        } else {
+            btnSua.setEffectColor(Color.white);
+            btnXoa.setEffectColor(Color.white);
+            buttonPaint(btnSua, new Color(81, 145, 255));
+            buttonPaint(btnXoa, Color.RED);
+            btnThem.setEffectColor(Color.lightGray);
+            buttonPaint(btnThem, Color.LIGHT_GRAY);
+        }
+
+    }
+
+    public void buttonPaint(JButton b, Color c) {
+        Cursor cursor = new Cursor(Cursor.DEFAULT_CURSOR);
+        b.setBackground(c);
+        b.setCursor(cursor);
+    }
 
     public void fillTable() {
         DefaultTableModel model = (DefaultTableModel) tblBan.getModel();
         model.setRowCount(0);
-        List<Ban> list = banDao.selectAll();
+        list = banDao.selectAll();
         for (int i = 0; i < list.size(); i++) {
             Object[] rows = new Object[]{list.get(i).getMaBan(), list.get(i).getTenBan()
-
             };
             model.addRow(rows);
         }
@@ -52,7 +89,20 @@ public class BanJFrame extends javax.swing.JFrame {
         ban.setMaBan(Integer.parseInt(txtMaBan.getText()));
         ban.setTenBan(txtTenBan.getText());
         return ban;
+    }
 
+    public void writeForm(Ban ban) {
+        txtMaBan.setText(ban.getMaBan() + "");
+        txtTenBan.setText(ban.getTenBan());
+    }
+
+    public void clear() {
+        Ban ban = new Ban();
+        writeForm(ban);
+        txtMaBan.setText("");
+        viTri = -1;
+        buttonSh();
+        txtMaBan.setEditable(true);
     }
 
     public void insert() {
@@ -60,21 +110,75 @@ public class BanJFrame extends javax.swing.JFrame {
         banDao.insert(ban);
         MsgBox.alert(this, "Thêm thành công");
         fillTable();
+        clear();
     }
-    int viTri;
+
+    public void update() {
+        Ban ban = this.readForm();
+        banDao.update(ban);
+        MsgBox.alert(this, "Sửa thành công");
+        fillTable();
+        viTri = -1;
+        buttonSh();
+        clear();
+    }
+
+    public void showTable() {
+        viTri = tblBan.getSelectedRow();
+        Ban ban = list.get(viTri);
+        writeForm(ban);
+        tabBan.setSelectedIndex(0);
+        buttonSh();
+        txtMaBan.setEditable(false);
+    }
 
     public void remove() {
         viTri = tblBan.getSelectedRow();
-        boolean chon = MsgBox.confirm(this, "Bạn có chắc chắn xóa khóa học này");
+        boolean chon = MsgBox.confirm(this, "Bạn có chắc chắn xóa bàn này");
         DefaultTableModel model = (DefaultTableModel) tblBan.getModel();
         if (chon) {
             String maBan = tblBan.getValueAt(viTri, 0).toString();
             banDao.delete(maBan);
             MsgBox.alert(this, "Đã xóa thành công");
             fillTable();
-
+            clear();
         } else {
             MsgBox.alert(this, "Chưa được xóa");
+        }
+        viTri = -1;
+    }
+
+    public boolean validateBan() {
+        String maBan = txtMaBan.getText();
+        String tenBan = txtTenBan.getText();
+
+        String loi = "";
+        try {
+            int so = Integer.parseInt(maBan);
+            if (so <= 0) {
+                loi += "Mã bàn phải lớn hơn 0\n";
+
+            }
+            if (btnThem.getBackground() != Color.LIGHT_GRAY) {
+                for (int i = 0; i < list.size(); i++) {
+                    if (so == list.get(i).getMaBan()) {
+                        loi += "Mã đã tồn tại\n";
+                        break;
+                    }
+                }
+            }
+        } catch (NumberFormatException e) {
+            loi += "Vui lòng nhập mã bàn là số\n";
+        }
+        if (tenBan.equals("")) {
+            loi += "Vui lòng nhập tên bàn\n";
+        }
+        if (loi.length() > 0) {
+            MsgBox.alert(this, loi);
+            return false;
+        } else {
+            return true;
+
         }
     }
 
@@ -91,7 +195,7 @@ public class BanJFrame extends javax.swing.JFrame {
         lblExit = new javax.swing.JLabel();
         lblMini = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        tabNhanVien = new javax.swing.JTabbedPane();
+        tabBan = new javax.swing.JTabbedPane();
         pnlCapNhat = new javax.swing.JPanel();
         lblMaBan = new javax.swing.JLabel();
         txtMaBan = new javax.swing.JTextField();
@@ -100,6 +204,7 @@ public class BanJFrame extends javax.swing.JFrame {
         btnXoa = new newpackage.Button();
         btnSua = new newpackage.Button();
         btnThem = new newpackage.Button();
+        btnReNew = new newpackage.Button();
         pnlDanhSach = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblBan = new javax.swing.JTable();
@@ -175,10 +280,10 @@ public class BanJFrame extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 2, 2, new java.awt.Color(81, 145, 255)));
 
-        tabNhanVien.setBackground(new java.awt.Color(255, 255, 255));
-        tabNhanVien.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
-        tabNhanVien.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        tabNhanVien.setOpaque(true);
+        tabBan.setBackground(new java.awt.Color(255, 255, 255));
+        tabBan.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+        tabBan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tabBan.setOpaque(true);
 
         pnlCapNhat.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -188,19 +293,9 @@ public class BanJFrame extends javax.swing.JFrame {
 
         txtMaBan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtMaBan.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
-        txtMaBan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaBanActionPerformed(evt);
-            }
-        });
 
         txtTenBan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtTenBan.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
-        txtTenBan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTenBanActionPerformed(evt);
-            }
-        });
 
         lblTenBan.setBackground(new java.awt.Color(255, 255, 255));
         lblTenBan.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -220,7 +315,6 @@ public class BanJFrame extends javax.swing.JFrame {
         btnSua.setBackground(new java.awt.Color(81, 145, 255));
         btnSua.setForeground(new java.awt.Color(255, 255, 255));
         btnSua.setText("Sửa");
-        btnSua.setEnabled(false);
         btnSua.setFocusCycleRoot(true);
         btnSua.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSua.addActionListener(new java.awt.event.ActionListener() {
@@ -236,6 +330,14 @@ public class BanJFrame extends javax.swing.JFrame {
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
+            }
+        });
+
+        btnReNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/restart_33px.png"))); // NOI18N
+        btnReNew.setEffectColor(new java.awt.Color(204, 204, 204));
+        btnReNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReNewActionPerformed(evt);
             }
         });
 
@@ -255,11 +357,14 @@ public class BanJFrame extends javax.swing.JFrame {
                                 .addComponent(lblMaBan)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(pnlCapNhatLayout.createSequentialGroup()
-                                .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
+                                .addComponent(btnReNew, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46)
+                                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)))
+                                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(20, 20, 20))))
         );
         pnlCapNhatLayout.setVerticalGroup(
@@ -274,17 +379,21 @@ public class BanJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtTenBan, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(pnlCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addGroup(pnlCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnlCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnThem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnlCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnReNew, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
 
-        tabNhanVien.addTab("Cập Nhật", pnlCapNhat);
+        tabBan.addTab("Cập Nhật", pnlCapNhat);
 
         pnlDanhSach.setBackground(new java.awt.Color(255, 255, 255));
 
+        tblBan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tblBan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -304,6 +413,11 @@ public class BanJFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblBan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblBanMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblBan);
 
         javax.swing.GroupLayout pnlDanhSachLayout = new javax.swing.GroupLayout(pnlDanhSach);
@@ -319,11 +433,11 @@ public class BanJFrame extends javax.swing.JFrame {
             pnlDanhSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDanhSachLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        tabNhanVien.addTab("Danh Sách", pnlDanhSach);
+        tabBan.addTab("Danh Sách", pnlDanhSach);
 
         pnlTablePane.setBackground(new java.awt.Color(255, 255, 255));
         pnlTablePane.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 0, 0, new java.awt.Color(255, 255, 255)));
@@ -352,7 +466,7 @@ public class BanJFrame extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlTablePane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tabNhanVien))
+                    .addComponent(tabBan))
                 .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
@@ -361,7 +475,7 @@ public class BanJFrame extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(pnlTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(tabNhanVien)
+                .addComponent(tabBan)
                 .addGap(0, 0, 0))
         );
 
@@ -430,24 +544,49 @@ public class BanJFrame extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
+        if (btnThem.getBackground() != Color.LIGHT_GRAY) {
+            if (validateBan()) {
+                insert();
+                fillTable();
+            }
+        }
+
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
+        if (btnThem.getBackground() == Color.LIGHT_GRAY) {
+            if (validateBan()) {
+                update();
+                txtMaBan.setEditable(true);
+            } else {
+
+            }
+        }
+
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
+        if (btnXoa.getBackground() != Color.LIGHT_GRAY) {
+            remove();
+        } else {
+
+        }
     }//GEN-LAST:event_btnXoaActionPerformed
 
-    private void txtMaBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaBanActionPerformed
+    private void tblBanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBanMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaBanActionPerformed
+        showTable();
 
-    private void txtTenBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenBanActionPerformed
+    }//GEN-LAST:event_tblBanMouseClicked
+
+    private void btnReNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReNewActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTenBanActionPerformed
+        clear();
+    }//GEN-LAST:event_btnReNewActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
@@ -490,6 +629,7 @@ public class BanJFrame extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private newpackage.Button btnReNew;
     private newpackage.Button btnSua;
     private newpackage.Button btnThem;
     private newpackage.Button btnXoa;
@@ -504,7 +644,7 @@ public class BanJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel pnlDanhSach;
     private javax.swing.JPanel pnlTablePane;
     private javax.swing.JPanel pnlTitleBarr;
-    private javax.swing.JTabbedPane tabNhanVien;
+    private javax.swing.JTabbedPane tabBan;
     private javax.swing.JTable tblBan;
     private javax.swing.JTextField txtMaBan;
     private javax.swing.JTextField txtTenBan;

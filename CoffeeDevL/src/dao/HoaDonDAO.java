@@ -21,8 +21,6 @@ public class HoaDonDAO extends CoffeeDevLDAO<HoaDon, String> {
             XJdbc.update(insertHoaDon,
                     entity.getMaHD(),
                     entity.getNgayTao(),
-                    entity.getGiamGia(),
-                    entity.getTienCT(),
                     entity.getMaND()
             );
         } catch (SQLException ex) {
@@ -35,8 +33,6 @@ public class HoaDonDAO extends CoffeeDevLDAO<HoaDon, String> {
         try {
             XJdbc.update(updateHoaDon,
                     entity.getNgayTao(),
-                    entity.getGiamGia(),
-                    entity.getTienCT(),
                     entity.getMaND(),
                     entity.getMaHD()
             );
@@ -70,9 +66,7 @@ public class HoaDonDAO extends CoffeeDevLDAO<HoaDon, String> {
 
                 hd.setMaHD(resultSet.getString(1));
                 hd.setNgayTao(resultSet.getString(2));
-                hd.setGiamGia(resultSet.getDouble(3));
-                hd.setTienCT(resultSet.getDouble(4));
-                hd.setMaND(resultSet.getString(5));
+                hd.setMaND(resultSet.getString(3));
 
                 list.add(hd);
             }

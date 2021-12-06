@@ -32,10 +32,8 @@ public class NhanVien extends javax.swing.JFrame {
      */
     public NhanVien() {
         initComponents();
-
         JTextFieldDateEditor editor = (JTextFieldDateEditor) dcNgaySinh.getDateEditor();
         editor.setEditable(false);
-
     }
     int mpX, mpY;
 

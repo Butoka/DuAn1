@@ -1,27 +1,22 @@
-
 package entity;
 
-
 public class HoaDon {
+
     private String maHD;
     private String ngayTao;
-    private double giamGia;
-    private double tienCT;
     private String maND;
+    private boolean trangThai;
 
     public HoaDon() {
     }
-    
 
-    public HoaDon(String maHD, String ngayTao, double giamGia, double tienCT, String maND) {
+    public HoaDon(String maHD, String ngayTao, String maND, boolean trangThai) {
         this.maHD = maHD;
         this.ngayTao = ngayTao;
-        this.giamGia = giamGia;
-        this.tienCT = tienCT;
+        this.trangThai = trangThai;
         this.maND = maND;
     }
 
-    
     public String getMaHD() {
         return maHD;
     }
@@ -38,22 +33,6 @@ public class HoaDon {
         this.ngayTao = ngayTao;
     }
 
-    public double getGiamGia() {
-        return giamGia;
-    }
-
-    public void setGiamGia(double giamGia) {
-        this.giamGia = giamGia;
-    }
-
-    public double getTienCT() {
-        return tienCT;
-    }
-
-    public void setTienCT(double tienCT) {
-        this.tienCT = tienCT;
-    }
-
     public String getMaND() {
         return maND;
     }
@@ -61,5 +40,12 @@ public class HoaDon {
     public void setMaND(String maND) {
         this.maND = maND;
     }
-    
+
+    public boolean getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(boolean trangThai) {
+        this.trangThai = trangThai;
+    }
 }
