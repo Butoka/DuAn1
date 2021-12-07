@@ -9,11 +9,11 @@ import java.util.List;
 
 public class NguoiDungDAO extends CoffeeDevLDAO<NguoiDung, String> {
 
-    String insertNguoiDung = "INSERT INTO NGUOIDUNG VALUES (?,?,?,?,?,?,?)";
-    String updateNguoiDung = "UPDATE NGUOIDUNG SET TenND = ?,MatKhau = ?,PhanQuyen = ?,TrangThai = ? WHERE MaND = ?";
-    String deleteNguoiDung = "DELETE FROM NGUOIDUNG WHERE MaND = ?";
+    String insertNguoiDung = "INSERT INTO NGUOIDUNG VALUES (?,?,?,?,?)";
+    String updateNguoiDung = "UPDATE NGUOIDUNG SET MaND = ?,MatKhau = ?,PhanQuyen = ?,TrangThai = ? WHERE TenND = ?";
+    String deleteNguoiDung = "DELETE FROM NGUOIDUNG WHERE TenND = ?";
     String selectAllNguoiDung = "SELECT * FROM NGUOIDUNG";
-    String selectByIdNguoiDung = "SELECT * FROM NGUOIDUNG WHERE MaND = ?";
+    String selectByIdNguoiDung = "SELECT * FROM NGUOIDUNG WHERE TenND = ?";
 
     @Override
     public void insert(NguoiDung entity) {
@@ -34,11 +34,11 @@ public class NguoiDungDAO extends CoffeeDevLDAO<NguoiDung, String> {
     public void update(NguoiDung entity) {
         try {
             XJdbc.update(updateNguoiDung,
-                    entity.getTenND(),
+                    entity.getMaND(),
                     entity.getMatKhau(),
                     entity.getPhanQuyen(),
                     entity.getTrangThai(),
-                    entity.getMaND()
+                    entity.getTenND()
             );
         } catch (SQLException ex) {
 
@@ -68,11 +68,11 @@ public class NguoiDungDAO extends CoffeeDevLDAO<NguoiDung, String> {
             while (resultSet.next()) {
                 NguoiDung nguoiDung = new NguoiDung();
 
-               nguoiDung.setMaND(resultSet.getString(1));
-               nguoiDung.setTenND(resultSet.getString(2));
-               nguoiDung.setMatKhau(resultSet.getString(3));
-               nguoiDung.setPhanQuyen(resultSet.getString(4));
-               nguoiDung.setTrangThai(resultSet.getString(5));
+                nguoiDung.setMaND(resultSet.getString(1));
+                nguoiDung.setTenND(resultSet.getString(2));
+                nguoiDung.setMatKhau(resultSet.getString(3));
+                nguoiDung.setPhanQuyen(resultSet.getString(4));
+                nguoiDung.setTrangThai(resultSet.getString(5));
 
                 list.add(nguoiDung);
             }
@@ -80,6 +80,15 @@ public class NguoiDungDAO extends CoffeeDevLDAO<NguoiDung, String> {
         } catch (SQLException ex) {
         }
         return list;
+    }
+
+    public List<NguoiDung> selectByKeyword(String keyword) {
+        String sql = "SELECT * FROM NGUOIDUNG WHERE TenND LIKE ?";
+        return this.selectBySql(sql, "%" + keyword + "%");
+    }
+     public List<NguoiDung> selectByMaND(String keyword) {
+        String sql = "SELECT * FROM NGUOIDUNG WHERE MaND = ?";
+        return this.selectBySql(sql, keyword);
     }
 
     @Override

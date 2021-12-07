@@ -1,22 +1,25 @@
 package helper;
 
-import model.NhanVien;
-
-
+import entity.NguoiDung;
 
 public class Auth {
 
-    public static NhanVien user = null;
+    public static NguoiDung user = null;
 
     public static void clear() {
         Auth.user = null;
     }
 
     public static boolean isLogin() {
-        return Auth.user !=null;
+        return Auth.user != null;
     }
 
-//    public static boolean isManager() {
-//        //return Auth.isLogin() && user.getVaiTro();
-//    }
+    public static String getManager() {
+
+        return user.getPhanQuyen();
+    }
+    public static String getUsername() {
+
+        return user.getTenND();
+    }
 }

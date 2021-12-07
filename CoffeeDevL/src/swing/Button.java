@@ -83,6 +83,4 @@ public class Button extends JButton {
         grphcs.drawImage(img, 0, 0, null);
         super.paintComponent(grphcs);
     }
-
-
 }

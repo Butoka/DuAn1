@@ -1,6 +1,7 @@
 package dao;
 
 import entity.*;
+import helper.Auth;
 import helper.XJdbc;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,9 +11,10 @@ import java.util.List;
 public class NhanVienDAO extends CoffeeDevLDAO<NhanVien, String> {
 
     String insertNhanVien = "INSERT INTO NHANVIEN VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    String updateNhanVien = "UPDATE NHANVIEN SET TenNV = ?,GioiTinh = ?,NgaySinh = ?,SDT = ?, DiaChi = ?, ChucVu = ?, Email = ?,NgayVaoLam = ? WHERE MaND = ?";
+    String updateNhanVien = "UPDATE NHANVIEN SET TenNV = ?,GioiTinh = ?,NgaySinh = ?,SDT = ?, DiaChi = ?, ChucVu = ?, Email = ? WHERE MaNV = ?";
     String deleteNhanVien = "DELETE FROM NHANVIEN WHERE MaNV=?";
-    String selectAllNhanVien = "SELECT * FROM NHANVIEN";
+    String selectAllNhanVien = "SELECT * FROM NHANVIEN WHERE MaNV != 'admin'";
+    String selectAllNhanVien2 = "SELECT * FROM NHANVIEN";
     String selectByIdNhanVien = "SELECT * FROM NHANVIEN WHERE MaNV=?";
 
     @Override
@@ -21,7 +23,7 @@ public class NhanVienDAO extends CoffeeDevLDAO<NhanVien, String> {
             XJdbc.update(insertNhanVien,
                     entity.getMaNV(),
                     entity.getTenNV(),
-                    entity.isGioiTinh(),
+                    entity.getGioiTinh(),
                     entity.getNgaySinh(),
                     entity.getSdt(),
                     entity.getDiaChi(),
@@ -30,7 +32,7 @@ public class NhanVienDAO extends CoffeeDevLDAO<NhanVien, String> {
                     entity.getNgayVaoLam()
             );
         } catch (SQLException ex) {
-
+            System.out.println(ex);
         }
     }
 
@@ -39,13 +41,12 @@ public class NhanVienDAO extends CoffeeDevLDAO<NhanVien, String> {
         try {
             XJdbc.update(updateNhanVien,
                     entity.getTenNV(),
-                    entity.isGioiTinh(),
+                    entity.getGioiTinh(),
                     entity.getNgaySinh(),
                     entity.getSdt(),
                     entity.getDiaChi(),
                     entity.getChucVu(),
                     entity.getEmail(),
-                    entity.getNgayVaoLam(),
                     entity.getMaNV()
             );
         } catch (SQLException ex) {
@@ -64,7 +65,17 @@ public class NhanVienDAO extends CoffeeDevLDAO<NhanVien, String> {
 
     @Override
     public List<NhanVien> selectAll() {
-        return this.selectBySql(selectAllNhanVien);
+        String select = "";
+        if (Auth.isLogin()) {
+            if (Auth.getManager().equalsIgnoreCase("admin")) {
+                select = selectAllNhanVien2;
+            } else {
+                select = selectAllNhanVien;
+            }
+        } else {
+            select = selectAllNhanVien;
+        }
+        return this.selectBySql(select);
     }
 
     @Override
@@ -78,12 +89,12 @@ public class NhanVienDAO extends CoffeeDevLDAO<NhanVien, String> {
 
                 nv.setMaNV(resultSet.getString(1));
                 nv.setTenNV(resultSet.getString(2));
-                nv.setGioiTinh(resultSet.getBoolean(3));
+                nv.setGioiTinh(resultSet.getString(3));
                 nv.setNgaySinh(resultSet.getString(4));
                 nv.setSdt(resultSet.getString(5));
-                nv.setEmail(resultSet.getString(6));
-                nv.setDiaChi(resultSet.getString(7));
-                nv.setChucVu(resultSet.getString(8));
+                nv.setDiaChi(resultSet.getString(6));
+                nv.setChucVu(resultSet.getString(7));
+                nv.setEmail(resultSet.getString(8));
                 nv.setNgayVaoLam(resultSet.getString(9));
 
                 list.add(nv);
@@ -103,4 +114,17 @@ public class NhanVienDAO extends CoffeeDevLDAO<NhanVien, String> {
             return list.get(0);
         }
     }
+
+    public List<NhanVien> selectByKeyword(String keyword) {
+        String sql = "SELECT * FROM NHANVIEN WHERE MaNV = ?";
+        return this.selectBySql(sql, keyword);
+
+    }
+
+    public List<NhanVien> selectNhanVien() {
+        String sql = "SELECT * FROM NHANVIEN WHERE ChucVu in ( 'admin',N'Quản lý',N'Thu ngân') ";//WHERE MaND not in (SELECT MaNV FROM NGUOIDUNG)
+        return this.selectBySql(sql);
+
+    }
+ 
 }

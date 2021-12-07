@@ -13,6 +13,7 @@ import swing.MenuAnimation;
 import swing.MenuItem;
 import scrollbar.ScrollBarCustom;
 import com.sun.prism.paint.Gradient;
+import helper.Auth;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -79,17 +80,66 @@ public class Menu extends javax.swing.JPanel {
     }
 
     public void initMenuItem() {
-        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/thongke.png")), "Tổng hợp - thống kê", "Doanh thu", "Sản phẩm bán chạy", "Sản phẩm ngừng bán", "Số lượng"));
-        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/sanpham.png")), "Sản phẩm", "Sản phẩm", "Loại sản phẩm"));
+        if (Auth.isLogin()) {
+            if (Auth.getManager().equalsIgnoreCase("admin")) {
+                initMenuItemAdmin();
+            } else if (Auth.getManager().equalsIgnoreCase("Quản lý")) {
+                initMenuItemQuanLy();
+            } else {
+                initMenuItemThuNgan();
+            }
+
+        } else {
+            initMenuItemNoLogin();
+        }
+
+    }
+
+    public void initMenuItemNoLogin() {
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/thongke.png")), "Tổng hợp - thống kê"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/sanpham.png")), "Sản phẩm"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/ban.png")), "Bàn"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/banhang.png")), "Bán hàng"));
-        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/hoadon.png")), "Hóa đơn", "Hóa đơn","Hóa đơn CT"));
-        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/nhanvien.png")), "Nhân viên","Nhân viên", "Ca làm việc", "Chấm công", "Bảng lương"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/hoadon.png")), "Hóa đơn"));//, "Hóa đơn","Hóa đơn CT"
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/nhanvien.png")), "Nhân viên"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/nguoidung.png")), "Người dùng"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/doimatkhau2.png")), "Đổi mật khẩu"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/dangxuat.png")), "Đăng xuất"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/thoat.png")), "Thoát"));
+    }
 
+    public void initMenuItemAdmin() {
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/thongke.png")), "Tổng hợp - thống kê", "Lương nhân viên", "TK Hóa đơn", "TK Sản phẩm ", "Doanh Thu"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/sanpham.png")), "Sản phẩm", "Sản phẩm", "Loại sản phẩm"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/ban.png")), "Bàn"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/banhang.png")), "Bán hàng"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/hoadon.png")), "Hóa đơn"));//, "Hóa đơn","Hóa đơn CT"
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/nhanvien.png")), "Nhân viên", "Nhân viên", "Ca làm việc", "Chấm công", "Bảng lương"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/nguoidung.png")), "Người dùng"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/doimatkhau2.png")), "Đổi mật khẩu"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/dangxuat.png")), "Đăng xuất"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/thoat.png")), "Thoát"));
+    }
+
+    public void initMenuItemQuanLy() {
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/thongke.png")), "Tổng hợp - thống kê", "Lương nhân viên", "TK Hóa đơn", "TK Sản phẩm ", "Doanh Thu"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/sanpham.png")), "Sản phẩm", "Sản phẩm", "Loại sản phẩm"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/ban.png")), "Bàn"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/banhang.png")), "Bán hàng"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/hoadon.png")), "Hóa đơn"));//, "Hóa đơn","Hóa đơn CT"
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/nhanvien.png")), "Nhân viên", "Nhân viên", "Ca làm việc", "Chấm công", "Bảng lương"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/doimatkhau2.png")), "Đổi mật khẩu"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/dangxuat.png")), "Đăng xuất"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/thoat.png")), "Thoát"));
+    }
+
+    public void initMenuItemThuNgan() {
+
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/banhang.png")), "Bán hàng"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/hoadon.png")), "Hóa đơn"));//, "Hóa đơn","Hóa đơn CT"
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/doimatkhau2.png")), "Đổi mật khẩu"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/dangxuat.png")), "Đăng xuất"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/thoat.png")), "Thoát"));
     }
 
     private void addMenu(ModelMenu menu) {
@@ -143,7 +193,6 @@ public class Menu extends javax.swing.JPanel {
 //
 //        super.paintComponent(g);
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

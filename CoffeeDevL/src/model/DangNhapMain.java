@@ -14,6 +14,7 @@ import java.awt.geom.RoundRectangle2D;
 import java.text.DecimalFormat;
 import javafx.animation.Animation;
 import javax.swing.*;
+import main.ManHinhChinh;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
@@ -47,6 +48,7 @@ public class DangNhapMain extends javax.swing.JFrame {
     }
 
     private void init() {
+
         layout = new MigLayout("fill, inset 0");
         cover = new PanelCover();
         login = new PanelDN();
@@ -110,9 +112,20 @@ public class DangNhapMain extends javax.swing.JFrame {
         cover.addEvent(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // System.out.println("Click");
+                //System.out.println("Click");
                 if (!animator.isRunning()) {
                     animator.start();
+                }
+            }
+        });
+        DangNhapMain dn = this;
+        login.addEvent(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (login.cuaso == 1) {
+                    dn.dispose();
+                    new ManHinhChinh().setVisible(true);
+                    MsgBox.alert(dn, "Đăng nhập thành công !");
                 }
             }
         });
@@ -134,7 +147,7 @@ public class DangNhapMain extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         bgPanel = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -243,7 +256,7 @@ public class DangNhapMain extends javax.swing.JFrame {
 
     private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked
 //        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-      MsgBox.exit(this);
+        MsgBox.exit(this);
     }//GEN-LAST:event_lblExitMouseClicked
 
     private void lblExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseEntered

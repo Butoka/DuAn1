@@ -48,7 +48,7 @@ public class DoiMatKhau extends javax.swing.JFrame {
         btnXacNhan1 = new newpackage.Button();
         checkHienMatKhau = new javax.swing.JCheckBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

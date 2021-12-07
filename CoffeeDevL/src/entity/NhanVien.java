@@ -1,10 +1,15 @@
 package entity;
 
+import dao.NguoiDungDAO;
+import helper.XDate;
+import java.util.Date;
+import java.util.List;
+
 public class NhanVien {
 
     private String maNV;
     private String tenNV;
-    private boolean gioiTinh;
+    private String gioiTinh;
     private String ngaySinh;
     private String sdt;
     private String email;
@@ -12,10 +17,25 @@ public class NhanVien {
     private String chucVu;
     private String ngayVaoLam;
 
+    @Override
+    public String toString() {
+        NguoiDungDAO dao = new NguoiDungDAO();
+        List<NguoiDung> list = dao.selectByMaND(maNV);
+        String trangThai = "";
+        if (list.isEmpty()) {
+            trangThai += "Chưa có tài khoản";
+            return tenNV + " - " + trangThai;//
+
+        } else {
+            return tenNV;
+        }
+
+    }
+
     public NhanVien() {
     }
 
-    public NhanVien(String maNV, String tenNV, boolean gioiTinh, String ngaySinh, String sdt, String email, String diaChi, String chucVu, String ngayVaoLam) {
+    public NhanVien(String maNV, String tenNV, String gioiTinh, String ngaySinh, String sdt, String email, String diaChi, String chucVu, String ngayVaoLam) {
         this.maNV = maNV;
         this.tenNV = tenNV;
         this.gioiTinh = gioiTinh;
@@ -43,15 +63,31 @@ public class NhanVien {
         this.tenNV = tenNV;
     }
 
-    public boolean isGioiTinh() {
+    public String getGioiTinh() {
         return gioiTinh;
+
     }
 
-    public void setGioiTinh(boolean gioiTinh) {
+    public String getGioiTinh2() {
+        if (gioiTinh.equals("1")) {
+            return "Nam";
+        } else {
+            return "Nữ";
+        }
+
+    }
+
+    public void setGioiTinh(String gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
 
     public String getNgaySinh() {
+        return ngaySinh;
+    }
+
+    public String getNgaySinh2() {
+        Date ngaySinh1 = XDate.toDate(ngaySinh, "yyyy-MM-dd");
+        String ngaySinh = XDate.toString(ngaySinh1, "dd-MM-yyyy");
         return ngaySinh;
     }
 
@@ -92,6 +128,13 @@ public class NhanVien {
     }
 
     public String getNgayVaoLam() {
+
+        return ngayVaoLam;
+    }
+
+    public String getNgayVaoLam2() {
+        Date ngayVaoLam1 = XDate.toDate(ngayVaoLam, "yyyy-MM-dd");
+        String ngayVaoLam = XDate.toString(ngayVaoLam1, "dd-MM-yyyy");
         return ngayVaoLam;
     }
 

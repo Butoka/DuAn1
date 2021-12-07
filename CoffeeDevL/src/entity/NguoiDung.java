@@ -57,6 +57,17 @@ public class NguoiDung {
     public String getTrangThai() {
         return trangThai;
     }
+    public String getTrangThai2() {
+        String trangThai2;
+        if(trangThai.equals("1"))
+        {
+            trangThai2 = "Hoạt động";
+        }else 
+        {
+            trangThai2 = "Không hoạt động";
+        }
+        return trangThai2;
+    }
 
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;

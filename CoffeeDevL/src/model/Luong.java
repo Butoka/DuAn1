@@ -24,6 +24,11 @@ public class Luong extends javax.swing.JFrame {
         initComponents();
     }
     int mpX, mpY;
+    public void selectTab(int index)
+    {
+        tabLoai.setSelectedIndex(index);
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

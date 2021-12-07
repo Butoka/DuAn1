@@ -11,6 +11,7 @@ import component.Menu;
 import event.EventMenuSelected;
 import event.EventShowPopupMenu;
 import form.*;
+import helper.Auth;
 import helper.MsgBox;
 import swing.MenuItem;
 import swing.PopupMenu;
@@ -18,8 +19,12 @@ import java.awt.Component;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import model.*;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
@@ -42,6 +47,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
         init();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
+    ManHinhChinh man = this;
 
     public void init() {
         layout = new MigLayout("fill", "0[]0[100%, fill]0", "0[fill, top]0");
@@ -54,16 +60,16 @@ public class ManHinhChinh extends javax.swing.JFrame {
             @Override
             public void menuSelected(int menuIndex, int subMenuIndex) {
                 // System.out.println("Menu Index: " + menuIndex + " SubMenu Index: " + subMenuIndex);
-
-                if (menuIndex == 0) {
-                    if (subMenuIndex == 0) {
-                        main.showForm(new MainForm());
+                if (Auth.isLogin()) {
+                    if (Auth.getManager().equalsIgnoreCase("admin")) {
+                        menuAdmin(menuIndex, subMenuIndex);
+                    } else if (Auth.getManager().equalsIgnoreCase("Quản lý")) {
+                        menuQuanLy(menuIndex, subMenuIndex);
+                    } else {
+                        menuThuNgan(menuIndex, subMenuIndex);
                     }
-                    if (subMenuIndex == 1) {
-                    }
-
-                } else if (menuIndex == 2) {
-//                    new BanJFrame().setVisible(true);
+                } else if (!Auth.isLogin()) {
+                    MsgBox.alert(man, "Bạn chưa đăng nhập");
                 }
             }
         });
@@ -121,7 +127,210 @@ public class ManHinhChinh extends javax.swing.JFrame {
                 }
             }
         });
-        main.showForm(new MainForm());
+
+        main.addEvent(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int dem = main.dem;
+                if (dem == 0) {
+                    MsgBox.exit(man);
+                } else if (dem == 1) {
+                    boolean chon = MsgBox.confirm(man, "Bạn chắc chắn muốn đăng xuất !?");
+                    if (chon) {
+                        man.dispose();
+                        Auth.clear();
+                        new DangNhapMain().setVisible(true);
+                    }
+                } else if (dem == 11) {
+                    boolean chon = MsgBox.confirm(man, "Bạn chưa đăng nhập !?\nBạn có muốn đăng nhập vào phần mềm không ?");
+                    if (chon) {
+                        man.dispose();
+                        Auth.clear();
+                        new DangNhapMain().setVisible(true);
+                    }
+                }
+                if (dem == -1) {
+                    MsgBox.alert(man, "Bạn chưa đăng nhập");
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+
+        });
+
+//        main.showForm(new MainForm());
+    }
+
+    public void menuAdmin(int menuIndex, int subMenuIndex) {
+        if (menuIndex == 0) {
+            if (subMenuIndex == 0) {
+                ThongKe tk = new ThongKe();
+                tk.setVisible(true);
+                tk.selectTab(0);
+
+            } else if (subMenuIndex == 1) {
+                ThongKe tk = new ThongKe();
+                tk.setVisible(true);
+                tk.selectTab(1);
+            } else if (subMenuIndex == 2) {
+                ThongKe tk = new ThongKe();
+                tk.setVisible(true);
+                tk.selectTab(2);
+            } else if (subMenuIndex == 3) {
+                ThongKe tk = new ThongKe();
+                tk.setVisible(true);
+                tk.selectTab(3);
+            }
+
+        } else if (menuIndex == 1) {
+            if (subMenuIndex == 0) {
+                new SanPham().setVisible(true);
+            } else if (subMenuIndex == 1) {
+                new LoaiSanPhamJFrame().setVisible(true);
+            }
+        } else if (menuIndex == 2) {
+            new BanJFrame().setVisible(true);
+        } else if (menuIndex == 3) {
+            new BanHang().setVisible(true);
+        } else if (menuIndex == 4) {
+            new HoaDonJFrame().setVisible(true);
+        } else if (menuIndex == 5) {
+            if (subMenuIndex == 0) {
+                new NhanVienJFrame().setVisible(true);
+            } else if (subMenuIndex == 1) {
+                new CaLamViecJFrame().setVisible(true);
+            } else if (subMenuIndex == 2) {
+                Luong luong = new Luong();
+                luong.setVisible(true);
+                luong.selectTab(0);
+            } else if (subMenuIndex == 3) {
+                Luong luong = new Luong();
+                luong.setVisible(true);
+                luong.selectTab(1);
+            }
+
+        } else if (menuIndex == 6) {
+            new NguoiDungJFrame().setVisible(true);
+        } else if (menuIndex == 7) {
+            new DoiMatKhau().setVisible(true);
+
+        } else if (menuIndex == 8) {
+            boolean chon = MsgBox.confirm(man, "Bạn chắc chắn muốn đăng xuất !?");
+            if (chon) {
+                man.dispose();
+                Auth.clear();
+                new DangNhapMain().setVisible(true);
+            }
+        } else if (menuIndex == 9) {
+            MsgBox.exit(man);
+
+        }
+
+    }
+
+    public void menuQuanLy(int menuIndex, int subMenuIndex) {
+        if (menuIndex == 0) {
+            if (subMenuIndex == 0) {
+                ThongKe tk = new ThongKe();
+                tk.setVisible(true);
+                tk.selectTab(0);
+
+            } else if (subMenuIndex == 1) {
+                ThongKe tk = new ThongKe();
+                tk.setVisible(true);
+                tk.selectTab(1);
+            } else if (subMenuIndex == 2) {
+                ThongKe tk = new ThongKe();
+                tk.setVisible(true);
+                tk.selectTab(2);
+            } else if (subMenuIndex == 3) {
+                ThongKe tk = new ThongKe();
+                tk.setVisible(true);
+                tk.selectTab(3);
+            }
+
+        } else if (menuIndex == 1) {
+            if (subMenuIndex == 0) {
+                new SanPham().setVisible(true);
+            } else if (subMenuIndex == 1) {
+                new LoaiSanPhamJFrame().setVisible(true);
+            }
+        } else if (menuIndex == 2) {
+            new BanJFrame().setVisible(true);
+        } else if (menuIndex == 3) {
+            new BanHang().setVisible(true);
+        } else if (menuIndex == 4) {
+            new HoaDonJFrame().setVisible(true);
+        } else if (menuIndex == 5) {
+            if (subMenuIndex == 0) {
+                new NhanVienJFrame().setVisible(true);
+            } else if (subMenuIndex == 1) {
+                new CaLamViecJFrame().setVisible(true);
+            } else if (subMenuIndex == 2) {
+                Luong luong = new Luong();
+                luong.setVisible(true);
+                luong.selectTab(0);
+            } else if (subMenuIndex == 3) {
+                Luong luong = new Luong();
+                luong.setVisible(true);
+                luong.selectTab(1);
+            }
+
+        } else if (menuIndex == 6) {
+            new DoiMatKhau().setVisible(true);
+
+        } else if (menuIndex == 7) {
+            boolean chon = MsgBox.confirm(man, "Bạn chắc chắn muốn đăng xuất !?");
+            if (chon) {
+                man.dispose();
+                Auth.clear();
+                new DangNhapMain().setVisible(true);
+            }
+        } else if (menuIndex == 8) {
+            MsgBox.exit(man);
+
+        }
+
+    }
+
+    public void menuThuNgan(int menuIndex, int subMenuIndex) {
+        if (menuIndex == 0) {
+            new BanHang().setVisible(true);
+
+        } else if (menuIndex == 1) {
+            new HoaDonJFrame().setVisible(true);
+        } else if (menuIndex == 2) {
+            new DoiMatKhau().setVisible(true);
+        } else if (menuIndex == 3) {
+            boolean chon = MsgBox.confirm(man, "Bạn chắc chắn muốn đăng xuất !?");
+            if (chon) {
+                man.dispose();
+                Auth.clear();
+                new DangNhapMain().setVisible(true);
+            }
+        } else if (menuIndex == 4) {
+            MsgBox.exit(man);
+
+        }
+
     }
 
     @SuppressWarnings("unchecked")
@@ -269,7 +478,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
     private void lblExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseExited
         // TODO add your handling code here:
-        lblExit.setBackground(new Color(81, 145, 255));
+        lblExit.setBackground(new Color(52, 127, 255));
     }//GEN-LAST:event_lblExitMouseExited
 
     private void lblMaxiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMaxiMouseClicked
