@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/Hoctapcucmanh/DuAnDevL/DuAn1/CoffeeDevL/src/model/HoaDonJFrame.java</file>
+            <file>file:/D:/Hoctapcucmanh/DuAnDevL/DuAn1/CoffeeDevL/src/dao/ChiTietLuongDAO.java</file>
+            <file>file:/D:/Hoctapcucmanh/DuAnDevL/DuAn1/CoffeeDevL/src/entity/CaLamViec.java</file>
+            <file>file:/D:/Hoctapcucmanh/DuAnDevL/DuAn1/CoffeeDevL/src/model/SanPham.java</file>
+            <file>file:/D:/Hoctapcucmanh/DuAnDevL/DuAn1/CoffeeDevL/src/entity/ChiTietLuong.java</file>
+            <file>file:/D:/Hoctapcucmanh/DuAnDevL/DuAn1/CoffeeDevL/src/entity/HoaDonCT.java</file>
+            <file>file:/D:/Hoctapcucmanh/DuAnDevL/DuAn1/CoffeeDevL/src/dao/HoaDonCTDAO.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -72,7 +72,7 @@ public class ChiTietLuongDAO extends CoffeeDevLDAO<ChiTietLuong, String> {
                 ctl.setMaLuongCT(resultSet.getString(1));
                 ctl.setNgayLamViec(resultSet.getString(2));
                 ctl.setMaCa(resultSet.getInt(3));
-                ctl.setTongSo(resultSet.getString(4));
+                ctl.setTongSo(resultSet.getInt(4));
                 ctl.setThanhTien(resultSet.getDouble(5));
                 ctl.setMaNV(resultSet.getString(6));
 

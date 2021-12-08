@@ -6,7 +6,7 @@ public class ChiTietLuong {
     private String maLuongCT;
     private String ngayLamViec;
     private int maCa;
-    private String tongSo;
+    private int tongSo;
     private double thanhTien;
     private String maNV;
 
@@ -14,7 +14,7 @@ public class ChiTietLuong {
     }
 
     
-    public ChiTietLuong(String maLuongCT, String ngayLamViec, int maCa, String tongSo, double thanhTien, String maNV) {
+    public ChiTietLuong(String maLuongCT, String ngayLamViec, int maCa, int tongSo, double thanhTien, String maNV) {
         this.maLuongCT = maLuongCT;
         this.ngayLamViec = ngayLamViec;
         this.maCa = maCa;
@@ -48,11 +48,11 @@ public class ChiTietLuong {
         this.maCa = maCa;
     }
 
-    public String getTongSo() {
+    public int getTongSo() {
         return tongSo;
     }
 
-    public void setTongSo(String tongSo) {
+    public void setTongSo(int tongSo) {
         this.tongSo = tongSo;
     }
 

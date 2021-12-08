@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="CoffeeDevL/src"/>
+	<classpathentry kind="lib" path="CoffeeDevL/lib/ButtonS.jar"/>
+	<classpathentry kind="lib" path="CoffeeDevL/lib/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="CoffeeDevL/lib/jdatepicker-2.0.3.jar"/>
+	<classpathentry kind="lib" path="CoffeeDevL/lib/lib/TimingFramework-0.55.jar"/>
+	<classpathentry kind="lib" path="CoffeeDevL/lib/miglayout-4.0.jar"/>
+	<classpathentry kind="lib" path="CoffeeDevL/lib/mssql-jdbc-9.2.1.jre8.jar"/>
+	<classpathentry kind="lib" path="CoffeeDevL/lib/Text_Pass.jar"/>
+	<classpathentry kind="output" path="CoffeeDevL/build/classes"/>
+</classpath>

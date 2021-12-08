@@ -9,8 +9,8 @@ import java.util.List;
 
 public class HoaDonCTDAO extends CoffeeDevLDAO<HoaDonCT, String> {
 
-    String insertHoaDonCT = "INSERT INTO HOADONCT VALUES (?, ?, ?, ?,?,?,?,?)";
-    String updateHoaDonCT = "UPDATE HOADONCT SET MaHD=?, MaSP=?, SoLuong=?,GiamGia = ?,DonGia=?,ThanhTien = ?,MaBan = ? WHERE MaHDCT=?";
+    String insertHoaDonCT = "INSERT INTO HOADONCT VALUES (?,?,?,?,?,?,?)";
+    String updateHoaDonCT = "UPDATE HOADONCT SET MaHD=?, MaSP=?,MaBan = ?,SoLuong=?,GiamGia = ?,DonGia=? WHERE MaHDCT=?";
     String deleteHoaDonCT = "DELETE FROM HOADONCT WHERE MaHDCT =?";
     String selectAllHoaDonCT = "SELECT * FROM HOADONCT";
     String selectByIdHoaDonCT = "SELECT * FROM HOADONCT WHERE MaHDCT =?";

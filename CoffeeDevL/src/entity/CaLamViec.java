@@ -3,7 +3,7 @@ package entity;
 public class CaLamViec {
 
     private int maCa;
-    private String TenCa;
+    private String tenCa;
     private String gioBatDau;
     private String gioKetThuc;
     private double luong;
@@ -11,9 +11,9 @@ public class CaLamViec {
     public CaLamViec() {
     }
 
-    public CaLamViec(int maCa, String TenCa, String gioBatDau, String gioKetThuc, double luong) {
+    public CaLamViec(int maCa, String tenCa, String gioBatDau, String gioKetThuc, double luong) {
         this.maCa = maCa;
-        this.TenCa = TenCa;
+        this.tenCa = tenCa;
         this.gioBatDau = gioBatDau;
         this.gioKetThuc = gioKetThuc;
         this.luong = luong;
@@ -28,11 +28,11 @@ public class CaLamViec {
     }
 
     public String getTenCa() {
-        return TenCa;
+        return tenCa;
     }
 
-    public void setTenCa(String TenCa) {
-        this.TenCa = TenCa;
+    public void setTenCa(String tenCa) {
+        this.tenCa = tenCa;
     }
 
     public String getGioBatDau() {
