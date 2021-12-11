@@ -320,7 +320,7 @@ public class MainForm extends javax.swing.JPanel {
             dem = -1;
             event.mouseClicked(evt);
         } else {
-            new SanPham().setVisible(true);
+            new SanPhamJFrame().setVisible(true);
         }
     }//GEN-LAST:event_btnSanPhamMouseClicked
 

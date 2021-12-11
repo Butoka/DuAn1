@@ -1,6 +1,7 @@
 package dao;
 
 import entity.*;
+import helper.XDate;
 import helper.XJdbc;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +11,7 @@ import java.util.List;
 public class SanPhamDAO extends CoffeeDevLDAO<SanPham, String> {
 
     String insertSanPham = "INSERT INTO SANPHAM VALUES (?,?,?,?,?,?,?,?,?,?)";
-    String updateSanPham = "UPDATE SANPHAM SET TenSP = ?,SoLuong = ?,HinhAnh = ?,SDT = ?, GiaNhap = ?, GiaBan = ?, NgayNhap = ?,MaLoai = ?, MoTa = ?,TrangThai = ? WHERE MaSP = ?";
+    String updateSanPham = "UPDATE SANPHAM SET TenSP = ?,MaLoai=?,SoLuong = ?, GiaNhap = ?, GiaBan = ?, NgayNhap = ?, MoTa = ?,HinhAnh = ?,TrangThai = ? WHERE MaSP = ?";
     String deleteSanPham = "DELETE FROM SANPHAM WHERE MaSP=?";
     String selectAllSanPham = "SELECT * FROM SANPHAM";
     String selectByIdSanPham = "SELECT * FROM SANPHAM WHERE MaSP=?";
@@ -31,7 +32,7 @@ public class SanPhamDAO extends CoffeeDevLDAO<SanPham, String> {
                     entity.isTrangThai()
             );
         } catch (SQLException ex) {
-
+            System.out.println(ex);
         }
     }
 
@@ -51,7 +52,7 @@ public class SanPhamDAO extends CoffeeDevLDAO<SanPham, String> {
                     entity.getMaSP()
             );
         } catch (SQLException ex) {
-
+ 
         }
     }
 
@@ -77,18 +78,16 @@ public class SanPhamDAO extends CoffeeDevLDAO<SanPham, String> {
             resultSet = XJdbc.query(sql, args);
             while (resultSet.next()) {
                 SanPham sp = new SanPham();
-
                 sp.setMaSP(resultSet.getString(1));
                 sp.setTenSP(resultSet.getString(2));
                 sp.setLoaiSP(resultSet.getString(3));
                 sp.setSoLuong(resultSet.getInt(4));
                 sp.setGiaNhap(resultSet.getDouble(5));
                 sp.setGiaBan(resultSet.getDouble(6));
-                sp.setNgayNhap(resultSet.getString(7));
+                sp.setNgayNhap(XDate.toString(resultSet.getDate(7),"dd-MM-yyyy"));
                 sp.setMoTa(resultSet.getString(8));
                 sp.setHinhAnh(resultSet.getString(9));
                 sp.setTrangThai(resultSet.getBoolean(10));
-
                 list.add(sp);
             }
             resultSet.getStatement().getConnection().close();
@@ -104,6 +103,19 @@ public class SanPhamDAO extends CoffeeDevLDAO<SanPham, String> {
             return null;
         } else {
             return list.get(0);
+        }
+    }
+    public List<SanPham> selectByKeyword(String keyword) {
+        String sql = "SELECT * FROM SanPham WHERE TenSP LIKE ? ";
+        return this.selectBySql(sql, "%" + keyword + "%");
+            
+    }
+    public void deleteLoai(String id) {
+        String deleteLoai = "DELETE FROM SANPHAM WHERE MaLoai=?";
+        try {
+            XJdbc.update(deleteLoai, id);
+        } catch (SQLException ex) {
+
         }
     }
 }

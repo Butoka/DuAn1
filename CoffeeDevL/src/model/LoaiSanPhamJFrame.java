@@ -6,6 +6,7 @@
 package model;
 
 import dao.LoaiSanPhamDAO;
+import dao.SanPhamDAO;
 import entity.LoaiSanPham;
 import helper.MsgBox;
 import java.awt.Color;
@@ -35,8 +36,9 @@ public class LoaiSanPhamJFrame extends javax.swing.JFrame {
         buttonSh();
     }
 
-    LoaiSanPhamDAO loaiLamViec = new LoaiSanPhamDAO();
-    List<LoaiSanPham> list = loaiLamViec.selectAll();
+    LoaiSanPhamDAO loaiDao = new LoaiSanPhamDAO();
+    SanPhamDAO sanPhamDao = new SanPhamDAO();
+    List<LoaiSanPham> list = loaiDao.selectAll();
     int mpX, mpY;
     int viTri;
 
@@ -76,7 +78,7 @@ public class LoaiSanPhamJFrame extends javax.swing.JFrame {
     public void fillTable() {
         DefaultTableModel model = (DefaultTableModel) tblLoai.getModel();
         model.setRowCount(0);
-        list = loaiLamViec.selectAll();
+        list = loaiDao.selectAll();
         for (int i = 0; i < list.size(); i++) {
 
             Object[] rows = new Object[]{list.get(i).getMaLoai(), list.get(i).getTenLoai(), list.get(i).getMoTa()
@@ -112,7 +114,7 @@ public class LoaiSanPhamJFrame extends javax.swing.JFrame {
 
     public void insert() {
         LoaiSanPham loai = this.readForm();
-        loaiLamViec.insert(loai);
+        loaiDao.insert(loai);
         MsgBox.alert(this, "Thêm thành công");
         fillTable();
         clear();
@@ -120,7 +122,7 @@ public class LoaiSanPhamJFrame extends javax.swing.JFrame {
 
     public void update() {
         LoaiSanPham loai = this.readForm();
-        loaiLamViec.update(loai);
+        loaiDao.update(loai);
         MsgBox.alert(this, "Sửa thành công");
         fillTable();
         viTri = -1;
@@ -143,7 +145,8 @@ public class LoaiSanPhamJFrame extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tblLoai.getModel();
         if (chon) {
             String maLoaiSanPham = tblLoai.getValueAt(viTri, 0).toString();
-            loaiLamViec.delete(maLoaiSanPham);
+//            sanPhamDao.deleteLoai(maLoaiSanPham);
+            loaiDao.delete(maLoaiSanPham);
             MsgBox.alert(this, "Đã xóa thành công");
             fillTable();
             clear();

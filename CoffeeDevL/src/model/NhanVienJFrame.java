@@ -696,6 +696,11 @@ public class NhanVienJFrame extends javax.swing.JFrame {
         pnlTimKiem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
         btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search_32_icon.png"))); // NOI18N
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
 
         txtTimKiem.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         txtTimKiem.setText("Nhập để tìm kiếm ...");
@@ -916,6 +921,10 @@ public class NhanVienJFrame extends javax.swing.JFrame {
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
         clearForm();
     }//GEN-LAST:event_btnLamMoiActionPerformed
+
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTimKiemActionPerformed
 
     /**
      * @param args the command line arguments

@@ -202,7 +202,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
         } else if (menuIndex == 1) {
             if (subMenuIndex == 0) {
-                new SanPham().setVisible(true);
+                new SanPhamJFrame().setVisible(true);
             } else if (subMenuIndex == 1) {
                 new LoaiSanPhamJFrame().setVisible(true);
             }
@@ -269,7 +269,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
         } else if (menuIndex == 1) {
             if (subMenuIndex == 0) {
-                new SanPham().setVisible(true);
+                new SanPhamJFrame().setVisible(true);
             } else if (subMenuIndex == 1) {
                 new LoaiSanPhamJFrame().setVisible(true);
             }

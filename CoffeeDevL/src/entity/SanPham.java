@@ -1,5 +1,8 @@
 package entity;
 
+import helper.XDate;
+import java.util.Date;
+
 public class SanPham {
 
     private String maSP;
