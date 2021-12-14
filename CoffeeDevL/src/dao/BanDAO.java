@@ -11,8 +11,9 @@ import java.util.logging.Logger;
 
 public class BanDAO extends CoffeeDevLDAO<Ban, String> {
 
-    String insertBan = "INSERT INTO Ban VALUES (?, ?)";
+    String insertBan = "INSERT INTO Ban VALUES (?, ?,?)";
     String updateBan = "UPDATE Ban SET TenBan=? WHERE MaBan=?";
+    String updateTrangThai = "UPDATE Ban SET TrangThai=? WHERE MaBan=?";
     String deleteBan = "DELETE FROM Ban WHERE MaBan=?";
     String selectAllBan = "SELECT * FROM Ban";
     String selectByIdBan = "SELECT * FROM Ban WHERE MaBan=?";
@@ -22,7 +23,8 @@ public class BanDAO extends CoffeeDevLDAO<Ban, String> {
         try {
             XJdbc.update(insertBan,
                     entity.getMaBan(),
-                    entity.getTenBan());
+                    entity.getTenBan(),
+                    entity.isTrangThai());
         } catch (SQLException ex) {
 
         }
@@ -32,13 +34,23 @@ public class BanDAO extends CoffeeDevLDAO<Ban, String> {
     public void update(Ban entity) {
         try {
             XJdbc.update(updateBan,
-                    entity.getTenBan(), entity.getMaBan()
+                    entity.getTenBan(), entity.getMaBan(),entity.isTrangThai()
             );
         } catch (SQLException ex) {
 
         }
     }
+    public void updateTrangThai(Ban entity)
+    {
+         try {
+            XJdbc.update(updateTrangThai,
+                    entity.isTrangThai(),
+                    entity.getMaBan()
+            );
+        } catch (SQLException ex) {
 
+        }
+    }
     @Override
     public void delete(String id) {
         try {
@@ -63,7 +75,8 @@ public class BanDAO extends CoffeeDevLDAO<Ban, String> {
                 Ban ban = new Ban();
                 ban.setMaBan(resultSet.getInt(1));
                 ban.setTenBan(resultSet.getString(2));
-
+                ban.setTrangThai(resultSet.getBoolean(3));
+                
                 list.add(ban);
             }
             resultSet.getStatement().getConnection().close();

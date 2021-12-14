@@ -88,6 +88,7 @@ public class BanJFrame extends javax.swing.JFrame {
         Ban ban = new Ban();
         ban.setMaBan(Integer.parseInt(txtMaBan.getText()));
         ban.setTenBan(txtTenBan.getText());
+        ban.setTrangThai(false);
         return ban;
     }
 

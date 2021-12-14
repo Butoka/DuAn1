@@ -9,11 +9,12 @@ import java.util.List;
 
 public class HoaDonDAO extends CoffeeDevLDAO<HoaDon, String> {
 
-    String insertHoaDon = "INSERT INTO HOADON VALUES (?, ?, ?, ?)";
-    String updateHoaDon = "UPDATE HOADON SET NgayTao=?, TenDangNhap=?, TrangThai=? WHERE MaHD=?";
+    String insertHoaDon = "INSERT INTO HOADON VALUES (?,?,?,?,?,?,?)";
+    String updateHoaDon = "UPDATE HOADON SET NgayTao=?, TenDangNhap=?, TrangThai=?,Huy = ?,Ban = ?,DangBan = ? WHERE MaHD=?";
     String deleteHoaDon = "DELETE FROM HOADON WHERE MaHD=?";
     String selectAllHoaDon = "SELECT * FROM HOADON";
     String selectByIdHoaDon = "SELECT * FROM HOADON WHERE MaHD=?";
+    String selectByIDMaBan = "SELECT * FROM HOADON WHERE Ban=? and DangBan = 'true'";
 
     @Override
     public void insert(HoaDon entity) {
@@ -21,10 +22,14 @@ public class HoaDonDAO extends CoffeeDevLDAO<HoaDon, String> {
             XJdbc.update(insertHoaDon,
                     entity.getMaHD(),
                     entity.getNgayTao(),
-                    entity.getMaND()
+                    entity.getTenDN(),
+                    entity.getTrangThai(),
+                    entity.isHuy(),
+                    entity.getBan(),
+                    entity.isDangBan()
             );
         } catch (SQLException ex) {
-
+            System.out.println(ex);
         }
     }
 
@@ -33,7 +38,11 @@ public class HoaDonDAO extends CoffeeDevLDAO<HoaDon, String> {
         try {
             XJdbc.update(updateHoaDon,
                     entity.getNgayTao(),
-                    entity.getMaND(),
+                    entity.getTenDN(),
+                    entity.getTrangThai(),
+                    entity.isHuy(),
+                    entity.getBan(),
+                    entity.isDangBan(),
                     entity.getMaHD()
             );
         } catch (SQLException ex) {
@@ -66,7 +75,11 @@ public class HoaDonDAO extends CoffeeDevLDAO<HoaDon, String> {
 
                 hd.setMaHD(resultSet.getString(1));
                 hd.setNgayTao(resultSet.getString(2));
-                hd.setMaND(resultSet.getString(3));
+                hd.setTenDN(resultSet.getString(3));
+                hd.setTrangThai(resultSet.getBoolean(4));
+                hd.setHuy(resultSet.getBoolean(5));
+                hd.setBan(resultSet.getInt(6));
+                hd.setDangBan(resultSet.getBoolean(7));
 
                 list.add(hd);
             }
@@ -84,5 +97,45 @@ public class HoaDonDAO extends CoffeeDevLDAO<HoaDon, String> {
         } else {
             return list.get(0);
         }
+    }
+
+    public List<HoaDon> selectByKeyword(int keyword) {
+        String sql = selectByIDMaBan;
+        return this.selectBySql(sql, keyword);
+
+    }
+
+    public List<Integer> selectYears() {
+        String sql = "SELECT DISTINCT year(NgayTao) FROM HOADON ";
+        List<Integer> list = new ArrayList<>();
+
+        try {
+            ResultSet rs = XJdbc.query(sql);
+            while (rs.next()) {
+                list.add(rs.getInt(1));
+            }
+            rs.getStatement().getConnection().close();
+
+        } catch (SQLException ex) {
+
+        }
+        return list;
+    }
+
+    public List<Object> selectMaxMaHD() {
+        String sql = "select Max(MaHD) from HoaDon";
+        List<Object> list = new ArrayList<>();
+
+        try {
+            ResultSet rs = XJdbc.query(sql);
+            while (rs.next()) {
+                list.add(rs.getString(1));
+            }
+            rs.getStatement().getConnection().close();
+
+        } catch (SQLException ex) {
+
+        }
+        return list;
     }
 }

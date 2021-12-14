@@ -6,6 +6,11 @@ public class LoaiSanPham {
     private String tenLoai;
     private String moTa;
 
+    @Override
+    public String toString() {
+        return tenLoai + " (" + maLoai + ")";
+    }
+
     public LoaiSanPham() {
     }
 

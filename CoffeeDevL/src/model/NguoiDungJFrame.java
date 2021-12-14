@@ -33,6 +33,11 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
      */
     public NguoiDungJFrame() {
         initComponents();
+        init();
+
+    }
+
+    public void init() {
         fillComboBoxMaND();
         nameCollum();
         fillTable();
@@ -60,11 +65,6 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
         String tenND = txtTimKiem.getText();
 
         List<NguoiDung> list = dao.selectByKeyword(tenND);
-//        for (int i = 0; i < list.size(); i++) {
-//            Object[] rows = new Object[]{list.get(i).getMaND(), list.get(i).getTenND(), list.get(i).getMatKhau(),
-//                list.get(i).getPhanQuyen(), list.get(i).getTrangThai()};
-//            model.addRow(rows);
-//        }
         for (NguoiDung nd : list) {
             Object[] rows = new Object[]{nd.getMaND(), nd.getTenND(),
                 nd.getPhanQuyen(), nd.getTrangThai2()};
@@ -87,7 +87,8 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
 
     public NguoiDung readForm() {
         NguoiDung nd = new NguoiDung();
-        nd.setMaND(txtMaND.getText());
+        nv = (NhanVien) cboMaND.getSelectedItem();
+        nd.setMaND(nv.getMaNV());
         nd.setTenND(txtTenND.getText());
         nd.setMatKhau(pswMatKhau.getText());
         nd.setPhanQuyen(cboPhanQuyen.getSelectedItem().toString());
@@ -101,7 +102,8 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
 
     public NguoiDung readFormUpdate() {
         NguoiDung nd = new NguoiDung();
-        nd.setMaND(txtMaND.getText());
+        nv = (NhanVien) cboMaND.getSelectedItem();
+        nd.setMaND(nv.getMaNV());
         nd.setTenND(txtTenND.getText());
         if (!pswMatKhau.getText().isEmpty()) {
             nd.setMatKhau(pswMatKhau.getText());
@@ -123,10 +125,10 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
 
     public void writeForm() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboMaND.getModel();
-
+        nv = (NhanVien) cboMaND.getSelectedItem();
         tabNhanVien.setSelectedIndex(0);
         viTri = tblNguoiDung.getSelectedRow();
-        txtMaND.setEnabled(false);
+        // txtMaND.setEnabled(false);
         txtTenND.setEnabled(false);
         String phanQuyen = tblNguoiDung.getValueAt(viTri, 2).toString();
         String maND = tblNguoiDung.getValueAt(viTri, 0).toString();
@@ -141,7 +143,7 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
             }
         }
 
-        txtMaND.setText(maND);
+        // txtMaND.setText(maND);
         txtTenND.setText(tblNguoiDung.getValueAt(viTri, 1).toString());
         pswMatKhau.setText("");
         pswXacNhanMK.setText("");
@@ -155,10 +157,12 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
             cboPhanQuyen.setEnabled(false);
             eventButtonEnable(btnXoa);
             btnXoa.setEffectColor(Color.GRAY);
+            rdoKhongHoatDong.setEnabled(false);
         } else {
             cboPhanQuyen.setEnabled(true);
-            eventButton(btnXoa,new Color(255,0,0));
+            eventButton(btnXoa, new Color(255, 0, 0));
             btnXoa.setEffectColor(Color.white);
+            rdoKhongHoatDong.setEnabled(true);
         }
 
     }
@@ -224,18 +228,18 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
     }
 
     public boolean checkNguoiDung() {
-        String maND = txtMaND.getText();
+        //String maND = txtMaND.getText();
         String tenND = txtTenND.getText();
         String matKhau = pswMatKhau.getText();
         String nhapLaiMK = pswXacNhanMK.getText();
         String loi = "";
-        if (maND.isEmpty() && tenND.isEmpty() && matKhau.isEmpty() && nhapLaiMK.isEmpty()) {
+        if (tenND.isEmpty() && matKhau.isEmpty() && nhapLaiMK.isEmpty()) {
             loi += "Không được bỏ trống !? \n";
         } else {
-            if (maND.isEmpty()) {
-                loi += "Vui lòng nhập mã người dùng !\n";
-
-            }
+//            if (maND.isEmpty()) {
+//                loi += "Vui lòng nhập mã người dùng !\n";
+//
+//            }
             if (tenND.isEmpty()) {
                 loi += "Vui lòng nhập tên người dùng !\n";
 
@@ -274,18 +278,18 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
 //            MsgBox.alert(this, "Vui lòng chọn người dùng từ danh sách!");
 //            return false;
 //        }
-        String maND = txtMaND.getText();
+        // String maND = txtMaND.getText();
         String tenND = txtTenND.getText();
         String matKhau = pswMatKhau.getText();
         String nhapLaiMK = pswXacNhanMK.getText();
         String loi = "";
-        if (maND.isEmpty() && tenND.isEmpty() && matKhau.isEmpty() && nhapLaiMK.isEmpty()) {
+        if (tenND.isEmpty() && matKhau.isEmpty() && nhapLaiMK.isEmpty()) {
             loi += "Không được bỏ trống !? \n";
         } else {
-            if (maND.isEmpty()) {
-                loi += "Vui lòng nhập mã người dùng !\n";
-
-            }
+//            if (maND.isEmpty()) {
+//                loi += "Vui lòng nhập mã người dùng !\n";
+//
+//            }
             if (tenND.isEmpty()) {
                 loi += "Vui lòng nhập tên người dùng !\n";
 
@@ -319,17 +323,17 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
     public boolean checkTrung() {
         list = dao.selectAll();
 
-        String maND = txtMaND.getText();
-        List<NhanVien> nv = daoNV.selectByKeyword(maND);
+        //String maND = txtMaND.getText();
+        //List<NhanVien> nv = daoNV.selectByKeyword(maND);
         String tenND = txtTenND.getText();
         String loi = "";
         for (int i = 0; i < list.size(); i++) {
 
-            if (maND.equals(list.get(i).getMaND())) {
-
-                loi += "Nhân viên này đã có tài khoản! \n";
-
-            }
+//            if (maND.equals(list.get(i).getMaND())) {
+//
+//                loi += "Nhân viên này đã có tài khoản! \n";
+//
+//            }
             if (tenND.equals(list.get(i).getTenND()) && !tenND.isEmpty()) {
 
                 loi += "Tên tài khoản đã tồn tại! \n";
@@ -337,12 +341,11 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
             }
         }
 
-        if (nv.size() == 0 && !maND.isEmpty()) {
-
-            loi += "Mã người dùng không hợp lệ \nNhân viên này ko tồn tại! \n";
-
-        }
-
+//        if (nv.size() == 0 && !maND.isEmpty()) {
+//
+//            loi += "Mã người dùng không hợp lệ \nNhân viên này ko tồn tại! \n";
+//
+//        }
         if (loi.length() != 0) {
             MsgBox.alert(this, loi);
             return false;
@@ -359,12 +362,16 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
             pswMatKhau.setText("");
             pswXacNhanMK.setText("");
             rdoHoatDong.setSelected(true);
+
             cboPhanQuyen.setSelectedIndex(0);
         } else {
             pswMatKhau.setText("");
             pswXacNhanMK.setText("");
             rdoHoatDong.setSelected(true);
-            cboPhanQuyen.setSelectedIndex(0);
+            if (!nv.getMaNV().equals("admin")) {
+                cboPhanQuyen.setSelectedIndex(0);
+            }
+
             viTri = 0;
         }
 
@@ -386,8 +393,6 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         tabNhanVien = new javax.swing.JTabbedPane();
         pnlCapNhat = new javax.swing.JPanel();
-        lblMaND = new javax.swing.JLabel();
-        txtMaND = new javax.swing.JTextField();
         txtTenND = new javax.swing.JTextField();
         lblTenND = new javax.swing.JLabel();
         lblMatKhau = new javax.swing.JLabel();
@@ -490,19 +495,12 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
 
         pnlCapNhat.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblMaND.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblMaND.setText("MÃ NGƯỜI DÙNG :");
-
-        txtMaND.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtMaND.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
-        txtMaND.setEnabled(false);
-
         txtTenND.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtTenND.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         txtTenND.setEnabled(false);
 
         lblTenND.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblTenND.setText("TÊN NGƯỜI DÙNG :");
+        lblTenND.setText("TÊN ĐĂNG NHẬP:");
 
         lblMatKhau.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblMatKhau.setText("MẬT KHẨU :");
@@ -595,7 +593,7 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
         });
 
         lblMaND1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblMaND1.setText("HỌ TÊN :");
+        lblMaND1.setText("HỌ TÊN NGƯỜI DÙNG:");
 
         javax.swing.GroupLayout pnlCapNhatLayout = new javax.swing.GroupLayout(pnlCapNhat);
         pnlCapNhat.setLayout(pnlCapNhatLayout);
@@ -604,9 +602,6 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
             .addGroup(pnlCapNhatLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(pnlCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlCapNhatLayout.createSequentialGroup()
-                        .addComponent(lblMatKhau)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlCapNhatLayout.createSequentialGroup()
                         .addGroup(pnlCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblTrangThai)
@@ -622,44 +617,36 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCapNhatLayout.createSequentialGroup()
                         .addGroup(pnlCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(pswMatKhau, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTenND, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlCapNhatLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtTenND, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(20, 20, 20))
                     .addGroup(pnlCapNhatLayout.createSequentialGroup()
                         .addGroup(pnlCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblMatKhau)
                             .addComponent(lblTenND)
                             .addComponent(lblPhanQuyen)
-                            .addComponent(lblMaND)
-                            .addComponent(txtMaND, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(pnlCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboMaND, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblMaND1))
-                        .addContainerGap())))
+                            .addComponent(cboMaND, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(342, 342, 342))
+                    .addGroup(pnlCapNhatLayout.createSequentialGroup()
+                        .addComponent(lblMaND1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCapNhatLayout.createSequentialGroup()
+                .addContainerGap(310, Short.MAX_VALUE)
+                .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlCapNhatLayout.setVerticalGroup(
             pnlCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCapNhatLayout.createSequentialGroup()
-                .addGroup(pnlCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlCapNhatLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(lblMaND))
-                    .addGroup(pnlCapNhatLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblMaND1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cboMaND)
-                    .addComponent(txtMaND, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(lblMaND1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
+                .addComponent(cboMaND, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
                 .addComponent(lblTenND)
                 .addGap(18, 18, 18)
                 .addComponent(txtTenND, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -681,13 +668,13 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
                 .addGroup(pnlCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rdoHoatDong)
                     .addComponent(rdoKhongHoatDong))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlCapNhatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnXoa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSua, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnThem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLamMoi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addGap(13, 13, 13))
         );
 
         tabNhanVien.addTab("Cập Nhật", pnlCapNhat);
@@ -708,7 +695,7 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Mã người dùng", "Tên người dùng", "Phân quyền", "Trạng thái"
+                "Mã người dùng", "Tên đăng nhập", "Phân quyền", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -783,7 +770,7 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(pnlTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE))
         );
 
         tabNhanVien.addTab("Danh Sách", pnlDanhSach);
@@ -824,7 +811,7 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(pnlTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(tabNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
+                .addComponent(tabNhanVien)
                 .addGap(0, 0, 0))
         );
 
@@ -943,7 +930,7 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
             nv = (NhanVien) cboMaND.getSelectedItem();
             List<NguoiDung> list = dao.selectByMaND(nv.getMaNV());
             if (list.isEmpty()) {
-                txtMaND.setText(nv.getMaNV());
+                //txtMaND.setText(nv.getMaNV());
                 txtTenND.setText("");
                 cboPhanQuyen.setEnabled(true);
                 cboPhanQuyen.setSelectedIndex(0);
@@ -952,22 +939,23 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
                 txtTenND.setEnabled(true);
                 eventButtonEnable(btnXoa);
                 btnXoa.setEffectColor(Color.GRAY);
-                
+
                 eventButtonEnable(btnSua);
                 btnSua.setEffectColor(Color.GRAY);
             } else {
-                eventButton(btnSua,new Color(81,145,255));
+                eventButton(btnSua, new Color(81, 145, 255));
                 txtTenND.setEnabled(false);
             }
             for (NguoiDung nd : list) {
 
-                txtMaND.setText(nd.getMaND());
+                //txtMaND.setText(nd.getMaND());
                 txtTenND.setText(nd.getTenND());
                 if (nd.getPhanQuyen().equalsIgnoreCase("admin")) {
                     cboPhanQuyen.setEnabled(false);
                     cboPhanQuyen.setSelectedItem("Admin");
+                    
                 } else if (nd.getPhanQuyen().equalsIgnoreCase("Quản lý")) {
-                     cboPhanQuyen.setEnabled(true);
+                    cboPhanQuyen.setEnabled(true);
                     cboPhanQuyen.setSelectedItem("Quản lý");
                 } else {
                     cboPhanQuyen.setEnabled(true);
@@ -982,9 +970,11 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
                 if (phanQuyen.equalsIgnoreCase("admin")) {
                     eventButtonEnable(btnXoa);
                     btnXoa.setEffectColor(Color.GRAY);
+                    rdoKhongHoatDong.setEnabled(false);
                 } else {
-                    eventButton(btnXoa,new Color(255,0,0));
+                    eventButton(btnXoa, new Color(255, 0, 0));
                     btnXoa.setEffectColor(Color.white);
+                    rdoKhongHoatDong.setEnabled(true);
                 }
             }
         }
@@ -1038,7 +1028,6 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblExit;
-    private javax.swing.JLabel lblMaND;
     private javax.swing.JLabel lblMaND1;
     private javax.swing.JLabel lblMatKhau;
     private javax.swing.JLabel lblMini;
@@ -1057,7 +1046,6 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdoKhongHoatDong;
     private javax.swing.JTabbedPane tabNhanVien;
     private javax.swing.JTable tblNguoiDung;
-    private javax.swing.JTextField txtMaND;
     private javax.swing.JTextField txtTenND;
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables

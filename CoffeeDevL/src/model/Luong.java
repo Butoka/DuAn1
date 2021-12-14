@@ -101,9 +101,11 @@ public class Luong extends javax.swing.JFrame {
         listCa = caLamViecDao.selectAll();
         for (int i = 0; i < listLuong.size(); i++) {
             for (int j = 0; j < listNV.size(); j++) {
+                if (listNV.get(i).getChucVu().equals("Phục vụ")){
                 if (listLuong.get(i).getMaNV().equals(listNV.get(j).getMaNV())) {
                     tenNV = listNV.get(j).getTenNV();
                     break;
+                }
                 }
             }
             for (int j = 0; j < listCa.size(); j++) {
@@ -152,7 +154,9 @@ public class Luong extends javax.swing.JFrame {
         listCa = caLamViecDao.selectAll();
         model.addElement("Tất cả");
         for (int i = 0; i < listNV.size(); i++) {
-            model.addElement(listNV.get(i).getTenNV());
+            if (listNV.get(i).getChucVu().equals("Phục vụ")) {
+                model.addElement(listNV.get(i).getTenNV());
+            }
         }
 
     }
@@ -240,7 +244,8 @@ public class Luong extends javax.swing.JFrame {
 
     public void showTableNV() {
         viTri = tblNhanVien.getSelectedRow();
-        txtMaNV.setText(listNV.get(viTri).getMaNV());
+        txtMaNV.setText(tblNhanVien.getValueAt(viTri,0).toString());
+        //txtMaNV.setText(listNV.get(viTri).getMaNV());
     }
 
     public boolean validateChiTietLuong() {
@@ -273,6 +278,10 @@ public class Luong extends javax.swing.JFrame {
             return true;
 
         }
+    }
+    public void selectTab(int index)
+    {
+        tabLoai.setSelectedIndex(index);
     }
 
     /**

@@ -99,6 +99,7 @@ public class DangNhapMain extends javax.swing.JFrame {
             public void end() {
                 isLogin = !isLogin;
             }
+            
 
         };
         Animator animator = new Animator(1000, target);
@@ -126,7 +127,7 @@ public class DangNhapMain extends javax.swing.JFrame {
                     dn.dispose();
                     new ManHinhChinh().setVisible(true);
                     MsgBox.alert(dn, "Đăng nhập thành công !");
-                }
+                } 
             }
         });
 
@@ -326,7 +327,7 @@ public class DangNhapMain extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-
+       
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

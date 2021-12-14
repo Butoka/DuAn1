@@ -72,7 +72,7 @@ public class HoaDonJFrame extends javax.swing.JFrame {
         model.setRowCount(0);
         list = hoaDon.selectAll();
         for (int i = 0; i < list.size(); i++) {
-            Object[] rows = new Object[]{list.get(i).getMaHD(), list.get(i).getNgayTao(), list.get(i).getMaND(), list.get(i).getTrangThai()
+            Object[] rows = new Object[]{list.get(i).getMaHD(), list.get(i).getNgayTao(), list.get(i).getTenDN(), list.get(i).getTrangThai()
             };
             model.addRow(rows);
         }
@@ -215,6 +215,8 @@ public class HoaDonJFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblHoaDon.setRowHeight(25);
+        tblHoaDon.setRowMargin(0);
         tblHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tblHoaDonMouseReleased(evt);

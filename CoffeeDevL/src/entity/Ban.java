@@ -13,6 +13,12 @@ public class Ban {
 
     private int MaBan;
     private String tenBan;
+    private boolean TrangThai;
+
+    @Override
+    public String toString() {
+        return tenBan;
+    }
 
     public Ban() {
     }
@@ -37,5 +43,15 @@ public class Ban {
     public void setTenBan(String tenBan) {
         this.tenBan = tenBan;
     }
+
+    public boolean isTrangThai() {
+        return TrangThai;
+    }
+
+    public void setTrangThai(boolean TrangThai) {
+        this.TrangThai = TrangThai;
+    }
+    
+    
 
 }

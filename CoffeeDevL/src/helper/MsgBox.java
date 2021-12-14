@@ -16,6 +16,7 @@ public class MsgBox {
 
     public static String prompt(Component parent, String message) {
         return JOptionPane.showInputDialog(parent, message, "CoffeDevl", JOptionPane.INFORMATION_MESSAGE);
+
     }
 
     public static void exit(Component parent) {

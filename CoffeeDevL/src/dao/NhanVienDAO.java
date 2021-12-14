@@ -121,10 +121,20 @@ public class NhanVienDAO extends CoffeeDevLDAO<NhanVien, String> {
 
     }
 
+    public List<NhanVien> selectByKeyword2(String keyword) {
+        String sql = "SELECT * FROM NHANVIEN WHERE TenNV LIKE ? and MaNV != 'admin'";
+        return this.selectBySql(sql, "%" + keyword + "%");
+    }
+    public List<NhanVien> selectByKeyword3(String keyword) {
+        String sql = "SELECT * FROM NHANVIEN WHERE MaNV in (SELECT MAND FROM NGUOIDUNG WHERE TENDN = ?)";
+        return this.selectBySql(sql, keyword);
+
+    }
+
     public List<NhanVien> selectNhanVien() {
         String sql = "SELECT * FROM NHANVIEN WHERE ChucVu in ( 'admin',N'Quản lý',N'Thu ngân') ";//WHERE MaND not in (SELECT MaNV FROM NGUOIDUNG)
         return this.selectBySql(sql);
 
     }
- 
+
 }

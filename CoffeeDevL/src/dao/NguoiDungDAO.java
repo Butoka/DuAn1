@@ -10,10 +10,10 @@ import java.util.List;
 public class NguoiDungDAO extends CoffeeDevLDAO<NguoiDung, String> {
 
     String insertNguoiDung = "INSERT INTO NGUOIDUNG VALUES (?,?,?,?,?)";
-    String updateNguoiDung = "UPDATE NGUOIDUNG SET MaND = ?,MatKhau = ?,PhanQuyen = ?,TrangThai = ? WHERE TenND = ?";
-    String deleteNguoiDung = "DELETE FROM NGUOIDUNG WHERE TenND = ?";
+    String updateNguoiDung = "UPDATE NGUOIDUNG SET MaND = ?,MatKhau = ?,PhanQuyen = ?,TrangThai = ? WHERE TenDN = ?";
+    String deleteNguoiDung = "DELETE FROM NGUOIDUNG WHERE TenDN = ?";
     String selectAllNguoiDung = "SELECT * FROM NGUOIDUNG";
-    String selectByIdNguoiDung = "SELECT * FROM NGUOIDUNG WHERE TenND = ?";
+    String selectByIdNguoiDung = "SELECT * FROM NGUOIDUNG WHERE TenDN = ?";
 
     @Override
     public void insert(NguoiDung entity) {
@@ -83,7 +83,7 @@ public class NguoiDungDAO extends CoffeeDevLDAO<NguoiDung, String> {
     }
 
     public List<NguoiDung> selectByKeyword(String keyword) {
-        String sql = "SELECT * FROM NGUOIDUNG WHERE TenND LIKE ?";
+        String sql = "SELECT * FROM NGUOIDUNG WHERE TenDN LIKE ?";
         return this.selectBySql(sql, "%" + keyword + "%");
     }
      public List<NguoiDung> selectByMaND(String keyword) {

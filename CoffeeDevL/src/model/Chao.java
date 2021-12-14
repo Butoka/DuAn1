@@ -43,8 +43,8 @@ public class Chao extends javax.swing.JFrame {
                 
                 if (prgLoad.getValue() == 100) {
                     thoiGian.stop();
-//                    ch.dispose();
-//                    new DangNhapMain().setVisible(true);
+                    ch.dispose();
+                    new DangNhapMain().setVisible(true);
                     
                 }
             }

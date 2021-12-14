@@ -22,4 +22,8 @@ public class Auth {
 
         return user.getTenND();
     }
+    public static String getTrangThai() {
+
+        return user.getTrangThai();
+    }
 }

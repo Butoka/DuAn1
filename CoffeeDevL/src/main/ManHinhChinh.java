@@ -8,6 +8,8 @@ package main;
 import component.Header;
 import net.miginfocom.swing.MigLayout;
 import component.Menu;
+import dao.NguoiDungDAO;
+import entity.NguoiDung;
 import event.EventMenuSelected;
 import event.EventShowPopupMenu;
 import form.*;
@@ -22,8 +24,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Properties;
+import java.util.Random;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import model.*;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
@@ -194,10 +205,6 @@ public class ManHinhChinh extends javax.swing.JFrame {
                 ThongKe tk = new ThongKe();
                 tk.setVisible(true);
                 tk.selectTab(2);
-            } else if (subMenuIndex == 3) {
-                ThongKe tk = new ThongKe();
-                tk.setVisible(true);
-                tk.selectTab(3);
             }
 
         } else if (menuIndex == 1) {
@@ -209,7 +216,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
         } else if (menuIndex == 2) {
             new BanJFrame().setVisible(true);
         } else if (menuIndex == 3) {
-            new BanHang().setVisible(true);
+            new BanHangJFrame().setVisible(true);
         } else if (menuIndex == 4) {
             new HoaDonJFrame().setVisible(true);
         } else if (menuIndex == 5) {
@@ -230,7 +237,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
         } else if (menuIndex == 6) {
             new NguoiDungJFrame().setVisible(true);
         } else if (menuIndex == 7) {
-            new DoiMatKhau().setVisible(true);
+            guiMail();
 
         } else if (menuIndex == 8) {
             boolean chon = MsgBox.confirm(man, "Bạn chắc chắn muốn đăng xuất !?");
@@ -261,10 +268,6 @@ public class ManHinhChinh extends javax.swing.JFrame {
                 ThongKe tk = new ThongKe();
                 tk.setVisible(true);
                 tk.selectTab(2);
-            } else if (subMenuIndex == 3) {
-                ThongKe tk = new ThongKe();
-                tk.setVisible(true);
-                tk.selectTab(3);
             }
 
         } else if (menuIndex == 1) {
@@ -276,7 +279,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
         } else if (menuIndex == 2) {
             new BanJFrame().setVisible(true);
         } else if (menuIndex == 3) {
-            new BanHang().setVisible(true);
+            new BanHangJFrame().setVisible(true);
         } else if (menuIndex == 4) {
             new HoaDonJFrame().setVisible(true);
         } else if (menuIndex == 5) {
@@ -295,7 +298,7 @@ public class ManHinhChinh extends javax.swing.JFrame {
             }
 
         } else if (menuIndex == 6) {
-            new DoiMatKhau().setVisible(true);
+            guiMail();
 
         } else if (menuIndex == 7) {
             boolean chon = MsgBox.confirm(man, "Bạn chắc chắn muốn đăng xuất !?");
@@ -313,12 +316,12 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
     public void menuThuNgan(int menuIndex, int subMenuIndex) {
         if (menuIndex == 0) {
-            new BanHang().setVisible(true);
+            new BanHangJFrame().setVisible(true);
 
         } else if (menuIndex == 1) {
             new HoaDonJFrame().setVisible(true);
         } else if (menuIndex == 2) {
-            new DoiMatKhau().setVisible(true);
+             guiMail();
         } else if (menuIndex == 3) {
             boolean chon = MsgBox.confirm(man, "Bạn chắc chắn muốn đăng xuất !?");
             if (chon) {
@@ -331,6 +334,89 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
         }
 
+    }
+
+    public void guiMail() {
+        try {
+            String taiKhoan = "coffeedevl2@gmail.com";
+            String matKhau = "linhvln240802";
+
+            Properties prop = new Properties();
+            prop.put("mail.smtp.host", "smtp.gmail.com");
+            prop.put("mail.smtp.port", "587");
+            prop.put("mail.smtp.auth", "true");
+            prop.put("mail.smtp.starttls.enable", "true");
+
+            Session session = Session.getDefaultInstance(prop, new javax.mail.Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(taiKhoan, matKhau);
+                }
+            });
+
+            String from = taiKhoan;
+            String to = MsgBox.prompt(this, "Nhập địa chỉ email của bạn !?");
+            String subject = "CoffeeDevL - Mã xác nhận ";
+            String maXacNhan = randomMa(6);
+            String body = "Mã xác nhận của bạn là : " + maXacNhan;
+            if (to.equals("")) {
+                MsgBox.alert(this, "Không được bỏ trống !");
+
+            }
+
+            if (to != null) {
+
+                MimeMessage message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(from));
+                message.setRecipients(
+                        Message.RecipientType.TO,
+                        InternetAddress.parse(to)
+                );
+                message.setSubject(subject);
+                message.setText(body);
+
+                boolean chon1 = MsgBox.confirm(this, "Để đổi mật khẩu hệ thống sẽ \nGửi mã xác nhận đến email của bạn");
+                if (chon1 == true) {
+                    Transport.send(message);
+
+                    JOptionPane.showMessageDialog(this, "Đã gửi mail thành công");
+
+                    String chon = MsgBox.prompt(this, "Vui lòng nhập mã xác nhận");
+                    if (chon != null) {
+                        if (chon.equals(maXacNhan)) {
+                            MsgBox.alert(this, "Đúng!");
+                            new DoiMatKhau().setVisible(true);
+                        } else {
+                            MsgBox.alert(this, "Mã xác nhận ko đúng");
+
+                        }
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+            e.printStackTrace();
+        }
+
+    }
+
+    private static final String digits = "0123456789"; // 0-9
+    private static final String ALPHA_NUMERIC = digits;
+    private static Random generator = new Random();
+
+    public String randomMa(int soKyTu) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < soKyTu; i++) {
+            int number = randomNumber(0, ALPHA_NUMERIC.length() - 1);
+            char ch = ALPHA_NUMERIC.charAt(number);
+            sb.append(ch);
+        }
+        return sb.toString();
+    }
+
+    public static int randomNumber(int min, int max) {
+        return generator.nextInt((max - min) + 1) + min;
     }
 
     @SuppressWarnings("unchecked")

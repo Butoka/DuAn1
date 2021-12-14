@@ -5,6 +5,10 @@
  */
 package model;
 
+import dao.NguoiDungDAO;
+import entity.NguoiDung;
+import helper.Auth;
+import helper.MsgBox;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.event.WindowEvent;
@@ -20,9 +24,34 @@ public class DoiMatKhau extends javax.swing.JFrame {
      */
     public DoiMatKhau() {
         initComponents();
+
     }
     int mpX;
     int mpY;
+    NguoiDungDAO dao = new NguoiDungDAO();
+
+    public static String tenND = "";
+
+    public void doiMatKhau() {
+        if (Auth.isLogin()) {
+            String matKhau = pswPass.getText();
+            String nhapLai = pswConfrimPass.getText();
+            NguoiDung nd = dao.selectById(Auth.getUsername());
+            if (Auth.user == null) {
+                MsgBox.alert(this, "Sai tên đăng nhập!");
+
+            } else if (!matKhau.equals(nhapLai)) {
+                MsgBox.alert(this, "Xác nhận mật khẩu không đúng !");
+            } else {
+                Auth.user.setMatKhau(matKhau);
+
+                dao.update(Auth.user);
+
+                MsgBox.alert(this, "Đổi mật khẩu thành công !");
+                this.dispose();
+            }
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,74 +64,64 @@ public class DoiMatKhau extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnXacNhan = new newpackage.Button();
-        txtUserName = new TextAndPassFiled.MyTextField();
-        jLabel4 = new javax.swing.JLabel();
-        pswPass = new TextAndPassFiled.MyPasswordField();
         jLabel3 = new javax.swing.JLabel();
-        pswPass1 = new TextAndPassFiled.MyPasswordField();
         jLabel5 = new javax.swing.JLabel();
+        btnXacNhan = new newpackage.Button();
+        pswPass = new TextAndPassFiled.MyPasswordField();
+        pswConfrimPass = new TextAndPassFiled.MyPasswordField();
         pnlTitleBarr = new javax.swing.JPanel();
         lblExit = new javax.swing.JLabel();
         lblMini = new javax.swing.JLabel();
-        btnXacNhan1 = new newpackage.Button();
         checkHienMatKhau = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 2, 2, new java.awt.Color(81, 145, 255)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 3, 3, 3, new java.awt.Color(81, 145, 255)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 153, 153));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Đổi mật khẩu");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 77, 593, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 570, -1));
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_password_32px.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 30, -1));
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_password_32px.png"))); // NOI18N
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, 30, -1));
 
         btnXacNhan.setBackground(new java.awt.Color(81, 145, 255));
         btnXacNhan.setForeground(new java.awt.Color(255, 255, 255));
-        btnXacNhan.setText("Xác nhận");
+        btnXacNhan.setText("Đổi mật khẩu");
         btnXacNhan.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jPanel1.add(btnXacNhan, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 420, 190, 49));
-
-        txtUserName.setEditable(false);
-        txtUserName.setBackground(new java.awt.Color(255, 255, 255));
-        txtUserName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 0, 51)));
-        txtUserName.setColor(new java.awt.Color(255, 255, 255));
-        txtUserName.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        txtUserName.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        txtUserName.setHint("Tên đăng nhập");
-        txtUserName.setSelectionColor(new java.awt.Color(255, 147, 0));
-        jPanel1.add(txtUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 423, 38));
-
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_user_32px_1.png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
+        btnXacNhan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXacNhanActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnXacNhan, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 440, 49));
 
         pswPass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(204, 204, 204)));
         pswPass.setColor(new java.awt.Color(255, 255, 255));
         pswPass.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         pswPass.setHint("Mật khẩu mới");
-        pswPass.setSelectionColor(new java.awt.Color(255, 147, 0));
-        jPanel1.add(pswPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 420, 35));
+        pswPass.setOpaque(false);
+        pswPass.setSelectionColor(new java.awt.Color(51, 102, 255));
+        jPanel1.add(pswPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 430, 35));
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_password_32px.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
-
-        pswPass1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(204, 204, 204)));
-        pswPass1.setColor(new java.awt.Color(255, 255, 255));
-        pswPass1.setDisabledTextColor(new java.awt.Color(51, 51, 51));
-        pswPass1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        pswPass1.setHint("Nhập lại mật khẩu mới");
-        pswPass1.setSelectionColor(new java.awt.Color(255, 147, 0));
-        jPanel1.add(pswPass1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 420, 35));
-
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8_password_32px.png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
+        pswConfrimPass.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(204, 204, 204)));
+        pswConfrimPass.setColor(new java.awt.Color(255, 255, 255));
+        pswConfrimPass.setDisabledTextColor(new java.awt.Color(51, 51, 51));
+        pswConfrimPass.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        pswConfrimPass.setHint("Nhập lại mật khẩu mới");
+        pswConfrimPass.setOpaque(false);
+        pswConfrimPass.setSelectionColor(new java.awt.Color(51, 102, 255));
+        jPanel1.add(pswConfrimPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 430, 35));
 
         pnlTitleBarr.setBackground(new java.awt.Color(81, 145, 255));
         pnlTitleBarr.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -168,28 +187,28 @@ public class DoiMatKhau extends javax.swing.JFrame {
             .addComponent(lblMini, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel1.add(pnlTitleBarr, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 0, 593, -1));
-
-        btnXacNhan1.setBackground(new java.awt.Color(255, 0, 51));
-        btnXacNhan1.setForeground(new java.awt.Color(255, 255, 255));
-        btnXacNhan1.setText("Thoát");
-        btnXacNhan1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jPanel1.add(btnXacNhan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 420, 200, 49));
+        jPanel1.add(pnlTitleBarr, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 0, 570, -1));
 
         checkHienMatKhau.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        checkHienMatKhau.setForeground(new java.awt.Color(102, 102, 102));
         checkHienMatKhau.setText("Hiện mật khẩu");
         checkHienMatKhau.setOpaque(false);
-        jPanel1.add(checkHienMatKhau, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, -1, -1));
+        checkHienMatKhau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkHienMatKhauActionPerformed(evt);
+            }
+        });
+        jPanel1.add(checkHienMatKhau, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -207,7 +226,7 @@ public class DoiMatKhau extends javax.swing.JFrame {
 
     private void lblExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseExited
         // TODO add your handling code here:
-        lblExit.setBackground(new Color(81,145,255));
+        lblExit.setBackground(new Color(81, 145, 255));
     }//GEN-LAST:event_lblExitMouseExited
 
     private void lblMiniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMiniMouseClicked
@@ -222,7 +241,7 @@ public class DoiMatKhau extends javax.swing.JFrame {
 
     private void lblMiniMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMiniMouseExited
         // TODO add your handling code here:
-        lblMini.setBackground(new Color(81,145,255));
+        lblMini.setBackground(new Color(81, 145, 255));
     }//GEN-LAST:event_lblMiniMouseExited
 
     private void pnlTitleBarrMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTitleBarrMouseDragged
@@ -238,6 +257,21 @@ public class DoiMatKhau extends javax.swing.JFrame {
         mpX = evt.getX();
         mpY = evt.getY();
     }//GEN-LAST:event_pnlTitleBarrMousePressed
+
+    private void checkHienMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkHienMatKhauActionPerformed
+        if (checkHienMatKhau.isSelected()) {
+            pswPass.setEchoChar((char) 0);
+            pswConfrimPass.setEchoChar((char) 0);
+        } else {
+            pswPass.setEchoChar('*');
+            pswConfrimPass.setEchoChar('*');
+
+        }
+    }//GEN-LAST:event_checkHienMatKhauActionPerformed
+
+    private void btnXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanActionPerformed
+        doiMatKhau();
+    }//GEN-LAST:event_btnXacNhanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,18 +310,15 @@ public class DoiMatKhau extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private newpackage.Button btnXacNhan;
-    private newpackage.Button btnXacNhan1;
     private javax.swing.JCheckBox checkHienMatKhau;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblExit;
     private javax.swing.JLabel lblMini;
     private javax.swing.JPanel pnlTitleBarr;
+    private TextAndPassFiled.MyPasswordField pswConfrimPass;
     private TextAndPassFiled.MyPasswordField pswPass;
-    private TextAndPassFiled.MyPasswordField pswPass1;
-    private TextAndPassFiled.MyTextField txtUserName;
     // End of variables declaration//GEN-END:variables
 }

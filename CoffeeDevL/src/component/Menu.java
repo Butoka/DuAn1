@@ -109,7 +109,7 @@ public class Menu extends javax.swing.JPanel {
     }
 
     public void initMenuItemAdmin() {
-        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/thongke.png")), "Tổng hợp - thống kê", "Lương nhân viên", "TK Hóa đơn", "TK Sản phẩm ", "Doanh Thu"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/thongke.png")), "Tổng hợp - thống kê", "Lương nhân viên",  "TK Sản phẩm ", "Doanh Thu"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/sanpham.png")), "Sản phẩm", "Sản phẩm", "Loại sản phẩm"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/ban.png")), "Bàn"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/banhang.png")), "Bán hàng"));
@@ -122,7 +122,7 @@ public class Menu extends javax.swing.JPanel {
     }
 
     public void initMenuItemQuanLy() {
-        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/thongke.png")), "Tổng hợp - thống kê", "Lương nhân viên", "TK Hóa đơn", "TK Sản phẩm ", "Doanh Thu"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/thongke.png")), "Tổng hợp - thống kê", "Lương nhân viên", "TK Sản phẩm ", "Doanh Thu"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/sanpham.png")), "Sản phẩm", "Sản phẩm", "Loại sản phẩm"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/ban.png")), "Bàn"));
         addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/icon/banhang.png")), "Bán hàng"));

@@ -5,7 +5,6 @@ public class HoaDonCT {
     private String maHDCT;
     private String maHD;
     private String maSP;
-    private String maBan;
     private int soLuong;
     private double giamGia;
     private double donGia;
@@ -13,11 +12,10 @@ public class HoaDonCT {
     public HoaDonCT() {
     }
 
-    public HoaDonCT(String maHDCT, String maHD, String maSP, String maBan, int soLuong, double giamGia, double donGia) {
+    public HoaDonCT(String maHDCT, String maHD, String maSP, int soLuong, double giamGia, double donGia) {
         this.maHDCT = maHDCT;
         this.maHD = maHD;
         this.maSP = maSP;
-        this.maBan = maBan;
         this.soLuong = soLuong;
         this.giamGia = giamGia;
         this.donGia = donGia;
@@ -46,15 +44,6 @@ public class HoaDonCT {
     public void setMaSP(String maSP) {
         this.maSP = maSP;
     }
-
-    public String getMaBan() {
-        return maBan;
-    }
-
-    public void setMaBan(String maBan) {
-        this.maBan = maBan;
-    }
-
     public int getSoLuong() {
         return soLuong;
     }

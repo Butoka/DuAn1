@@ -72,7 +72,10 @@ public class NhanVienJFrame extends javax.swing.JFrame {
     public void fillTable() {
         DefaultTableModel model = (DefaultTableModel) tblNhanVien.getModel();
         model.setRowCount(0);
-        list = dao.selectAll();
+        String tenNV = txtTimKiem.getText();
+
+        list = dao.selectByKeyword2(tenNV);
+//        list = dao.selectAll();
         for (NhanVien nv : list) {
             Object[] rows = new Object[]{nv.getMaNV(), nv.getTenNV(), nv.getGioiTinh2(),
                 nv.getNgaySinh2(), nv.getSdt(), nv.getEmail(), nv.getDiaChi(), nv.getChucVu(), nv.getNgayVaoLam2()
@@ -265,6 +268,7 @@ public class NhanVienJFrame extends javax.swing.JFrame {
         NhanVien nv = this.readForm();
         dao.insert(nv);
         fillTable();
+        clearForm();
         MsgBox.alert(this, "Thêm thành công !?");
     }
 
@@ -275,6 +279,7 @@ public class NhanVienJFrame extends javax.swing.JFrame {
         if (chon) {
             String maNV = tblNhanVien.getValueAt(viTri, 0).toString();
             dao.delete(maNV);
+            clearForm();
             fillTable();
             MsgBox.alert(this, "Đã xóa thành công");
 
@@ -285,6 +290,7 @@ public class NhanVienJFrame extends javax.swing.JFrame {
         NhanVien nv = this.readForm();
         dao.update(nv);
         fillTable();
+        clearForm();
         MsgBox.alert(this, "Cập nhật thành công !");
     }
 
@@ -519,7 +525,7 @@ public class NhanVienJFrame extends javax.swing.JFrame {
 
         dcNgaySinh.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         dcNgaySinh.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        dcNgaySinh.setMaxSelectableDate(new java.util.Date(978199274000L));
+        dcNgaySinh.setMaxSelectableDate(new java.util.Date(1072807274000L));
         dcNgaySinh.setMinSelectableDate(new java.util.Date(-315640731000L));
         dcNgaySinh.setOpaque(false);
 
@@ -703,7 +709,6 @@ public class NhanVienJFrame extends javax.swing.JFrame {
         });
 
         txtTimKiem.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        txtTimKiem.setText("Nhập để tìm kiếm ...");
         txtTimKiem.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 10, 0, 0));
         txtTimKiem.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -890,16 +895,16 @@ public class NhanVienJFrame extends javax.swing.JFrame {
 
     private void txtTimKiemFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTimKiemFocusGained
         // TODO add your handling code here:
-        if (txtTimKiem.getText().equals("Nhập để tìm kiếm ...")) {
-            txtTimKiem.setText("");
-        }
+//        if (txtTimKiem.getText().equals("Nhập để tìm kiếm ...")) {
+//            txtTimKiem.setText("");
+//        }
     }//GEN-LAST:event_txtTimKiemFocusGained
 
     private void txtTimKiemFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTimKiemFocusLost
         // TODO add your handling code here:
-        if (txtTimKiem.getText().equals("")) {
-            txtTimKiem.setText("Nhập để tìm kiếm ...");
-        }
+//        if (txtTimKiem.getText().equals("")) {
+//            txtTimKiem.setText("Nhập để tìm kiếm ...");
+//        }
     }//GEN-LAST:event_txtTimKiemFocusLost
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
@@ -923,7 +928,7 @@ public class NhanVienJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        // TODO add your handling code here:
+        fillTable();
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     /**

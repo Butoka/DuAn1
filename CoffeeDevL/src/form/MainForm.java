@@ -329,7 +329,7 @@ public class MainForm extends javax.swing.JPanel {
             dem = -1;
             event.mouseClicked(evt);
         } else {
-            new BanHang().setVisible(true);
+            new BanHangJFrame().setVisible(true);
         }
     }//GEN-LAST:event_btnBanHangMouseClicked
 
