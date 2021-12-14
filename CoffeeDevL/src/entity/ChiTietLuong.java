@@ -1,28 +1,23 @@
-
 package entity;
 
+import helper.XDate;
 
 public class ChiTietLuong {
+
     private String maLuongCT;
     private String ngayLamViec;
     private int maCa;
-    private int tongSo;
-    private double thanhTien;
     private String maNV;
 
     public ChiTietLuong() {
     }
 
-    
-    public ChiTietLuong(String maLuongCT, String ngayLamViec, int maCa, int tongSo, double thanhTien, String maNV) {
+    public ChiTietLuong(String maLuongCT, String ngayLamViec, int maCa, String maNV) {
         this.maLuongCT = maLuongCT;
         this.ngayLamViec = ngayLamViec;
         this.maCa = maCa;
-        this.tongSo = tongSo;
-        this.thanhTien = thanhTien;
         this.maNV = maNV;
     }
-    
 
     public String getMaLuongCT() {
         return maLuongCT;
@@ -35,6 +30,10 @@ public class ChiTietLuong {
     public String getNgayLamViec() {
         return ngayLamViec;
     }
+//    public String getNgayLamViec2() {
+//        
+//        return XDate.toString(XDate.toDate(getNgayLamViec(), "dd-MM-yyyy"), "dd-MM-yyyy");
+//    }
 
     public void setNgayLamViec(String ngayLamViec) {
         this.ngayLamViec = ngayLamViec;
@@ -48,22 +47,6 @@ public class ChiTietLuong {
         this.maCa = maCa;
     }
 
-    public int getTongSo() {
-        return tongSo;
-    }
-
-    public void setTongSo(int tongSo) {
-        this.tongSo = tongSo;
-    }
-
-    public double getThanhTien() {
-        return thanhTien;
-    }
-
-    public void setThanhTien(double thanhTien) {
-        this.thanhTien = thanhTien;
-    }
-
     public String getMaNV() {
         return maNV;
     }
@@ -71,6 +54,5 @@ public class ChiTietLuong {
     public void setMaNV(String maNV) {
         this.maNV = maNV;
     }
-    
-    
+
 }

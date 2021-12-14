@@ -1,6 +1,7 @@
 package dao;
 
 import entity.*;
+import helper.XDate;
 import helper.XJdbc;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,11 +10,11 @@ import java.util.List;
 
 public class ChiTietLuongDAO extends CoffeeDevLDAO<ChiTietLuong, String> {
 
-    String insertChiTietLuong = "INSERT INTO CHITIETLUONG VALUES (?, ?, ?, ?,?,?)";
-    String updateChiTietLuong = "UPDATE CHITIETLUONG SET NgayLamViec=?, MaCa=?, MaNV=?, TongSoCa = ?, ThanhTien = ? WHERE MaLuongCT=?";
-    String deleteChiTietLuong = "DELETE FROM CHITIETLUONG WHERE MaLuongCT=?";
-    String selectAllChiTietLuong = "SELECT * FROM CHITIETLUONG";
-    String selectByIdChiTietLuong = "SELECT * FROM CHITIETLUONG WHERE MaLuongCT=?";
+    String insertChiTietLuong = "INSERT INTO LUONGCHITIET VALUES (?,?,?,?)";
+    String updateChiTietLuong = "UPDATE LUONGCHITIET SET NgayLamViec=?, MaCa=?, MaNV=? WHERE MaLuongCT=?";
+    String deleteChiTietLuong = "DELETE FROM LUONGCHITIET WHERE MaLuongCT=?";
+    String selectAllChiTietLuong = "SELECT * FROM LUONGCHITIET";
+    String selectByIdChiTietLuong = "SELECT * FROM LUONGCHITIET WHERE MaLuongCT=?";
 
     @Override
     public void insert(ChiTietLuong entity) {
@@ -22,12 +23,10 @@ public class ChiTietLuongDAO extends CoffeeDevLDAO<ChiTietLuong, String> {
                     entity.getMaLuongCT(),
                     entity.getNgayLamViec(),
                     entity.getMaCa(),
-                    entity.getTongSo(),
-                    entity.getThanhTien(),
                     entity.getMaNV()
             );
         } catch (SQLException ex) {
-
+            System.out.println(ex);
         }
     }
 
@@ -37,8 +36,6 @@ public class ChiTietLuongDAO extends CoffeeDevLDAO<ChiTietLuong, String> {
             XJdbc.update(updateChiTietLuong,
                     entity.getNgayLamViec(),
                     entity.getMaCa(),
-                    entity.getTongSo(),
-                    entity.getThanhTien(),
                     entity.getMaNV(),
                     entity.getMaLuongCT()
             );
@@ -70,12 +67,9 @@ public class ChiTietLuongDAO extends CoffeeDevLDAO<ChiTietLuong, String> {
             while (resultSet.next()) {
                 ChiTietLuong ctl = new ChiTietLuong();
                 ctl.setMaLuongCT(resultSet.getString(1));
-                ctl.setNgayLamViec(resultSet.getString(2));
+                ctl.setNgayLamViec(XDate.toString(resultSet.getDate(2), "dd-MM-yyyy"));
                 ctl.setMaCa(resultSet.getInt(3));
-                ctl.setTongSo(resultSet.getInt(4));
-                ctl.setThanhTien(resultSet.getDouble(5));
-                ctl.setMaNV(resultSet.getString(6));
-
+                ctl.setMaNV(resultSet.getString(4));
                 list.add(ctl);
             }
             resultSet.getStatement().getConnection().close();
@@ -92,5 +86,11 @@ public class ChiTietLuongDAO extends CoffeeDevLDAO<ChiTietLuong, String> {
         } else {
             return list.get(0);
         }
+    }
+
+    public List<ChiTietLuong> selectByKeyword(String keyword) {
+        String sql = "SELECT * FROM Luongchitiet a inner join NhanVien b on a.MaNV = b.MaNV where TenNV=?";
+        return this.selectBySql(sql,keyword);
+
     }
 }
