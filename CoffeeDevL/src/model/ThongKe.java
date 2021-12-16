@@ -3,15 +3,15 @@ package model;
 import dao.HoaDonDAO;
 import dao.LoaiSanPhamDAO;
 import dao.ThongKeDAO;
-import entity.HoaDon;
 import entity.LoaiSanPham;
-import entity.SanPham;
 import java.awt.*;
 import java.util.List;
 import java.awt.event.WindowEvent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.plaf.synth.SynthTableHeaderUI;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 public class ThongKe extends javax.swing.JFrame {
 
@@ -23,6 +23,35 @@ public class ThongKe extends javax.swing.JFrame {
     public ThongKe() {
         initComponents();
         init();
+        nameCollumm();
+    }
+
+    public void nameCollumm() {
+        Font HeaderFont = new Font("SansSerif", Font.PLAIN, 18);
+        JTableHeader tableHeader = tblLuongNhanVien.getTableHeader();
+        JTableHeader tableHeaderSP = tblSanPham.getTableHeader();
+        JTableHeader tableHeaderDT = tblDoanhThu.getTableHeader();
+
+        tableHeader.setUI(new SynthTableHeaderUI());
+        tableHeader.setOpaque(false);
+        tableHeader.setBackground(new Color(81, 145, 255));
+        tableHeader.setForeground(Color.white);
+        tableHeader.setFont(HeaderFont);
+        tblLuongNhanVien.setRowHeight(25);
+
+        tableHeaderSP.setUI(new SynthTableHeaderUI());
+        tableHeaderSP.setOpaque(false);
+        tableHeaderSP.setBackground(new Color(81, 145, 255));
+        tableHeaderSP.setForeground(Color.white);
+        tableHeaderSP.setFont(HeaderFont);
+        tblSanPham.setRowHeight(25);
+
+        tableHeaderDT.setUI(new SynthTableHeaderUI());
+        tableHeaderDT.setOpaque(false);
+        tableHeaderDT.setBackground(new Color(81, 145, 255));
+        tableHeaderDT.setForeground(Color.white);
+        tableHeaderDT.setFont(HeaderFont);
+        tblDoanhThu.setRowHeight(25);
     }
 
     public void init() {
@@ -238,7 +267,7 @@ public class ThongKe extends javax.swing.JFrame {
         });
         tblLuongNhanVien.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tblLuongNhanVien.setRowHeight(25);
-        tblLuongNhanVien.setRowMargin(0);
+        tblLuongNhanVien.setSelectionBackground(new java.awt.Color(0, 102, 215));
         jScrollPane4.setViewportView(tblLuongNhanVien);
 
         javax.swing.GroupLayout panelNhanVienLayout = new javax.swing.GroupLayout(panelNhanVien);
@@ -293,8 +322,11 @@ public class ThongKe extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblSanPham.setFocusable(false);
+        tblSanPham.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tblSanPham.setRowHeight(25);
         tblSanPham.setRowMargin(0);
+        tblSanPham.setSelectionBackground(new java.awt.Color(0, 102, 215));
         jScrollPane2.setViewportView(tblSanPham);
 
         javax.swing.GroupLayout panelSanPhamLayout = new javax.swing.GroupLayout(panelSanPham);
@@ -348,9 +380,10 @@ public class ThongKe extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblDoanhThu.setFocusable(false);
         tblDoanhThu.setIntercellSpacing(new java.awt.Dimension(0, 0));
         tblDoanhThu.setRowHeight(25);
-        tblDoanhThu.setRowMargin(0);
+        tblDoanhThu.setSelectionBackground(new java.awt.Color(0, 102, 215));
         jScrollPane1.setViewportView(tblDoanhThu);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N

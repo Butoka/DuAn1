@@ -16,6 +16,12 @@ public class SanPham {
     private String hinhAnh;
     private boolean trangThai;
 
+    @Override
+    public String toString() {
+        return tenSP + " ("+maSP+")";
+    }
+    
+
     public SanPham() {
     }
 

@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.plaf.synth.SynthTableHeaderUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
@@ -42,8 +43,14 @@ public class BanJFrame extends javax.swing.JFrame {
 
     public void nameCollumn() {
         JTableHeader tableHeader = tblBan.getTableHeader();
-        Font HeaderFont = new Font("Tahoma", Font.BOLD, 20);
+        tableHeader.setUI(new SynthTableHeaderUI());
+        Font HeaderFont = new Font("SansSerif", Font.PLAIN, 18);
+        tableHeader.setOpaque(false);
+        tableHeader.setBackground(new Color(81, 145, 255));
+        tableHeader.setForeground(Color.white);
+
         tableHeader.setFont(HeaderFont);
+        tblBan.setRowHeight(25);
 
     }
 
@@ -91,6 +98,13 @@ public class BanJFrame extends javax.swing.JFrame {
         ban.setTrangThai(false);
         return ban;
     }
+     Ban readFormUpdate() {
+        Ban ban = new Ban();
+        ban.setMaBan(Integer.parseInt(txtMaBan.getText()));
+        ban.setTenBan(txtTenBan.getText());
+       
+        return ban;
+    }
 
     public void writeForm(Ban ban) {
         txtMaBan.setText(ban.getMaBan() + "");
@@ -115,7 +129,7 @@ public class BanJFrame extends javax.swing.JFrame {
     }
 
     public void update() {
-        Ban ban = this.readForm();
+        Ban ban = this.readFormUpdate();
         banDao.update(ban);
         MsgBox.alert(this, "Sửa thành công");
         fillTable();
@@ -414,6 +428,10 @@ public class BanJFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblBan.setFocusable(false);
+        tblBan.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tblBan.setRowHeight(25);
+        tblBan.setSelectionBackground(new java.awt.Color(0, 102, 255));
         tblBan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblBanMouseClicked(evt);

@@ -26,6 +26,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.plaf.synth.SynthTableHeaderUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
@@ -60,9 +61,24 @@ public class Luong extends javax.swing.JFrame {
     int viTri;
 
     public void nameCollumn() {
-        JTableHeader tableHeader = tblDanhSach.getTableHeader();
-        Font HeaderFont = new Font("Tahoma", Font.BOLD, 20);
+        JTableHeader tableHeader = tblNhanVien.getTableHeader();
+        tableHeader.setUI(new SynthTableHeaderUI());
+        Font HeaderFont = new Font("SansSerif", Font.PLAIN, 18);
+        tableHeader.setOpaque(false);
+        tableHeader.setBackground(new Color(81, 145, 255));
+        tableHeader.setForeground(Color.white);
+
         tableHeader.setFont(HeaderFont);
+        tblNhanVien.setRowHeight(25);
+
+        JTableHeader tableHeaderDS = tblDanhSach.getTableHeader();
+        tableHeaderDS.setUI(new SynthTableHeaderUI());
+        tableHeaderDS.setOpaque(false);
+        tableHeaderDS.setBackground(new Color(81, 145, 255));
+        tableHeaderDS.setForeground(Color.white);
+
+        tableHeaderDS.setFont(HeaderFont);
+        tblDanhSach.setRowHeight(25);
 
     }
 
@@ -101,11 +117,11 @@ public class Luong extends javax.swing.JFrame {
         listCa = caLamViecDao.selectAll();
         for (int i = 0; i < listLuong.size(); i++) {
             for (int j = 0; j < listNV.size(); j++) {
-                if (listNV.get(i).getChucVu().equals("Phục vụ")){
-                if (listLuong.get(i).getMaNV().equals(listNV.get(j).getMaNV())) {
-                    tenNV = listNV.get(j).getTenNV();
-                    break;
-                }
+                if (listNV.get(j).getChucVu().equals("Phục vụ")) {
+                    if (listLuong.get(i).getMaNV().equals(listNV.get(j).getMaNV())) {
+                        tenNV = listNV.get(j).getTenNV();
+                        break;
+                    }
                 }
             }
             for (int j = 0; j < listCa.size(); j++) {
@@ -244,7 +260,7 @@ public class Luong extends javax.swing.JFrame {
 
     public void showTableNV() {
         viTri = tblNhanVien.getSelectedRow();
-        txtMaNV.setText(tblNhanVien.getValueAt(viTri,0).toString());
+        txtMaNV.setText(tblNhanVien.getValueAt(viTri, 0).toString());
         //txtMaNV.setText(listNV.get(viTri).getMaNV());
     }
 
@@ -279,8 +295,8 @@ public class Luong extends javax.swing.JFrame {
 
         }
     }
-    public void selectTab(int index)
-    {
+
+    public void selectTab(int index) {
         tabLoai.setSelectedIndex(index);
     }
 
@@ -353,6 +369,9 @@ public class Luong extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        tblNhanVien.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tblNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -363,7 +382,20 @@ public class Luong extends javax.swing.JFrame {
             new String [] {
                 "Mã nhân viên", "Họ tên", "Giới tính"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblNhanVien.setFocusable(false);
+        tblNhanVien.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tblNhanVien.setRowHeight(25);
+        tblNhanVien.setRowMargin(0);
+        tblNhanVien.setSelectionBackground(new java.awt.Color(0, 102, 215));
         tblNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblNhanVienMouseClicked(evt);
@@ -505,7 +537,7 @@ public class Luong extends javax.swing.JFrame {
                                 .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         //SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -519,6 +551,7 @@ public class Luong extends javax.swing.JFrame {
 
         PanelDanhSach.setBackground(new java.awt.Color(255, 255, 255));
 
+        tblDanhSach.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tblDanhSach.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -531,13 +564,17 @@ public class Luong extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tblDanhSach.setFocusable(false);
+        tblDanhSach.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tblDanhSach.setRowHeight(25);
+        tblDanhSach.setSelectionBackground(new java.awt.Color(0, 102, 215));
         tblDanhSach.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblDanhSachMouseClicked(evt);

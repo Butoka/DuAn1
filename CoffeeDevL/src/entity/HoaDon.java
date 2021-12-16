@@ -51,6 +51,15 @@ public class HoaDon {
     public boolean getTrangThai() {
         return trangThai;
     }
+     public String getTrangThai2() {
+         if(trangThai)
+         {
+             return "Đã thanh toán";
+         }else
+         {
+             return "Chưa thanh toán";
+         }
+    }
 
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;

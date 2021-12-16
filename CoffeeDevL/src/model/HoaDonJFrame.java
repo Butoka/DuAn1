@@ -15,6 +15,7 @@ import java.awt.*;
 import java.util.List;
 import java.awt.event.WindowEvent;
 import javax.swing.JButton;
+import javax.swing.plaf.synth.SynthTableHeaderUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
@@ -32,7 +33,6 @@ public class HoaDonJFrame extends javax.swing.JFrame {
         nameCollumn();
         fillTable();
         viTri = -1;
-        buttonSh();
     }
 
     HoaDonDAO hoaDon = new HoaDonDAO();
@@ -44,20 +44,14 @@ public class HoaDonJFrame extends javax.swing.JFrame {
 
     public void nameCollumn() {
         JTableHeader tableHeader = tblHoaDon.getTableHeader();
-        Font HeaderFont = new Font("Tahoma", Font.BOLD, 18);
+        tableHeader.setUI(new SynthTableHeaderUI());
+        Font HeaderFont = new Font("SansSerif", Font.PLAIN, 18);
+        tableHeader.setOpaque(false);
+        tableHeader.setBackground(new Color(81, 145, 255));
+        tableHeader.setForeground(Color.white);
+
         tableHeader.setFont(HeaderFont);
-        tblHoaDon.setFont(new Font("Tahoma", Font.PLAIN, 16));
-
-    }
-
-    public void buttonSh() {
-        if (viTri < 0) {
-            btnXoa.setEffectColor(Color.lightGray);
-            buttonPaint(btnXoa, Color.LIGHT_GRAY);
-        } else {
-            btnXoa.setEffectColor(Color.white);
-            buttonPaint(btnXoa, Color.RED);
-        }
+        tblHoaDon.setRowHeight(25);
 
     }
 
@@ -71,17 +65,22 @@ public class HoaDonJFrame extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
         model.setRowCount(0);
         list = hoaDon.selectAll();
+
         for (int i = 0; i < list.size(); i++) {
-            Object[] rows = new Object[]{list.get(i).getMaHD(), list.get(i).getNgayTao(), list.get(i).getTenDN(), list.get(i).getTrangThai()
-            };
-            model.addRow(rows);
+            if (list.get(i).isDangBan()) {
+            } else {
+                Object[] rows = new Object[]{list.get(i).getMaHD(), list.get(i).getNgayTao(), list.get(i).getTenDN(), list.get(i).getTrangThai2()
+                };
+                model.addRow(rows);
+            }
         }
 
     }
 
     public void remove() {
         viTri = tblHoaDon.getSelectedRow();
-        boolean chon = MsgBox.confirm(this, "Bạn có chắc chắn xóa hóa đơ này làm này");
+
+        boolean chon = MsgBox.confirm(this, "Bạn có chắc chắn xóa hóa đơn này làm này");
         DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
         if (chon) {
             String maHoaDon = tblHoaDon.getValueAt(viTri, 0).toString();
@@ -113,7 +112,6 @@ public class HoaDonJFrame extends javax.swing.JFrame {
         pnlTab = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblHoaDon = new javax.swing.JTable();
-        btnXoa = new newpackage.Button();
         pnlTablePane = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -196,6 +194,7 @@ public class HoaDonJFrame extends javax.swing.JFrame {
 
         pnlTab.setBackground(new java.awt.Color(255, 255, 255));
 
+        tblHoaDon.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tblHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -217,6 +216,7 @@ public class HoaDonJFrame extends javax.swing.JFrame {
         });
         tblHoaDon.setRowHeight(25);
         tblHoaDon.setRowMargin(0);
+        tblHoaDon.setSelectionBackground(new java.awt.Color(0, 102, 215));
         tblHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tblHoaDonMouseReleased(evt);
@@ -224,28 +224,13 @@ public class HoaDonJFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblHoaDon);
 
-        btnXoa.setBackground(new java.awt.Color(255, 0, 0));
-        btnXoa.setForeground(new java.awt.Color(255, 255, 255));
-        btnXoa.setText("Xóa");
-        btnXoa.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btnXoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXoaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout pnlTabLayout = new javax.swing.GroupLayout(pnlTab);
         pnlTab.setLayout(pnlTabLayout);
         pnlTabLayout.setHorizontalGroup(
             pnlTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTabLayout.createSequentialGroup()
-                .addGroup(pnlTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnlTabLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlTabLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jScrollPane1)))
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane1)
                 .addGap(10, 10, 10))
         );
         pnlTabLayout.setVerticalGroup(
@@ -253,9 +238,7 @@ public class HoaDonJFrame extends javax.swing.JFrame {
             .addGroup(pnlTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         pnlTablePane.setBackground(new java.awt.Color(255, 255, 255));
@@ -361,7 +344,12 @@ public class HoaDonJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_pnlTitleBarrMousePressed
 
     private void mnuRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRemoveActionPerformed
-        // TODO add your handling code here:
+        int chonBang = tblHoaDon.getSelectedRow();
+        if (tblHoaDon.getValueAt(chonBang, 3).toString().equals("Chưa thanh toán")) {
+            remove();
+        } else {
+            MsgBox.alert(this, "Chỉ xóa được hóa đơn chưa thanh toán");
+        }
     }//GEN-LAST:event_mnuRemoveActionPerformed
 
     private void tblHoaDonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseReleased
@@ -374,15 +362,6 @@ public class HoaDonJFrame extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_tblHoaDonMouseReleased
-
-    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        // TODO add your handling code here:
-        if (btnXoa.getBackground() != Color.LIGHT_GRAY) {
-            remove();
-        } else {
-
-        }
-    }//GEN-LAST:event_btnXoaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -423,7 +402,6 @@ public class HoaDonJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private newpackage.Button btnXoa;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

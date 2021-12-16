@@ -16,6 +16,7 @@ import java.awt.Frame;
 import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.plaf.synth.SynthTableHeaderUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
@@ -43,10 +44,15 @@ public class LoaiSanPhamJFrame extends javax.swing.JFrame {
     int viTri;
 
     public void nameCollumn() {
-        JTableHeader tableHeader = tblLoai.getTableHeader();
-        Font HeaderFont = new Font("Tahoma", Font.BOLD, 18);
+       JTableHeader tableHeader = tblLoai.getTableHeader();
+        tableHeader.setUI(new SynthTableHeaderUI());
+        Font HeaderFont = new Font("SansSerif", Font.PLAIN, 18);
+        tableHeader.setOpaque(false);
+        tableHeader.setBackground(new Color(81, 145, 255));
+        tableHeader.setForeground(Color.white);
+
         tableHeader.setFont(HeaderFont);
-        tblLoai.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        tblLoai.setRowHeight(25);
 
     }
 
@@ -350,6 +356,7 @@ public class LoaiSanPhamJFrame extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
+        tblLoai.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tblLoai.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -361,6 +368,10 @@ public class LoaiSanPhamJFrame extends javax.swing.JFrame {
                 "Mã Loại", "Tên Loại", "Mô tả"
             }
         ));
+        tblLoai.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tblLoai.setRowHeight(25);
+        tblLoai.setRowMargin(0);
+        tblLoai.setSelectionBackground(new java.awt.Color(0, 102, 215));
         tblLoai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblLoaiMouseClicked(evt);
@@ -382,7 +393,7 @@ public class LoaiSanPhamJFrame extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabLoai.addTab("DANH SÁCH", jPanel2);

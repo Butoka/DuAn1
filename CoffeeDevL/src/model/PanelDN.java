@@ -132,6 +132,12 @@ public class PanelDN extends javax.swing.JPanel {
                 lblCheckEmail.setText("");
                 return false;
             }
+            if (!nd.getTrangThai().equals("1")) 
+            {
+                lblCheckTenDangNhap.setText("Tài khoản này đã ngừng hoạt động!*");
+                lblCheckEmail.setText("");
+                return false;
+            }
             lblCheckTenDangNhap.setText("");
 
         }

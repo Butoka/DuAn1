@@ -53,6 +53,17 @@ public class DoiMatKhau extends javax.swing.JFrame {
         }
     }
 
+    public boolean check() {
+        if (pswPass.getText().isEmpty() || pswConfrimPass.getText().isEmpty()) {
+            MsgBox.alert(this, "Không được bỏ trống !");
+            return false;
+        } else if (pswPass.getText().length() < 3) {
+            MsgBox.alert(this, "Vui lòng nhập mật khẩu trên 3 ký tự !");
+            return false;
+        }
+        return true;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -270,7 +281,9 @@ public class DoiMatKhau extends javax.swing.JFrame {
     }//GEN-LAST:event_checkHienMatKhauActionPerformed
 
     private void btnXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanActionPerformed
-        doiMatKhau();
+        if (check()) {
+            doiMatKhau();
+        }
     }//GEN-LAST:event_btnXacNhanActionPerformed
 
     /**

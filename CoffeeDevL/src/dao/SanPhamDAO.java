@@ -52,7 +52,7 @@ public class SanPhamDAO extends CoffeeDevLDAO<SanPham, String> {
                     entity.getMaSP()
             );
         } catch (SQLException ex) {
- 
+
         }
     }
 
@@ -84,7 +84,7 @@ public class SanPhamDAO extends CoffeeDevLDAO<SanPham, String> {
                 sp.setSoLuong(resultSet.getInt(4));
                 sp.setGiaNhap(resultSet.getDouble(5));
                 sp.setGiaBan(resultSet.getDouble(6));
-                sp.setNgayNhap(XDate.toString(resultSet.getDate(7),"dd-MM-yyyy"));
+                sp.setNgayNhap(XDate.toString(resultSet.getDate(7), "dd-MM-yyyy"));
                 sp.setMoTa(resultSet.getString(8));
                 sp.setHinhAnh(resultSet.getString(9));
                 sp.setTrangThai(resultSet.getBoolean(10));
@@ -105,11 +105,13 @@ public class SanPhamDAO extends CoffeeDevLDAO<SanPham, String> {
             return list.get(0);
         }
     }
+
     public List<SanPham> selectByKeyword(String keyword) {
         String sql = "SELECT * FROM SanPham WHERE TenSP LIKE ? ";
         return this.selectBySql(sql, "%" + keyword + "%");
-            
+
     }
+
     public void deleteLoai(String id) {
         String deleteLoai = "DELETE FROM SANPHAM WHERE MaLoai=?";
         try {
@@ -117,5 +119,12 @@ public class SanPhamDAO extends CoffeeDevLDAO<SanPham, String> {
         } catch (SQLException ex) {
 
         }
+    }
+
+    public List<SanPham> selectSanPham(String key) {
+
+        String sql = "select * from sanpham where MaSP = ?";
+
+        return this.selectBySql(sql, key);
     }
 }

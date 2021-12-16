@@ -10,7 +10,7 @@ import java.util.List;
 public class HoaDonCTDAO extends CoffeeDevLDAO<HoaDonCT, String> {
 
     String insertHoaDonCT = "INSERT INTO HOADONCT VALUES (?,?,?,?,?,?)";
-    String updateHoaDonCT = "UPDATE HOADONCT SET MaHD=?, MaSP=?,SoLuong=?,GiamGia = ?,DonGia=? WHERE MaHDCT=?";
+    String updateHoaDonCT = "UPDATE HOADONCT SET SoLuong=?,GiamGia = ?,DonGia=? WHERE MaHDCT=?";
     String deleteHoaDonCT = "DELETE FROM HOADONCT WHERE MaHDCT =?";
     String selectAllHoaDonCT = "SELECT * FROM HOADONCT";
     String selectByIdHoaDonCT = "SELECT * FROM HOADONCT WHERE MaHDCT =?";
@@ -19,15 +19,15 @@ public class HoaDonCTDAO extends CoffeeDevLDAO<HoaDonCT, String> {
     public void insert(HoaDonCT entity) {
         try {
             XJdbc.update(insertHoaDonCT,
-                    entity.getMaHDCT(),
                     entity.getMaHD(),
+                    entity.getMaHDCT(),
                     entity.getMaSP(),
                     entity.getSoLuong(),
                     entity.getGiamGia(),
                     entity.getDonGia()
             );
         } catch (SQLException ex) {
-
+            ex.printStackTrace();
         }
     }
 
@@ -35,8 +35,6 @@ public class HoaDonCTDAO extends CoffeeDevLDAO<HoaDonCT, String> {
     public void update(HoaDonCT entity) {
         try {
             XJdbc.update(updateHoaDonCT,
-                    entity.getMaHD(),
-                    entity.getMaSP(),
                     entity.getSoLuong(),
                     entity.getGiamGia(),
                     entity.getDonGia(),
@@ -63,8 +61,8 @@ public class HoaDonCTDAO extends CoffeeDevLDAO<HoaDonCT, String> {
 
     public List<Object[]> selectHDCT(String keyWord) {
         String sql = "{CALL sp_HoaDonChiTiet(?)}";
-        String[]cols={"MaSP","TenSP","GiaBan","SoLuong","GiamGia","DonGia"};
-        return this.selectByHDCT(sql,cols, keyWord);
+        String[] cols = {"MaSP", "TenSP", "GiaBan", "SoLuong", "GiamGia", "DonGia"};
+        return this.selectByHDCT(sql, cols, keyWord);
     }
 
     @Override
@@ -76,8 +74,8 @@ public class HoaDonCTDAO extends CoffeeDevLDAO<HoaDonCT, String> {
             while (resultSet.next()) {
                 HoaDonCT hdct = new HoaDonCT();
 
-                hdct.setMaHDCT(resultSet.getString(1));
-                hdct.setMaHD(resultSet.getString(2));
+                hdct.setMaHDCT(resultSet.getString(2));
+                hdct.setMaHD(resultSet.getString(1));
                 hdct.setMaSP(resultSet.getString(3));
                 hdct.setSoLuong(resultSet.getInt(4));
                 hdct.setGiamGia(resultSet.getDouble(5));
@@ -120,7 +118,8 @@ public class HoaDonCTDAO extends CoffeeDevLDAO<HoaDonCT, String> {
             return list.get(0);
         }
     }
-     public List<Object> selectMaxMaHDCT() {
+
+    public List<Object> selectMaxMaHDCT() {
         String sql = "select Max(MaHDCT) from HoaDonCT";
         List<Object> list = new ArrayList<>();
 
@@ -135,6 +134,12 @@ public class HoaDonCTDAO extends CoffeeDevLDAO<HoaDonCT, String> {
 
         }
         return list;
+    }
+
+    public List<HoaDonCT> selectByKeyword(String keyword1, String keyword2) {
+        String sql = "select * from HoaDonCT where MaHD = ? and MaSP = ?";
+        return this.selectBySql(sql, keyword1, keyword2);
+
     }
 
 }

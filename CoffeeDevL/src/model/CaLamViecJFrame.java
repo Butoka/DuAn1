@@ -21,6 +21,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import javax.swing.plaf.metal.MetalTabbedPaneUI;
+import javax.swing.plaf.synth.SynthTableHeaderUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
@@ -47,9 +48,14 @@ public class CaLamViecJFrame extends javax.swing.JFrame {
 
     public void nameCollumn() {
         JTableHeader tableHeader = tblCaLamViec.getTableHeader();
-        Font HeaderFont = new Font("Tahoma", Font.BOLD, 18);
+        tableHeader.setUI(new SynthTableHeaderUI());
+        Font HeaderFont = new Font("SansSerif", Font.PLAIN, 18);
+        tableHeader.setOpaque(false);
+        tableHeader.setBackground(new Color(81, 145, 255));
+        tableHeader.setForeground(Color.white);
+
         tableHeader.setFont(HeaderFont);
-        tblCaLamViec.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        tblCaLamViec.setRowHeight(25);
 
     }
 
@@ -591,6 +597,7 @@ public class CaLamViecJFrame extends javax.swing.JFrame {
 
         panelDanhSach.setBackground(new java.awt.Color(255, 255, 255));
 
+        tblCaLamViec.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tblCaLamViec.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -610,6 +617,10 @@ public class CaLamViecJFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblCaLamViec.setFocusable(false);
+        tblCaLamViec.setRowHeight(25);
+        tblCaLamViec.setRowMargin(0);
+        tblCaLamViec.setSelectionBackground(new java.awt.Color(0, 102, 255));
         tblCaLamViec.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblCaLamViecMouseClicked(evt);

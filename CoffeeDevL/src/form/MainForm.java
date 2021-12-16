@@ -329,7 +329,8 @@ public class MainForm extends javax.swing.JPanel {
             dem = -1;
             event.mouseClicked(evt);
         } else {
-            new BanHangJFrame().setVisible(true);
+//            new BanHangJFrame().setVisible(true);
+               MsgBox.alert(this,"Chức năng đang cập nhật ....");
         }
     }//GEN-LAST:event_btnBanHangMouseClicked
 

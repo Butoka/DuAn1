@@ -34,7 +34,7 @@ public class BanDAO extends CoffeeDevLDAO<Ban, String> {
     public void update(Ban entity) {
         try {
             XJdbc.update(updateBan,
-                    entity.getTenBan(), entity.getMaBan(),entity.isTrangThai()
+                    entity.getTenBan(), entity.getMaBan()
             );
         } catch (SQLException ex) {
 
