@@ -23,6 +23,8 @@ import java.awt.event.WindowEvent;
 import java.awt.geom.RoundRectangle2D;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -41,7 +43,71 @@ public class NhanVienJFrame extends javax.swing.JFrame {
     public NhanVienJFrame() {
         initComponents();
         init();
+        dcNgaySinh.setMaxSelectableDate(setYear(18));
+        dcNgaySinh.setMinSelectableDate(setYear(60));
+        dcNgaySinh.setDate(setYear(18));
     }
+
+    public Date setYear(int Tuoi) {
+        Date now = new Date();
+        Period actual = null;
+        Date ngayGioiHan = null;
+        LocalDate now1 = LocalDate.of(now.getYear() + 1900, now.getMonth(), now.getDay());
+        int Nam = 0, Thang = 12, Ngay = 1;
+        int duTuoi = 0;
+        Nam = now.getYear() + 1900 - Tuoi;
+        for (int i = 1; i <= Thang; i++) {
+            switch (i) {
+                // các tháng 1, 3, 5, 7, 8, 10 và 12 có 31 ngày.
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    Ngay = 31;
+                    break;
+
+                // các tháng 4, 6, 9 và 11 có 30 ngày
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    Ngay = 30;
+                    break;
+
+                // Riêng tháng 2 nếu là năm nhuận thì có 29 ngày, còn không thì có 28 ngày.
+                case 2:
+
+                    if ((Nam % 4 == 0 && Nam % 100 != 0) || (Nam % 400 == 0)) {
+                        Ngay = 29;
+                    } else {
+                        Ngay = 28;
+                    }
+                    break;
+
+            }
+            for (int j = 1; j <= Ngay; j++) {
+                actual = Period.between(LocalDate.of(Nam, i, j), now1);
+                if (actual.getYears() == 18 || actual.getYears() == 60) {
+                    if (actual.getMonths() == 0) {
+                        if (actual.getDays() == 0) {
+                            ngayGioiHan = new Date(Nam - 1900, i, j);
+                            duTuoi += 1;
+                            break;
+                        }
+                    }
+
+                }
+            }
+            if (duTuoi > 0) {
+                break;
+            }
+        }
+        return ngayGioiHan;
+    }
+
     NhanVienDAO dao = new NhanVienDAO();
     List<NhanVien> list = dao.selectAll();
     int mpX, mpY;
@@ -65,7 +131,6 @@ public class NhanVienJFrame extends javax.swing.JFrame {
         btnXoa.setEffectColor(Color.gray);
         JTextFieldDateEditor editor = (JTextFieldDateEditor) dcNgaySinh.getDateEditor();
         editor.setEditable(false);
-
         fillTable();
     }
 

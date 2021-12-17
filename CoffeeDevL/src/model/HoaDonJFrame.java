@@ -33,12 +33,14 @@ public class HoaDonJFrame extends javax.swing.JFrame {
         nameCollumn();
         fillTable();
         viTri = -1;
+        tabPane.remove(pnlChiTiet);
     }
 
     HoaDonDAO hoaDon = new HoaDonDAO();
     List<HoaDon> list = hoaDon.selectAll();
     HoaDonCTDAO hoaDonCT = new HoaDonCTDAO();
     List<HoaDonCT> listCT = hoaDonCT.selectAll();
+    HoaDonCTDAO daoHDCT = new HoaDonCTDAO();
     int mpX, mpY;
     int viTri;
 
@@ -49,10 +51,30 @@ public class HoaDonJFrame extends javax.swing.JFrame {
         tableHeader.setOpaque(false);
         tableHeader.setBackground(new Color(81, 145, 255));
         tableHeader.setForeground(Color.white);
-
         tableHeader.setFont(HeaderFont);
         tblHoaDon.setRowHeight(25);
 
+    }
+
+    public void fillTableDanhSachSP() {
+        DefaultTableModel model = (DefaultTableModel) tblSanPham.getModel();
+        model.setRowCount(0);
+        int chonBang = tblHoaDon.getSelectedRow();
+        List<Object[]> list = daoHDCT.selectHDCT((String) tblHoaDon.getValueAt(chonBang, 0));
+        for (Object[] rowData : list) {
+            String donGia = getNum(rowData[2].toString());
+            String giamGia = getNum(rowData[4].toString());
+            String thanhTien = getNum(rowData[5].toString());
+            Object[] data = new Object[]{rowData[0],
+                rowData[1], donGia, rowData[3], giamGia, thanhTien
+            };
+            model.addRow(data);
+        }
+
+    }
+
+    public String getNum(String num) {
+        return num.substring(0, num.indexOf(".")) + " VND";
     }
 
     public void buttonPaint(JButton b, Color c) {
@@ -105,13 +127,19 @@ public class HoaDonJFrame extends javax.swing.JFrame {
 
         popmnu = new javax.swing.JPopupMenu();
         mnuRemove = new javax.swing.JMenuItem();
+        mnuInfo = new javax.swing.JMenuItem();
         pnlTitleBarr = new javax.swing.JPanel();
         lblExit = new javax.swing.JLabel();
         lblMini = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         pnlTab = new javax.swing.JPanel();
+        tabPane = new javax.swing.JTabbedPane();
+        pnlHoaDon = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblHoaDon = new javax.swing.JTable();
+        pnlChiTiet = new javax.swing.JPanel();
+        panelBanHang = new javax.swing.JScrollPane();
+        tblSanPham = new javax.swing.JTable();
         pnlTablePane = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -122,6 +150,14 @@ public class HoaDonJFrame extends javax.swing.JFrame {
             }
         });
         popmnu.add(mnuRemove);
+
+        mnuInfo.setText("Chi tiết");
+        mnuInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuInfoActionPerformed(evt);
+            }
+        });
+        popmnu.add(mnuInfo);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -194,6 +230,16 @@ public class HoaDonJFrame extends javax.swing.JFrame {
 
         pnlTab.setBackground(new java.awt.Color(255, 255, 255));
 
+        tabPane.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+        tabPane.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tabPane.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tabPaneStateChanged(evt);
+            }
+        });
+
+        pnlHoaDon.setBackground(new java.awt.Color(255, 255, 255));
+
         tblHoaDon.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tblHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -224,21 +270,92 @@ public class HoaDonJFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblHoaDon);
 
-        javax.swing.GroupLayout pnlTabLayout = new javax.swing.GroupLayout(pnlTab);
-        pnlTab.setLayout(pnlTabLayout);
-        pnlTabLayout.setHorizontalGroup(
-            pnlTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTabLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlHoaDonLayout = new javax.swing.GroupLayout(pnlHoaDon);
+        pnlHoaDon.setLayout(pnlHoaDonLayout);
+        pnlHoaDonLayout.setHorizontalGroup(
+            pnlHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlHoaDonLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jScrollPane1)
                 .addGap(10, 10, 10))
         );
+        pnlHoaDonLayout.setVerticalGroup(
+            pnlHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlHoaDonLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
+        );
+
+        tabPane.addTab("Hóa Đơn", pnlHoaDon);
+
+        pnlChiTiet.setBackground(new java.awt.Color(255, 255, 255));
+
+        panelBanHang.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 3, 3, 3, new java.awt.Color(123, 189, 255)));
+
+        tblSanPham.setBackground(new java.awt.Color(123, 189, 255));
+        tblSanPham.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tblSanPham.setForeground(new java.awt.Color(255, 255, 255));
+        tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"SP001", "Co ca cola", "10 000", "10", "1000", "9000"},
+                {"SP002", "Cà phê đen đá", "6000", "2", "1000", "11000"},
+                {"SP003", "Trà đào", "12000", "1", "0", "12000"}
+            },
+            new String [] {
+                "Mã sản phẩm", "Tên sản phẩm", "Đơn giá", "Số lượng", "Giảm giá", "Thành tiền"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblSanPham.setFocusable(false);
+        tblSanPham.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tblSanPham.setRowHeight(25);
+        tblSanPham.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        tblSanPham.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        tblSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSanPhamMouseClicked(evt);
+            }
+        });
+        panelBanHang.setViewportView(tblSanPham);
+
+        javax.swing.GroupLayout pnlChiTietLayout = new javax.swing.GroupLayout(pnlChiTiet);
+        pnlChiTiet.setLayout(pnlChiTietLayout);
+        pnlChiTietLayout.setHorizontalGroup(
+            pnlChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlChiTietLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(panelBanHang, javax.swing.GroupLayout.DEFAULT_SIZE, 618, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
+        );
+        pnlChiTietLayout.setVerticalGroup(
+            pnlChiTietLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlChiTietLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(panelBanHang, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        tabPane.addTab("Chi tiết", pnlChiTiet);
+
+        javax.swing.GroupLayout pnlTabLayout = new javax.swing.GroupLayout(pnlTab);
+        pnlTab.setLayout(pnlTabLayout);
+        pnlTabLayout.setHorizontalGroup(
+            pnlTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tabPane)
+        );
         pnlTabLayout.setVerticalGroup(
             pnlTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTabLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addComponent(tabPane, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pnlTablePane.setBackground(new java.awt.Color(255, 255, 255));
@@ -276,8 +393,8 @@ public class HoaDonJFrame extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(pnlTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(pnlTab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addComponent(pnlTab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -363,6 +480,27 @@ public class HoaDonJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tblHoaDonMouseReleased
 
+    private void mnuInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInfoActionPerformed
+        // TODO add your handling code here:
+        tabPane.add(pnlChiTiet);
+        tabPane.setTitleAt(1, "Chi tiết");
+        tabPane.setSelectedIndex(1);
+        fillTableDanhSachSP();
+
+    }//GEN-LAST:event_mnuInfoActionPerformed
+
+    private void tabPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabPaneStateChanged
+        // TODO add your handling code here:
+        if (tabPane.getSelectedIndex() == 0) {
+            tabPane.remove(pnlChiTiet);
+        }
+
+    }//GEN-LAST:event_tabPaneStateChanged
+
+    private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
+
+    }//GEN-LAST:event_tblSanPhamMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -407,11 +545,17 @@ public class HoaDonJFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblExit;
     private javax.swing.JLabel lblMini;
+    private javax.swing.JMenuItem mnuInfo;
     private javax.swing.JMenuItem mnuRemove;
+    private javax.swing.JScrollPane panelBanHang;
+    private javax.swing.JPanel pnlChiTiet;
+    private javax.swing.JPanel pnlHoaDon;
     private javax.swing.JPanel pnlTab;
     private javax.swing.JPanel pnlTablePane;
     private javax.swing.JPanel pnlTitleBarr;
     private javax.swing.JPopupMenu popmnu;
+    private javax.swing.JTabbedPane tabPane;
     private javax.swing.JTable tblHoaDon;
+    private javax.swing.JTable tblSanPham;
     // End of variables declaration//GEN-END:variables
 }

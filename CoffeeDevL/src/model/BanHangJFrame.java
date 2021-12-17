@@ -250,7 +250,6 @@ public class BanHangJFrame extends javax.swing.JFrame {
     }
 
     public String getNum(String num) {
-
         return num.substring(0, num.indexOf(".")) + " VND";
     }
 

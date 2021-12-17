@@ -192,22 +192,6 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblTrangThai" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblNhapLaiMatKhau" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="rdoHoatDong" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="rdoKhongHoatDong" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="cboPhanQuyen" min="-2" pref="328" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="pswXacNhanMK" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                              </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="pswMatKhau" alignment="0" max="32767" attributes="0"/>
@@ -220,7 +204,7 @@
                                       <Component id="lblMatKhau" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblTenND" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblPhanQuyen" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="cboMaND" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="cboMaND" alignment="0" pref="461" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="342" max="-2" attributes="0"/>
                               </Group>
@@ -228,17 +212,38 @@
                                   <Component id="lblMaND1" min="-2" pref="274" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <Component id="btnLamMoi" min="-2" pref="123" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="btnThem" min="-2" pref="123" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="btnSua" min="-2" pref="123" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="btnXoa" min="-2" pref="123" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="pswXacNhanMK" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="lblTrangThai" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblNhapLaiMatKhau" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="rdoHoatDong" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="32767" attributes="0"/>
+                                                      <Component id="rdoKhongHoatDong" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="cboPhanQuyen" min="-2" pref="328" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="310" max="32767" attributes="0"/>
-                          <Component id="btnLamMoi" min="-2" pref="123" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnThem" min="-2" pref="123" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnSua" min="-2" pref="123" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnXoa" min="-2" pref="123" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -246,9 +251,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMaND1" max="32767" attributes="0"/>
+                          <Component id="lblMaND1" pref="24" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          <Component id="cboMaND" pref="35" max="32767" attributes="0"/>
+                          <Component id="cboMaND" pref="47" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           <Component id="lblTenND" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
@@ -272,14 +277,14 @@
                               <Component id="rdoHoatDong" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="rdoKhongHoatDong" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btnXoa" alignment="1" min="-2" pref="56" max="-2" attributes="0"/>
                               <Component id="btnSua" alignment="1" min="-2" pref="56" max="-2" attributes="0"/>
                               <Component id="btnThem" alignment="1" min="-2" pref="56" max="-2" attributes="0"/>
                               <Component id="btnLamMoi" alignment="1" min="-2" pref="56" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
