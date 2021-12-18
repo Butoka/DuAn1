@@ -6,7 +6,9 @@
 package model;
 
 import dao.BanDAO;
+import dao.HoaDonDAO;
 import entity.Ban;
+import entity.HoaDon;
 import helper.MsgBox;
 import java.awt.Color;
 import java.awt.*;
@@ -38,6 +40,8 @@ public class BanJFrame extends javax.swing.JFrame {
     }
     BanDAO banDao = new BanDAO();
     List<Ban> list = banDao.selectAll();
+    HoaDonDAO daoHD = new HoaDonDAO();
+    List<HoaDon> listHD = daoHD.selectAll();
     int mpX, mpY;
     int viTri;
 
@@ -150,22 +154,29 @@ public class BanJFrame extends javax.swing.JFrame {
 
     public void remove() {
         viTri = tblBan.getSelectedRow();
-        boolean chon = MsgBox.confirm(this, "Bạn có chắc chắn xóa bàn này");
+        boolean chon = MsgBox.confirm(this, "Bạn có chắc chắn xóa bàn này"), xoa = true;
 
         DefaultTableModel model = (DefaultTableModel) tblBan.getModel();
         if (chon) {
             String maBan = tblBan.getValueAt(viTri, 0).toString();
-            banDao.delete(maBan);
             boolean loi = new BanDAO().loi;
-            if (loi == false) {
-                MsgBox.alert(this, "Đã xóa thành công");
+            for (int i = 0; i < listHD.size(); i++) {
+                if (listHD.get(i).getBan() == Integer.parseInt(maBan)) {
+                    MsgBox.alert(this, "Bạn không thể xóa bàn này!!\n Bàn này đã có hóa đơn!");
+                    xoa = false;
+                    break;
+                }
+            }
+            if (xoa) {
+                banDao.delete(maBan);
                 fillTable();
                 clear();
-            } else {
-                MsgBox.alert(this, "Bạn không thể xóa bàn này!!\n Bàn này đã có hóa đơn!");
+                MsgBox.alert(this, "Đã xóa thành công");
             }
-
+        } else {
+            MsgBox.alert(this, "Chưa được xóa");
         }
+
         viTri = -1;
     }
 

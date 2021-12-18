@@ -10,8 +10,10 @@ package model;
  * @author admin
  */
 import com.sun.javafx.application.PlatformImpl;
+import dao.HoaDonCTDAO;
 import dao.LoaiSanPhamDAO;
 import dao.SanPhamDAO;
+import entity.HoaDonCT;
 import entity.LoaiSanPham;
 import entity.SanPham;
 import helper.MsgBox;
@@ -67,6 +69,8 @@ public class SanPhamJFrame extends javax.swing.JFrame {
     List<SanPham> list = sanPhamDao.selectAll();
     LoaiSanPhamDAO loaiDao = new LoaiSanPhamDAO();
     List<LoaiSanPham> listLoai = loaiDao.selectAll();
+    HoaDonCTDAO daoHDCT = new HoaDonCTDAO();
+    List<HoaDonCT> listHDCT = daoHDCT.selectAll();
     int mpX, mpY;
     Date now = new Date();
     int viTri;
@@ -288,14 +292,24 @@ public class SanPhamJFrame extends javax.swing.JFrame {
 
     public void remove() {
         viTri = tblSanPham.getSelectedRow();
-        boolean chon = MsgBox.confirm(this, "Bạn có chắc chắn xóa bàn này");
+        boolean chon = MsgBox.confirm(this, "Bạn có chắc chắn xóa bàn này"), xoa = true;
         DefaultTableModel model = (DefaultTableModel) tblSanPham.getModel();
+        String maSanPham = txtMaSP.getText();
         if (chon) {
-            String maSanPham = tblSanPham.getValueAt(viTri, 0).toString();
-            sanPhamDao.delete(maSanPham);
-            MsgBox.alert(this, "Đã xóa thành công");
-            fillTable();
-            clear();
+            for (int i = 0; i < listHDCT.size(); i++) {
+                if (listHDCT.get(i).getMaSP().equals(maSanPham)) {
+                    MsgBox.alert(this, "Sản phẩm này không được xóa!!!");
+                    xoa = false;
+                    break;
+                }
+            }
+            if (xoa) {
+                sanPhamDao.delete(maSanPham);
+                MsgBox.alert(this, "Đã xóa thành công");
+                fillTable();
+                clear();
+            }
+
         } else {
             MsgBox.alert(this, "Chưa được xóa");
         }

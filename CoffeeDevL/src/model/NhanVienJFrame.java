@@ -13,7 +13,9 @@ import com.sun.webkit.BackForwardList;
 import com.toedter.calendar.*;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
+import dao.NguoiDungDAO;
 import dao.NhanVienDAO;
+import entity.NguoiDung;
 import entity.NhanVien;
 import helper.Auth;
 import helper.MsgBox;
@@ -110,6 +112,8 @@ public class NhanVienJFrame extends javax.swing.JFrame {
 
     NhanVienDAO dao = new NhanVienDAO();
     List<NhanVien> list = dao.selectAll();
+    NguoiDungDAO daoND = new NguoiDungDAO();
+    List<NguoiDung> listND = daoND.selectAll();
     int mpX, mpY;
     int index;
 
@@ -339,15 +343,23 @@ public class NhanVienJFrame extends javax.swing.JFrame {
 
     public void delete() {
         int viTri = tblNhanVien.getSelectedRow();
-        boolean chon = MsgBox.confirm(this, "Bạn có chắc chắn muốn xóa nhân viên này ?!");
+        boolean chon = MsgBox.confirm(this, "Bạn có chắc chắn muốn xóa nhân viên này ?!"), xoa = true;
         DefaultTableModel model = (DefaultTableModel) tblNhanVien.getModel();
+        String maNV = tblNhanVien.getValueAt(viTri, 0).toString();
         if (chon) {
-            String maNV = tblNhanVien.getValueAt(viTri, 0).toString();
+            for (int i = 0; i < listND.size(); i++) {
+                if (listND.get(i).getMaND().equals(maNV)) {
+                    MsgBox.alert(this, "Nhân viên này đã có tài khoản không được xóa");
+                    xoa = false;
+                    break;
+                }
+            }
+        }
+        if (xoa) {
             dao.delete(maNV);
             clearForm();
             fillTable();
             MsgBox.alert(this, "Đã xóa thành công");
-
         }
     }
 

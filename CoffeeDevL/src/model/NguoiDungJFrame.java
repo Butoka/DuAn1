@@ -9,8 +9,10 @@ package model;
  *
  * @author admin
  */
+import dao.HoaDonDAO;
 import dao.NguoiDungDAO;
 import dao.NhanVienDAO;
+import entity.HoaDon;
 import entity.NguoiDung;
 import entity.NhanVien;
 import helper.MsgBox;
@@ -46,6 +48,8 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
     NhanVien nv;
     NhanVienDAO daoNV = new NhanVienDAO();
     List<NguoiDung> list = dao.selectAll();
+    HoaDonDAO daoHD = new HoaDonDAO();
+    List<HoaDon> listHD = daoHD.selectAll();
 
     public void nameCollum() {
         JTableHeader tableHeader = tblNguoiDung.getTableHeader();
@@ -198,15 +202,25 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
             MsgBox.alert(this, "Bạn không thể xóa!");
             return;
         }
-        boolean chon = MsgBox.confirm(this, "Bạn có chắc chắn xóa ");
+        boolean chon = MsgBox.confirm(this, "Bạn có chắc chắn xóa "), xoa = true;
         DefaultTableModel model = (DefaultTableModel) tblNguoiDung.getModel();
+        String tenNguoiDung = txtTenND.getText();
         if (chon) {
-            String tenNguoiDung = txtTenND.getText();
-            dao.delete(tenNguoiDung);
-            fillTable();
-            MsgBox.alert(this, "Đã xóa thành công");
-            txtTenND.setText("");
-            txtTenND.setEnabled(true);
+            for (int i = 0; i < listHD.size(); i++) {
+                if (listHD.get(i).getTenDN().equals(tenNguoiDung)) {
+                    MsgBox.alert(this, "Người dùng này không thể xóa!!!");
+                    xoa = false;
+                    break;
+                }
+            }
+
+            if (xoa) {
+                dao.delete(tenNguoiDung);
+                fillTable();
+                MsgBox.alert(this, "Đã xóa thành công");
+                txtTenND.setText("");
+                txtTenND.setEnabled(true);
+            }
 
         } else {
             MsgBox.alert(this, "Chưa được xóa");
@@ -953,7 +967,7 @@ public class NguoiDungJFrame extends javax.swing.JFrame {
                 if (nd.getPhanQuyen().equalsIgnoreCase("admin")) {
                     cboPhanQuyen.setEnabled(false);
                     cboPhanQuyen.setSelectedItem("Admin");
-                    
+
                 } else if (nd.getPhanQuyen().equalsIgnoreCase("Quản lý")) {
                     cboPhanQuyen.setEnabled(true);
                     cboPhanQuyen.setSelectedItem("Quản lý");
