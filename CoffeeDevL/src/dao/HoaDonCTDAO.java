@@ -126,7 +126,12 @@ public class HoaDonCTDAO extends CoffeeDevLDAO<HoaDonCT, String> {
         try {
             ResultSet rs = XJdbc.query(sql);
             while (rs.next()) {
-                list.add(rs.getString(1));
+                String hdd = rs.getString(1);
+                if(hdd == null)
+                {
+                    hdd = "HDCT000";
+                }
+                list.add(hdd);
             }
             rs.getStatement().getConnection().close();
 

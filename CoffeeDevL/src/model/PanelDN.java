@@ -110,6 +110,7 @@ public class PanelDN extends javax.swing.JPanel {
     }
 
     public boolean checkQuenMatKhau() {
+        cuaso = 0;
         String tenDangNhap = txtTenDangNhap.getText();
         String email = txtEmail.getText();
         NguoiDung nd = dao.selectById(tenDangNhap);

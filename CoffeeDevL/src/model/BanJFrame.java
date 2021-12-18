@@ -98,11 +98,12 @@ public class BanJFrame extends javax.swing.JFrame {
         ban.setTrangThai(false);
         return ban;
     }
-     Ban readFormUpdate() {
+
+    Ban readFormUpdate() {
         Ban ban = new Ban();
         ban.setMaBan(Integer.parseInt(txtMaBan.getText()));
         ban.setTenBan(txtTenBan.getText());
-       
+
         return ban;
     }
 
@@ -150,15 +151,20 @@ public class BanJFrame extends javax.swing.JFrame {
     public void remove() {
         viTri = tblBan.getSelectedRow();
         boolean chon = MsgBox.confirm(this, "Bạn có chắc chắn xóa bàn này");
+
         DefaultTableModel model = (DefaultTableModel) tblBan.getModel();
         if (chon) {
             String maBan = tblBan.getValueAt(viTri, 0).toString();
             banDao.delete(maBan);
-            MsgBox.alert(this, "Đã xóa thành công");
-            fillTable();
-            clear();
-        } else {
-            MsgBox.alert(this, "Chưa được xóa");
+            boolean loi = new BanDAO().loi;
+            if (loi == false) {
+                MsgBox.alert(this, "Đã xóa thành công");
+                fillTable();
+                clear();
+            } else {
+                MsgBox.alert(this, "Bạn không thể xóa bàn này!!\n Bàn này đã có hóa đơn!");
+            }
+
         }
         viTri = -1;
     }
@@ -605,7 +611,6 @@ public class BanJFrame extends javax.swing.JFrame {
         clear();
     }//GEN-LAST:event_btnReNewActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */

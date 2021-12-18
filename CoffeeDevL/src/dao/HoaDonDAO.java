@@ -10,7 +10,7 @@ import java.util.List;
 public class HoaDonDAO extends CoffeeDevLDAO<HoaDon, String> {
 
     String insertHoaDon = "INSERT INTO HOADON VALUES (?,?,?,?,?,?,?)";
-    String updateHoaDon = "UPDATE HOADON SET NgayTao=?, TenDangNhap=?, TrangThai=?,Huy = ?,Ban = ?,DangBan = ? WHERE MaHD=?";
+    String updateHoaDon = "UPDATE HOADON SET NgayTao=?, TenDN=?, TrangThai=?,Huy = ?,Ban = ?,DangBan = ? WHERE MaHD=?";
     String deleteHoaDon = "DELETE FROM HOADON WHERE MaHD=?";
     String selectAllHoaDon = "SELECT * FROM HOADON";
     String selectByIdHoaDon = "SELECT * FROM HOADON WHERE MaHD=?";
@@ -46,7 +46,7 @@ public class HoaDonDAO extends CoffeeDevLDAO<HoaDon, String> {
                     entity.getMaHD()
             );
         } catch (SQLException ex) {
-
+            ex.printStackTrace();
         }
     }
 
@@ -129,13 +129,20 @@ public class HoaDonDAO extends CoffeeDevLDAO<HoaDon, String> {
         try {
             ResultSet rs = XJdbc.query(sql);
             while (rs.next()) {
-                list.add(rs.getString(1));
+                String row = rs.getString(1);
+                if(row == null)
+                {
+                    row = "HD000";
+                }
+                list.add(row);
             }
             rs.getStatement().getConnection().close();
 
         } catch (SQLException ex) {
 
         }
+
         return list;
+
     }
 }

@@ -216,8 +216,8 @@ public class ManHinhChinh extends javax.swing.JFrame {
         } else if (menuIndex == 2) {
             new BanJFrame().setVisible(true);
         } else if (menuIndex == 3) {
-            //new BanHangJFrame().setVisible(true);
-             MsgBox.alert(this,"Chức năng đang cập nhật ....");
+            new BanHangJFrame().setVisible(true);
+            //MsgBox.alert(this, "Chức năng đang cập nhật ....");
         } else if (menuIndex == 4) {
             new HoaDonJFrame().setVisible(true);
         } else if (menuIndex == 5) {
@@ -280,8 +280,8 @@ public class ManHinhChinh extends javax.swing.JFrame {
         } else if (menuIndex == 2) {
             new BanJFrame().setVisible(true);
         } else if (menuIndex == 3) {
-          //  new BanHangJFrame().setVisible(true);
-           MsgBox.alert(this,"Chức năng đang cập nhật ....");
+            new BanHangJFrame().setVisible(true);
+//           MsgBox.alert(this,"Chức năng đang cập nhật ....");
         } else if (menuIndex == 4) {
             new HoaDonJFrame().setVisible(true);
         } else if (menuIndex == 5) {
@@ -318,12 +318,12 @@ public class ManHinhChinh extends javax.swing.JFrame {
 
     public void menuThuNgan(int menuIndex, int subMenuIndex) {
         if (menuIndex == 0) {
-            //new BanHangJFrame().setVisible(true);
-             MsgBox.alert(this,"Chức năng đang cập nhật ....");
+            new BanHangJFrame().setVisible(true);
+            // MsgBox.alert(this,"Chức năng đang cập nhật ....");
         } else if (menuIndex == 1) {
             new HoaDonJFrame().setVisible(true);
         } else if (menuIndex == 2) {
-             guiMail();
+            guiMail();
         } else if (menuIndex == 3) {
             boolean chon = MsgBox.confirm(man, "Bạn chắc chắn muốn đăng xuất !?");
             if (chon) {
@@ -361,10 +361,10 @@ public class ManHinhChinh extends javax.swing.JFrame {
             String subject = "CoffeeDevL - Mã xác nhận ";
             String maXacNhan = randomMa(6);
             String body = "Mã xác nhận của bạn là : " + maXacNhan;
-            if (to.equals("")) {
-                MsgBox.alert(this, "Không được bỏ trống !");
-
-            }
+//            if (to.equals("")) {
+//                MsgBox.alert(this, "Không được bỏ trống !");
+//
+//            }
 
             if (to != null) {
 

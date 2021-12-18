@@ -15,6 +15,7 @@ public class SanPhamDAO extends CoffeeDevLDAO<SanPham, String> {
     String deleteSanPham = "DELETE FROM SANPHAM WHERE MaSP=?";
     String selectAllSanPham = "SELECT * FROM SANPHAM";
     String selectByIdSanPham = "SELECT * FROM SANPHAM WHERE MaSP=?";
+    String updateSoLuongSanPham = "UPDATE SANPHAM SET SoLuong = ? WHERE MaSP = ?";
 
     @Override
     public void insert(SanPham entity) {
@@ -49,6 +50,17 @@ public class SanPhamDAO extends CoffeeDevLDAO<SanPham, String> {
                     entity.getMoTa(),
                     entity.getHinhAnh(),
                     entity.isTrangThai(),
+                    entity.getMaSP()
+            );
+        } catch (SQLException ex) {
+
+        }
+    }
+
+    public void updateSoLuong(SanPham entity) {
+        try {
+            XJdbc.update(updateSoLuongSanPham,
+                    entity.getSoLuong(),
                     entity.getMaSP()
             );
         } catch (SQLException ex) {

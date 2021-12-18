@@ -17,7 +17,7 @@ public class BanDAO extends CoffeeDevLDAO<Ban, String> {
     String deleteBan = "DELETE FROM Ban WHERE MaBan=?";
     String selectAllBan = "SELECT * FROM Ban";
     String selectByIdBan = "SELECT * FROM Ban WHERE MaBan=?";
-
+    public static boolean loi = false;
     @Override
     public void insert(Ban entity) {
         try {
@@ -56,7 +56,7 @@ public class BanDAO extends CoffeeDevLDAO<Ban, String> {
         try {
             XJdbc.update(deleteBan, id);
         } catch (SQLException ex) {
-
+           loi = true;
         }
     }
 
