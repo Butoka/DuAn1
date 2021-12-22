@@ -49,6 +49,8 @@ public class InHoaDon extends javax.swing.JFrame {
     HoaDonCTDAO daoHDCT = new HoaDonCTDAO();
     String maHD;
     String ngayBan;
+    public static int bat = 0;
+
     public void InHoaDon(String maHD, String ngayBan, String thuNgan, String ban, String tongTien, String tongTienChu) {
         this.maHD = maHD;
         this.ngayBan = ngayBan;
@@ -76,8 +78,8 @@ public class InHoaDon extends javax.swing.JFrame {
 
     public void inHD() {
         JFileChooser chooser = new JFileChooser("C:\\Users\\admin\\Desktop");
-        
-        File file = new File(maHD+"_"+ngayBan+".pdf");
+
+        File file = new File(maHD + "_" + ngayBan + ".pdf");
         chooser.setSelectedFile(file);
         int i = chooser.showSaveDialog(this);
         File f = chooser.getSelectedFile();
@@ -107,6 +109,7 @@ public class InHoaDon extends javax.swing.JFrame {
 
             document.close();
             MsgBox.alert(this, "Đã in hóa đơn thành công!");
+
         }
     }
 
@@ -130,7 +133,7 @@ public class InHoaDon extends javax.swing.JFrame {
                 model.addRow(data);
             }
         }
-      
+
     }
 
     public void fillData(String ngayBan, String thuNgan, String ban, String tongTien, String tongTienChu) {
@@ -386,9 +389,9 @@ public class InHoaDon extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnInHD, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -408,6 +411,7 @@ public class InHoaDon extends javax.swing.JFrame {
 
     private void btnInHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInHDActionPerformed
         inHD();
+        bat = 1;
     }//GEN-LAST:event_btnInHDActionPerformed
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked

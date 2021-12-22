@@ -1492,22 +1492,7 @@ public class BanHangJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtGiamGiaFocusGained
 
     private void btnInHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInHDActionPerformed
-        if (!txtTrangThaiHD.equals("Chưa tạo hóa đơn")) {
-            boolean chon = MsgBox.confirm(this, "Bạn chắc muốn in hóa đơn!");
-            if (chon) {
-                String maHD = txtMaHD.getText();
-                String ngayBan = txtNgayTao.getText();
-                String thuNgan = txtTenNguoiTao.getText();
-                String ban = cboMaBan.getSelectedItem().toString();
-                String tongTien = lblTongTien.getText();
-                String tongTienChu = lblTongTienChu.getText();
-
-                InHoaDon in = new InHoaDon();
-                in.InHoaDon(maHD, ngayBan, thuNgan, ban, tongTien, tongTienChu);
-                in.setVisible(true);
-            }
-
-        }
+        inHoaDon();
     }//GEN-LAST:event_btnInHDActionPerformed
     public void test() {
         if (cboTrangThai.getSelectedItem().equals("Có khách")) {
@@ -1528,6 +1513,11 @@ public class BanHangJFrame extends javax.swing.JFrame {
 
     public void thanhToanHD() {
         String maHD = txtMaHD.getText();
+        String ngayBan = txtNgayTao.getText();
+        String thuNgan = txtTenNguoiTao.getText();
+        String ban = cboMaBan.getSelectedItem().toString();
+        String tongTien = lblTongTien.getText();
+        String tongTienChu = lblTongTienChu.getText();
         boolean chon = MsgBox.confirm(this, "Bạn muốn thanh toán hóa đơn " + maHD + "!!");
         if (chon) {
             updateBan(false);
@@ -1536,6 +1526,14 @@ public class BanHangJFrame extends javax.swing.JFrame {
             fillComboBoxBan();
             fillTableDanhSachSP();
             MsgBox.alert(this, "Hóa đơn " + maHD + " đã thanh toán!");
+
+            boolean chon2 = MsgBox.confirm(this, "Bạn có muốn in hóa đơn " + maHD + "!!");
+            if (chon2) {
+
+                InHoaDon in = new InHoaDon();
+                in.InHoaDon(maHD, ngayBan, thuNgan, ban, tongTien, tongTienChu);
+                in.setVisible(true);
+            }
 
         }
 
@@ -1556,6 +1554,23 @@ public class BanHangJFrame extends javax.swing.JFrame {
     }
 
     public void inHoaDon() {
+        if (!txtTrangThaiHD.equals("Chưa tạo hóa đơn")) {
+            boolean chon = MsgBox.confirm(this, "Bạn chắc muốn in hóa đơn!");
+            if (chon) {
+                String maHD = txtMaHD.getText();
+                String ngayBan = txtNgayTao.getText();
+                String thuNgan = txtTenNguoiTao.getText();
+                String ban = cboMaBan.getSelectedItem().toString();
+                String tongTien = lblTongTien.getText();
+                String tongTienChu = lblTongTienChu.getText();
+
+                InHoaDon in = new InHoaDon();
+                in.InHoaDon(maHD, ngayBan, thuNgan, ban, tongTien, tongTienChu);
+                in.setVisible(true);
+
+            }
+
+        }
     }
     public static HashMap<String, String> hm_tien = new HashMap<String, String>() {
         {
