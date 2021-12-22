@@ -15,7 +15,7 @@ public class HoaDonDAO extends CoffeeDevLDAO<HoaDon, String> {
     String selectAllHoaDon = "SELECT * FROM HOADON";
     String selectByIdHoaDon = "SELECT * FROM HOADON WHERE MaHD=?";
     String selectByIDMaBan = "SELECT * FROM HOADON WHERE Ban=? and DangBan = 'true'";
-
+     public static boolean loi2 = false;
     @Override
     public void insert(HoaDon entity) {
         try {
@@ -55,7 +55,7 @@ public class HoaDonDAO extends CoffeeDevLDAO<HoaDon, String> {
         try {
             XJdbc.update(deleteHoaDon, id);
         } catch (SQLException ex) {
-
+            loi2 = true;
         }
     }
 
@@ -101,6 +101,11 @@ public class HoaDonDAO extends CoffeeDevLDAO<HoaDon, String> {
 
     public List<HoaDon> selectByKeyword(int keyword) {
         String sql = selectByIDMaBan;
+        return this.selectBySql(sql, keyword);
+
+    }
+     public List<HoaDon> selectHD(String keyword) {
+        String sql = "SELECT * FROM HOADON WHERE TENDN = ?";
         return this.selectBySql(sql, keyword);
 
     }

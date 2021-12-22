@@ -54,7 +54,7 @@ public class NhanVienJFrame extends javax.swing.JFrame {
         Date now = new Date();
         Period actual = null;
         Date ngayGioiHan = null;
-        LocalDate now1 = LocalDate.of(now.getYear() + 1900, now.getMonth(), now.getDay());
+        LocalDate now1 = LocalDate.of(now.getYear() + 1900, now.getMonth(), now.getDate());
         int Nam = 0, Thang = 12, Ngay = 1;
         int duTuoi = 0;
         Nam = now.getYear() + 1900 - Tuoi;
@@ -353,14 +353,17 @@ public class NhanVienJFrame extends javax.swing.JFrame {
                     xoa = false;
                     break;
                 }
+
             }
+            if (xoa) {
+                dao.delete(maNV);
+                clearForm();
+                fillTable();
+                MsgBox.alert(this, "Đã xóa thành công");
+            }
+
         }
-        if (xoa) {
-            dao.delete(maNV);
-            clearForm();
-            fillTable();
-            MsgBox.alert(this, "Đã xóa thành công");
-        }
+
     }
 
     public void update() {

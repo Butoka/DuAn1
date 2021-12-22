@@ -984,6 +984,9 @@
               <Font name="Tahoma" size="16" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInHDActionPerformed"/>
+          </Events>
         </Component>
         <Component class="newpackage.Button" name="btnHuy">
           <Properties>

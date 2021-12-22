@@ -2,6 +2,7 @@ package model;
 
 import dao.*;
 import entity.*;
+import entity.HoaDon;
 import helper.*;
 import java.awt.Color;
 import java.awt.Font;
@@ -117,9 +118,14 @@ public class BanHangJFrame extends javax.swing.JFrame {
             btnXoa.setEffectColor(Color.gray);
             btnCapNhat.setEffectColor(Color.gray);
 
+            txtSoLuong.setEnabled(false);
+            txtGiamGia.setEnabled(false);
+
         } else {
             eventButton(btnThem, new Color(255, 0, 0));
             btnThem.setEffectColor(Color.white);
+            txtSoLuong.setEnabled(true);
+            txtGiamGia.setEnabled(true);
         }
 
     }
@@ -536,7 +542,8 @@ public class BanHangJFrame extends javax.swing.JFrame {
                 return;
             }
         } catch (NumberFormatException e) {
-            MsgBox.alert(this, "Số lượng vui lòng nhập số!");
+//            MsgBox.alert(this, "Số lượng vui lòng nhập số!");
+            txtSoLuong.setText("");
             txtSoLuong.setText("0");
 
         }
@@ -552,13 +559,15 @@ public class BanHangJFrame extends javax.swing.JFrame {
                 return;
             }
             if (giamGia > 5000) {
-                txtGiamGia.setText("0");
+
                 MsgBox.alert(this, "Giá giảm phải từ 5000 trở xuống!!");
+                txtGiamGia.setText("0");
                 return;
             }
         } catch (Exception e) {
 
-            MsgBox.alert(this, "Giảm giá vui lòng nhập số!");
+//            MsgBox.alert(this, "Giảm giá vui lòng nhập số!");
+            txtGiamGia.setText("");
             txtGiamGia.setText("0");
 
         }
@@ -637,8 +646,45 @@ public class BanHangJFrame extends javax.swing.JFrame {
     }
 
     public boolean checkBoTrong() {
-        int soLuong = Integer.valueOf(txtSoLuong.getText());
+        int soLuong = 0;
         int soLuongTon = Integer.valueOf(txtSoLuongTon.getText());
+        int giamGia = 0;
+        try {
+            soLuong = Integer.valueOf(txtSoLuong.getText());
+            if (soLuong > 500) {
+                MsgBox.alert(this, "Số lượng phải từ 500 trở xuống!!");
+                txtSoLuong.setText("0");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            MsgBox.alert(this, "Số lượng vui lòng nhập số!");
+            txtSoLuong.setText("0");
+            return false;
+
+        }
+        try {
+
+            giamGia = Integer.valueOf(txtGiamGia.getText());
+            if (soLuong == 0 && giamGia > 0) {
+
+                MsgBox.alert(this, "Vui lòng nhập số lượng trước!!");
+                txtGiamGia.setText("0");
+
+                return false;
+            }
+            if (giamGia > 5000) {
+
+                MsgBox.alert(this, "Giá giảm phải từ 5000 trở xuống!!");
+                txtGiamGia.setText("0");
+                return false;
+            }
+        } catch (Exception e) {
+
+            MsgBox.alert(this, "Giảm giá vui lòng nhập số!");
+            txtGiamGia.setText("0");
+            return false;
+
+        }
         if (soLuongTon == 0) {
             MsgBox.alert(this, "Sản phẩm này đã hết hàng!!");
             txtSoLuong.setText("0");
@@ -1084,6 +1130,11 @@ public class BanHangJFrame extends javax.swing.JFrame {
         btnInHD.setForeground(new java.awt.Color(255, 255, 255));
         btnInHD.setText("In hóa đơn");
         btnInHD.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnInHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInHDActionPerformed(evt);
+            }
+        });
 
         btnHuy.setBackground(new java.awt.Color(255, 51, 51));
         btnHuy.setForeground(new java.awt.Color(255, 255, 255));
@@ -1439,6 +1490,25 @@ public class BanHangJFrame extends javax.swing.JFrame {
             txtGiamGia.setText("");
         }
     }//GEN-LAST:event_txtGiamGiaFocusGained
+
+    private void btnInHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInHDActionPerformed
+        if (!txtTrangThaiHD.equals("Chưa tạo hóa đơn")) {
+            boolean chon = MsgBox.confirm(this, "Bạn chắc muốn in hóa đơn!");
+            if (chon) {
+                String maHD = txtMaHD.getText();
+                String ngayBan = txtNgayTao.getText();
+                String thuNgan = txtTenNguoiTao.getText();
+                String ban = cboMaBan.getSelectedItem().toString();
+                String tongTien = lblTongTien.getText();
+                String tongTienChu = lblTongTienChu.getText();
+
+                InHoaDon in = new InHoaDon();
+                in.InHoaDon(maHD, ngayBan, thuNgan, ban, tongTien, tongTienChu);
+                in.setVisible(true);
+            }
+
+        }
+    }//GEN-LAST:event_btnInHDActionPerformed
     public void test() {
         if (cboTrangThai.getSelectedItem().equals("Có khách")) {
             Ban ban = (Ban) cboMaBan.getSelectedItem();
@@ -1616,6 +1686,8 @@ public class BanHangJFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(BanHangJFrame.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

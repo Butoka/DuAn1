@@ -10,6 +10,7 @@ import dao.HoaDonDAO;
 import entity.CaLamViec;
 import entity.HoaDon;
 import entity.HoaDonCT;
+import helper.Auth;
 import helper.MsgBox;
 import java.awt.*;
 import java.util.List;
@@ -86,8 +87,14 @@ public class HoaDonJFrame extends javax.swing.JFrame {
     public void fillTable() {
         DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
         model.setRowCount(0);
-        list = hoaDon.selectAll();
+        if (Auth.isLogin()) {
+            if (Auth.getManager().equals("admin")) {
+                list = hoaDon.selectAll();
+            } else {
+                list = hoaDon.selectHD(Auth.getUsername().toString());
+            }
 
+        }
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).isDangBan()) {
             } else {
@@ -105,13 +112,20 @@ public class HoaDonJFrame extends javax.swing.JFrame {
         boolean chon = MsgBox.confirm(this, "Bạn có chắc chắn xóa hóa đơn này làm này");
         DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
         if (chon) {
+
             String maHoaDon = tblHoaDon.getValueAt(viTri, 0).toString();
-            hoaDonCT.delete(maHoaDon);
             hoaDon.delete(maHoaDon);
+            boolean loi = new HoaDonDAO().loi2;
+            System.out.println(loi);
+            if (loi) {
+                MsgBox.alert(this, "Không thể xóa !!\nHóa đơn này đang bán");
+                return;
+            }
+            hoaDonCT.delete(maHoaDon);
+
             MsgBox.alert(this, "Đã xóa thành công");
             fillTable();
-        } else {
-            MsgBox.alert(this, "Chưa được xóa");
+
         }
         viTri = -1;
     }
